@@ -16,7 +16,6 @@ void productReport()
 	system("cls");
 	std::cout << "IZVJESTAJ PO ARTIKLU" << std::endl<<std::endl;
 	std::string naziv;
-	std::cout << "IZVJESTAJ PO KUPCU" << std::endl << std::endl;
 	std::cout << "Unesite naziv artikla: " << std::endl;
 	std::cout << std::endl << "Naziv: ";  std::cin >> naziv;
 	//uci u bazu artikala i ispisati izvjestaj
