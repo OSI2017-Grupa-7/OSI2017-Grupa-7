@@ -112,18 +112,18 @@ int deleteAnalyst(std::string a)
 	}
 	fclose(myfile);
 
-	for (int i = 0; i < v.size(); i++)
+	for (unsigned int i = 0; i < v.size(); i++)
 		if (v[i].getID() == a)
 			isString = 1;
 	if (isString == 0)
 		return 0;
 	std::ofstream file;
 	file.open("RegistrovaniAnaliticari.txt");
-	for (int i = 0; i < v.size(); i++)
+	for (unsigned int i = 0; i < v.size(); i++)
 		if (v[i].getID() == a)
 			v.erase(v.begin() + i);
 
-	for (int i = 0; i < v.size(); i++)
+	for (unsigned int i = 0; i < v.size(); i++)
 	   file << std::setw(15) << std::left << v[i].getName() << std::setw(15) << std::left << v[i].getSurname() << std::setw(10) << std::left << v[i].getID() << std::setw(10) << std::left << v[i].getPIN() << std::setw(10) << std::left << v[i].getMalicious() << std::endl;
 	file.close();
 	return 1;
@@ -148,18 +148,18 @@ int deleteAdmin(std::string a)
 	}
 	fclose(myfile);
 
-	for (int i = 0; i < v.size(); i++)
+	for (unsigned int i = 0; i < v.size(); i++)
 		if (v[i].getID() == a)
 			isString = 1;
 	if (isString == 0)
 		return 0;
 	std::ofstream file;
 	file.open("RegistrovaniAdmini.txt");
-	for (int i = 0; i < v.size(); i++)
+	for (unsigned int i = 0; i < v.size(); i++)
 		if (v[i].getID() == a)
 			v.erase(v.begin() + i);
 
-	for (int i = 0; i < v.size(); i++)
+	for (unsigned int i = 0; i < v.size(); i++)
 		file << std::setw(15) << std::left << v[i].getName() << std::setw(15) << std::left << v[i].getSurname() << std::setw(10) << std::left << v[i].getID() << std::setw(10) << std::left << v[i].getPIN() << std::setw(10) << std::left << v[i].getMalicious() << std::endl;
 	file.close();
 	return 1;
@@ -183,7 +183,7 @@ int maliciousAdmin(Person a)
 	}
 	fclose(myfile);
 	
-	for (int i = 0; i < v.size(); i++)
+	for (unsigned int i = 0; i < v.size(); i++)
 	{
 		if (a.getID() == v[i].getID())
 			return 0 ;
@@ -210,7 +210,7 @@ int maliciousAnalyst(Person a)
 	}
 	fclose(myfile);
 
-	for (int i = 0; i < v.size(); i++)
+	for (unsigned int i = 0; i < v.size(); i++)
 	{
 		if (a.getID() == v[i].getID())
 			return 0;
@@ -236,7 +236,7 @@ int isThereAdmin(Person a)
 	}
 	fclose(myfile);
 	
-	for (int i = 0; i < v.size(); i++)
+	for (unsigned int i = 0; i < v.size(); i++)
 	{
 		if ((a.getName() == v[i].getName() && a.getSurname() == v[i].getSurname() && a.getPIN() == v[i].getPIN() && a.getID() == v[i].getID()) 
 			|| (a.getID()==v[i].getID())
@@ -264,7 +264,7 @@ int isThereMaliciousAdmin(std::string a)
 	}
 	fclose(myfile);
 
-	for (int i = 0; i < v.size(); i++)
+	for (unsigned int i = 0; i < v.size(); i++)
 	{
 		if (v[i].getID()==a)
 			return 1;
@@ -290,7 +290,7 @@ int isThereAnalyst(Person a)
 	}
 	fclose(myfile);
 
-	for (int i = 0; i < v.size(); i++)
+	for (unsigned int i = 0; i < v.size(); i++)
 	{
 		if((a.getName() == v[i].getName() && a.getSurname() == v[i].getSurname() && a.getPIN() == v[i].getPIN() && a.getID() == v[i].getID())
 			|| (a.getID() == v[i].getID())
@@ -318,7 +318,7 @@ int isThereMaliciousAnalyst(std::string a)
 	}
 	fclose(myfile);
 
-	for (int i = 0; i < v.size(); i++)
+	for (unsigned int i = 0; i < v.size(); i++)
 	{
 		if (v[i].getID() == a)
 			return 1;
