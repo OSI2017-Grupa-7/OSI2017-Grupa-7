@@ -2,7 +2,7 @@
 
 extern int kraj;
 
-void AdminAnalystChoose(short &option)
+void AdminAnalystChoose(char &option)
 {
 	do {
 		system("cls");

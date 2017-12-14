@@ -18,5 +18,5 @@ int isThereAdmin(Person);
 int isThereMaliciousAdmin(std::string);
 int isThereAnalyst(Person);
 int isThereMaliciousAnalyst(std::string);
-void AdminAnalystChoose(short&);
+void AdminAnalystChoose(char&);
 
