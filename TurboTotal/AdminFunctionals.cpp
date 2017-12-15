@@ -190,6 +190,161 @@ void AdminFunctionals()
 								}
 							}
 						}
+						////////////////////////////////////////////ispis korisnika
+						if (option1 == 2)
+						{
+							short user;
+							do
+							{
+								system("cls");
+								std::cout << "ISPIS KORISNIKA" << std::endl;
+								std::cout << std::endl << "Odaberi korisnicku klasu: " << std::endl;
+								std::cout << std::endl << "1. Administrator" << std::endl;
+								std::cout << "2. Analiticar" << std::endl;
+								std::cout << std::endl << "Odaberi opciju: "; std::cin >> user;
+							} while (user != 1 && user != 2);
+							if (user == 1)
+							{
+								std::string line;
+								std::ifstream myfile("RegistrovaniAdmini.txt");
+								if (myfile.is_open())
+								{
+									system("cls");
+									int i = 0;
+									std::cout << "SPISAK ADMINISTRATORA" << std::endl << std::endl;
+									printPersonHeader();
+									while (getline(myfile, line))
+									{
+										std::cout << ++i << ". " << line << std::endl;
+									}
+									printPersonFooter();
+									getchar();
+									getchar();
+									myfile.close();
+								}
+								else
+								{
+									std::cout << "Datoteka nije uspjesno otvorena";
+									getchar();
+									getchar();
+								}
+							}
+							if (user == 2)
+							{
+								std::string line;
+								std::ifstream myfile("RegistrovaniAnaliticari.txt");
+								if (myfile.is_open())
+								{
+									system("cls");
+									int i = 0;
+									std::cout << "SPISAK ANALITICARA" << std::endl << std::endl;
+									printPersonHeader();
+									while (getline(myfile, line))
+									{
+										std::cout << ++i << ". " << line << std::endl;
+									}
+									printPersonFooter();
+									getchar();
+									getchar();
+									myfile.close();
+								}
+								else
+								{
+									std::cout << "Datoteka nije uspjesno otvorena";
+									getchar();
+									getchar();
+								}
+							}
+						}
+						//////////////////////////////////////////////brisanje korisnika
+						if (option1 == 3)
+						{
+							short option3;
+							do
+							{
+								system("cls");
+								std::cout << "BRISANJE KORISNIKA" << std::endl;
+								std::cout << std::endl << "1. Obrisi administratora" << std::endl;
+								std::cout << "2. Obrisi analiticara" << std::endl;
+								std::cout << std::endl << "Unesi opciju: "; std::cin >> option3;
+							} while (option3 != 1 && option3 != 2);
+
+							if (option3 == 1)
+							{
+								system("cls");
+								std::string string;
+								std::cout << "BRISANJE ADMINISTRATORA" << std::endl << std::endl;
+								char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+								FILE* d;
+								d = fopen("RegistrovaniAdmini.txt", "r");
+								std::vector<Person> vec;
+								while (fscanf(d, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+								{
+									Person b;
+									std::string nname(name); b.setName(nname);
+									std::string ssurname(surname); b.setSurname(ssurname);
+									std::string PPIN(PIN); b.setPIN(PPIN);
+									std::string IID(ID); b.setID(IID);
+									std::string mmaliciozan(maliciozan); b.setMalicious(mmaliciozan);
+									vec.push_back(b);
+								}
+								fclose(d);
+
+								printPersonHeader();
+								for (int i = 0; i<vec.size(); i++)
+									std::cout << i + 1 << ". " << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
+								printPersonFooter();
+
+								std::cout << std::endl << "Unesite ID administratora kojeg zelite obrisati: "; std::cin >> string;
+								int isDeleted = deleteAdmin(string);
+								if (isDeleted)
+								{
+									std::cout << std::endl << "Administrator je uspjesno obrisan."; getchar(); getchar();
+								}
+								else
+								{
+									std::cout << std::endl << "Ne postoji administrator sa unesenim ID-om."; getchar(); getchar();
+								}
+							}
+							if (option3 == 2)
+							{
+								system("cls");
+								std::string string;
+								std::cout << "BRISANJE ANALITICARA" << std::endl << std::endl;
+
+								char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+								FILE* d;
+								d = fopen("RegistrovaniAnaliticari.txt", "r");
+								std::vector<Person> vec;
+								while (fscanf(d, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+								{
+									Person b;
+									std::string nname(name); b.setName(nname);
+									std::string ssurname(surname); b.setSurname(ssurname);
+									std::string PPIN(PIN); b.setPIN(PPIN);
+									std::string IID(ID); b.setID(IID);
+									std::string mmaliciozan(maliciozan); b.setMalicious(mmaliciozan);
+									vec.push_back(b);
+								}
+								fclose(d);
+
+								printPersonHeader();
+								for (int i = 0; i<vec.size(); i++)
+									std::cout << i + 1 << ". " << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
+								printPersonFooter();
+
+								std::cout << std::endl << "Unesite ID analiticara kojeg zelite obrisati: "; std::cin >> string;
+								int isDeleted = deleteAnalyst(string);
+								if (isDeleted)
+								{
+									std::cout << std::endl << "Analiticar je uspjesno obrisan!!!"; getchar(); getchar();
+								}
+								else
+								{
+									std::cout << std::endl << "Ne postoji analiticar sa unesenim ID-om"; getchar(); getchar();
+								}
+							}
+						}
 					}
 				}
 			}
