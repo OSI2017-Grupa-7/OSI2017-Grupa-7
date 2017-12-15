@@ -1,4 +1,5 @@
 #include "Person.h"
+#include <conio.h>
 
 int Person::readPerson()
 {
@@ -18,7 +19,7 @@ int Person::readPerson()
 void Person::readPersonForLogin()
 {
 	std::cout << "ID: "; std::cin >> ID;
-	std::cout << "PIN: "; std::cin >> PIN;
+	std::cout << "PIN: "; Mask(PIN);
 }
 
 void Person::printPerson()
@@ -59,3 +60,30 @@ bool Person::operator==(Person& a)
 Person::Person() {}
 
 Person::~Person() {}
+
+void Person::Mask(std::string& str) {
+	int i = 0;
+	char a;
+	char arr[30];
+	char *temp;
+	while (1) {
+		a = _getch();
+		if ((a >= 'a' && a <= 'z') || (a >= 'A' && a <= 'Z') || (a >= '0' && a <= '9')) {
+			arr[i++] = a;
+			std::cout << "*";
+		}
+		if (a == '\b' && i > 0) {
+			std::cout << "\b \b";
+			i--;
+		}
+		if (a == '\r') {
+			arr[i] = '\0';
+			break;
+		}
+	}
+	temp = new char[i + i];
+	for (int n = 0; n < i + 1; n++) {
+		temp[n] = arr[n];
+	}
+	str = temp;
+}
