@@ -29,7 +29,7 @@ void AnalystFunctionals()
 		{
 			if (p == 1)
 			{
-				billsReading();//FUNKCIJA ZA CITANJE, OBRADU, SKLADISTENJE RACUNA
+				//billsReading();//FUNKCIJA ZA CITANJE, OBRADU, SKLADISTENJE RACUNA
 				int t = 1;
 				while (t)
 				{
