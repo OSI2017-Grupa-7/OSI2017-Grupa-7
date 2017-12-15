@@ -12,7 +12,7 @@ int main()
 	{
 		char option;
 		AdminAnalystChoose(option);
-		//if (option == 1) { AdminFunctionals(); }
-		//if (option == 2) { AnalystFunctionals(); }
+		//if (option == '1') { AdminFunctionals(); }
+		//if (option == '2') { AnalystFunctionals(); }
 	}
 }

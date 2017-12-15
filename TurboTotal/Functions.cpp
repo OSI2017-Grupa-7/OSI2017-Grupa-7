@@ -11,7 +11,7 @@ void AdminAnalystChoose(char &option)
 		std::cout <<std::endl<< "1. Administrator" << std::endl;
 		std::cout << "2. Analiticar" << std::endl;
 		std::cout << std::endl << "Odaberi opciju: "; std::cin >> option;
-	} while (option != 1 && option != 2);
+	} while (option != '1' && option != '2');
 }
 
 
