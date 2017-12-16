@@ -3,6 +3,7 @@
 #include "BillsReader.h"
 #include "Report.h"
 #include "AnalystFunctionals.h"
+#include "Logo.h"
 
 extern int kraj;
 
@@ -14,7 +15,7 @@ void AnalystFunctionals()
 	while (i && k)
 	{
 		system("cls");
-		std::cout << "PRIJAVA ZA ANALITICARA" << std::endl << std::endl;
+		logoS(); std::cout << std::endl << "PRIJAVA ZA ANALITICARA" << std::endl << std::endl;
 		a.readPersonForLogin();
 		p = checkForAnalyst(a.getID(), a.getPIN());
 		if (p == 5)
