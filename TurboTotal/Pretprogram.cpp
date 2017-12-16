@@ -13,7 +13,7 @@ void Pretprogram()
 		getline(myfile, line);
 		if (line == one)
 		{
-			short valuta;
+			char valuta;
 			myfile.close();
 			std::ofstream file;
 			file.open("1.txt");
