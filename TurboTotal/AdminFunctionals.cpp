@@ -34,7 +34,7 @@ void AdminFunctionals()
 						do
 						{
 							system("cls");
-							std::cout << "Uspjesno ste prijavljeni kao administrator!!" << std::endl;
+							logoS(); std::cout << std::endl << "Uspjesno ste prijavljeni kao administrator!!" << std::endl;
 							std::cout << std::endl << "1. Registruj novog korisnika" << std::endl;
 							std::cout << "2. Ispis korisnika" << std::endl;
 							std::cout << "3. Obrisi korisnika" << std::endl;

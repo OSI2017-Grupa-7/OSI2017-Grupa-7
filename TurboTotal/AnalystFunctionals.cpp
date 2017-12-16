@@ -39,7 +39,7 @@ void AnalystFunctionals()
 					do
 					{
 						system("cls");
-						std::cout << "PRISTUP KAO ANALITICARU OMOGUCEN!!!" << std::endl;
+						logoS(); std::cout << std::endl << "PRISTUP KAO ANALITICARU OMOGUCEN!!!" << std::endl;
 						std::cout << std::endl << "1. Pregled podataka za odredjenog kupca" << std::endl;
 						std::cout << "2. Pregled podataka za odredjeni proizvod" << std::endl;
 						std::cout << "3. Pregled ukupne prodaje za odredjeni mjesec" << std::endl;
