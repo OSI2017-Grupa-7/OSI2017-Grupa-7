@@ -1,5 +1,6 @@
 #include "AdminFunctionals.h"
 #include "Functions.h"
+#include "Logo.h"
 extern int kraj;
 void AdminFunctionals()
 {
@@ -8,7 +9,7 @@ void AdminFunctionals()
 	while (i && k)
 	{
 		system("cls");
-		std::cout << "TURBO TOTAL 2000" << std::endl << std::endl << "PRIJAVA ZA ADMINISTRATORA" << std::endl << std::endl;
+		logoS();  std::cout << std::endl << std::endl << "PRIJAVA ZA ADMINISTRATORA" << std::endl << std::endl;
 		a.readPersonForLogin();
 		p = checkForAdmin(a.getID(), a.getPIN());
 		if (p == 5)
