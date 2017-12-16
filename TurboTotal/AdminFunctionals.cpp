@@ -16,7 +16,8 @@ void AdminFunctionals()
 		{
 			k = 0;
 			system("cls");
-			std::cout << "NEMATE PRAVO PRISTUPA SISTEMU, KONTAKTIRAJTE ADMINISTRATORA!!";
+			logoS();
+			std::cout <<std::endl<< "NEMATE PRAVO PRISTUPA SISTEMU, KONTAKTIRAJTE ADMINISTRATORA!!";
 			getchar();
 			getchar();
 		}
@@ -48,7 +49,8 @@ void AdminFunctionals()
 							do
 							{
 								system("cls");
-								std::cout << "REGISTRACIJA KORISNIKA" << std::endl;
+								logoS();
+								std::cout <<std::endl<< "REGISTRACIJA KORISNIKA" << std::endl;
 								std::cout << std::endl << "Odaberi korisnicku klasu: " << std::endl;
 								std::cout << std::endl << "1. Administrator" << std::endl;
 								std::cout << "2. Analiticar" << std::endl;
@@ -65,7 +67,8 @@ void AdminFunctionals()
 									int IDlength = 0;
 									do {
 										system("cls");
-										std::cout << "TURBO TOTAL 2000" << std::endl;
+										logoS();
+										std::cout <<std::endl<< "TURBO TOTAL 2000" << std::endl;
 										std::cout << std::endl << "REGISTRACIJA NOVOG ADMINISTRATORA" << std::endl;
 										std::cout << std::endl;
 										IDlength = a.readPerson();
@@ -73,16 +76,16 @@ void AdminFunctionals()
 									w = isThereAdmin(a);
 									do
 									{
-										system("cls");
-										std::cout << "Podaci koje ste unijeli: " << std::endl << std::endl;
+										system("cls"); logoS();
+										std::cout <<std::endl<< "Podaci koje ste unijeli: " << std::endl << std::endl;
 										a.printPerson();
 										if (w)
 										{
 											char y;
 											do
 											{
-												system("cls");
-												std::cout << "Podaci koje ste unijeli: " << std::endl << std::endl;
+												system("cls"); logoS();
+												std::cout <<std::endl<< "Podaci koje ste unijeli: " << std::endl << std::endl;
 												a.printPerson();
 												std::cout << std::endl << "Greska! Vec postoji administrator sa takvim podacima." << std::endl;
 												std::cout << std::endl << "Da li zelite ponovo pokusati registrovati novog administratora?" << std::endl;
@@ -111,10 +114,11 @@ void AdminFunctionals()
 								if (!w)
 								{
 									system("cls");
+									logoS();
 									std::ofstream file;
 									file.open("RegistrovaniAdmini.txt", std::ios::app);
 									file << std::setw(15) << std::left << a.getName() << std::setw(15) << std::left << a.getSurname() << std::setw(10) << std::left << a.getID() << std::setw(10) << std::left << a.getPIN() << std::setw(10) << std::left << a.getMalicious() << std::endl;
-									std::cout << "Novi administrator je uspjesno registrovan, njegovi podaci su:" << std::endl;
+									std::cout <<std::endl<< "Novi administrator je uspjesno registrovan, njegovi podaci su:" << std::endl;
 									std::cout << std::endl;
 									a.printPerson();
 									getchar();
@@ -133,7 +137,8 @@ void AdminFunctionals()
 									do
 									{
 										system("cls");
-										std::cout << "TURBO TOTAL 2000" << std::endl;
+										logoS();
+										std::cout <<std::endl<< "TURBO TOTAL 2000" << std::endl;
 										std::cout << std::endl << "REGISTRACIJA NOVOG ANALITICARA" << std::endl;
 										std::cout << std::endl;
 										IDlength = a.readPerson();
@@ -142,7 +147,8 @@ void AdminFunctionals()
 									do
 									{
 										system("cls");
-										std::cout << "Podaci koje ste unijeli: " << std::endl << std::endl;
+										logoS();
+										std::cout <<std::endl<< "Podaci koje ste unijeli: " << std::endl << std::endl;
 										a.printPerson();
 										if (w)
 										{
@@ -150,7 +156,8 @@ void AdminFunctionals()
 											do
 											{
 												system("cls");
-												std::cout << "Podaci koje ste unijeli: " << std::endl << std::endl;
+												logoS();
+												std::cout <<std::endl<< "Podaci koje ste unijeli: " << std::endl << std::endl;
 												a.printPerson();
 												std::cout << std::endl << "Greska! Vec postoji analiticar sa takvim podacima." << std::endl;
 												std::cout << std::endl << "Da li zelite ponovo pokusati registrovati novog analiticara?" << std::endl;
@@ -179,10 +186,11 @@ void AdminFunctionals()
 								if (!w)
 								{
 									system("cls");
+									logoS();
 									std::ofstream file;
 									file.open("RegistrovaniAnaliticari.txt", std::ios::app);
 									file << std::setw(15) << std::left << a.getName() << std::setw(15) << std::left << a.getSurname() << std::setw(10) << std::left << a.getID() << std::setw(10) << std::left << a.getPIN() << std::setw(10) << std::left << a.getMalicious() << std::endl;
-									std::cout << "Novi analiticar je uspjesno registrovan, njegovi podaci su:" << std::endl;
+									std::cout <<std::endl<< "Novi analiticar je uspjesno registrovan, njegovi podaci su:" << std::endl;
 									std::cout << std::endl;
 									a.printPerson();
 									getchar();
@@ -198,7 +206,8 @@ void AdminFunctionals()
 							do
 							{
 								system("cls");
-								std::cout << "ISPIS KORISNIKA" << std::endl;
+								logoS();
+								std::cout <<std::endl<< "ISPIS KORISNIKA" << std::endl;
 								std::cout << std::endl << "Odaberi korisnicku klasu: " << std::endl;
 								std::cout << std::endl << "1. Administrator" << std::endl;
 								std::cout << "2. Analiticar" << std::endl;
@@ -211,8 +220,9 @@ void AdminFunctionals()
 								if (myfile.is_open())
 								{
 									system("cls");
+									logoS();
 									int i = 0;
-									std::cout << "SPISAK ADMINISTRATORA" << std::endl << std::endl;
+									std::cout <<std::endl<< "SPISAK ADMINISTRATORA" << std::endl << std::endl;
 									printPersonHeader();
 									while (getline(myfile, line))
 									{
@@ -237,8 +247,9 @@ void AdminFunctionals()
 								if (myfile.is_open())
 								{
 									system("cls");
+									logoS();
 									int i = 0;
-									std::cout << "SPISAK ANALITICARA" << std::endl << std::endl;
+									std::cout <<std::endl<< "SPISAK ANALITICARA" << std::endl << std::endl;
 									printPersonHeader();
 									while (getline(myfile, line))
 									{
@@ -264,7 +275,8 @@ void AdminFunctionals()
 							do
 							{
 								system("cls");
-								std::cout << "BRISANJE KORISNIKA" << std::endl;
+								logoS();
+								std::cout <<std::endl<< "BRISANJE KORISNIKA" << std::endl;
 								std::cout << std::endl << "1. Obrisi administratora" << std::endl;
 								std::cout << "2. Obrisi analiticara" << std::endl;
 								std::cout << std::endl << "Unesi opciju: "; std::cin >> option3;
@@ -273,8 +285,9 @@ void AdminFunctionals()
 							if (option3 == '1')
 							{
 								system("cls");
+								logoS();
 								std::string string;
-								std::cout << "BRISANJE ADMINISTRATORA" << std::endl << std::endl;
+								std::cout <<std::endl<< "BRISANJE ADMINISTRATORA" << std::endl << std::endl;
 								char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 								FILE* d;
 								d = fopen("RegistrovaniAdmini.txt", "r");
@@ -310,8 +323,9 @@ void AdminFunctionals()
 							if (option3 == '2')
 							{
 								system("cls");
+								logoS();
 								std::string string;
-								std::cout << "BRISANJE ANALITICARA" << std::endl << std::endl;
+								std::cout <<std::endl<< "BRISANJE ANALITICARA" << std::endl << std::endl;
 
 								char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 								FILE* d;
@@ -353,7 +367,8 @@ void AdminFunctionals()
 							do
 							{
 								system("cls");
-								std::cout << "ODOBRAVANJE PRISTUPA SISTEMU" << std::endl;
+								logoS();
+								std::cout <<std::endl<< "ODOBRAVANJE PRISTUPA SISTEMU" << std::endl;
 								std::cout << std::endl << "1. Odobravanje pristupa administratoru" << std::endl;
 								std::cout << "2. Odobravanje pristupa analiticaru" << std::endl;
 								std::cout << std::endl << "Unesi opciju: "; std::cin >> user;
@@ -362,10 +377,11 @@ void AdminFunctionals()
 							{
 								/////////////promjena statusa admina za odrenjeni ID
 								system("cls");
+								logoS();
 								std::string id;
 								char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 								FILE* myfile;
-								std::cout << "ODOBRAVANJE PRISTUPA ADMINISTRATORU" << std::endl;
+								std::cout <<std::endl<< "ODOBRAVANJE PRISTUPA ADMINISTRATORU" << std::endl;
 
 								FILE* d;
 								d = fopen("MaliciozniAdmini.txt", "r");
@@ -448,10 +464,11 @@ void AdminFunctionals()
 							{
 								/////////////promjena statusa analiticara za odrenjeni ID
 								system("cls");
+								logoS();
 								std::string id;
 								char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 								FILE* myfile;
-								std::cout << "ODOBRAVANJE PRISTUPA ANALITICARU" << std::endl;
+								std::cout <<std::endl<< "ODOBRAVANJE PRISTUPA ANALITICARU" << std::endl;
 
 								FILE* d;
 								d = fopen("MaliciozniAnaliticari.txt", "r");
