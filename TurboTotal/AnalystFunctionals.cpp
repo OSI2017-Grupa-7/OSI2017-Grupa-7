@@ -31,11 +31,11 @@ void AnalystFunctionals()
 			if (p == 1)
 			{
 				//billsReading();//FUNKCIJA ZA CITANJE, OBRADU, SKLADISTENJE RACUNA
-				int t = 1;
-				while (t)
+				char t = '1';
+				while (t=='1')
 				{
 					k = 0;
-					short option3;
+					char option3;
 					do
 					{
 						system("cls");
@@ -44,16 +44,16 @@ void AnalystFunctionals()
 						std::cout << "2. Pregled podataka za odredjeni proizvod" << std::endl;
 						std::cout << "3. Pregled ukupne prodaje za odredjeni mjesec" << std::endl;
 						std::cout << std::endl << "Odaberi opciju: "; std::cin >> option3;
-					} while (option3 != 1 && option3 != 2 && option3 != 3);
-					if (option3 == 1)
+					} while (option3 != '1' && option3 != '2' && option3 != '3');
+					if (option3 == '1')
 					{
 						buyerReport();
 					}
-					if (option3 == 2)
+					if (option3 == '2')
 					{
 						productReport();
 					}
-					if (option3 == 3)
+					if (option3 == '3')
 					{
 						monthSaldoReport();
 					}
@@ -63,13 +63,13 @@ void AnalystFunctionals()
 						std::cout << "1. Vrati se na pocetak profila" << std::endl;
 						std::cout << "2. Izadji iz aplikacije" << std::endl;
 						std::cout << std::endl << "Unesi opciju: "; std::cin >> t;
-						if (t == 0) kraj = 1;
-						if (t == 2)
+						if (t == '0') kraj = 1;
+						if (t == '2')
 						{
 							kraj = 0;
-							t = 0;
+							t = '0';
 						}
-					} while (t != 0 && t != 1 && t != 2);
+					} while (t != '0' && t != '1' && t != '2');
 				}
 			}
 			else
