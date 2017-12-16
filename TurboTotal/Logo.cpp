@@ -1,6 +1,8 @@
 #include "Logo.h"
+#include <windows.h>
 
 void logoL() {
+	SetColor(2);
 	std::cout << R"(
 	/(((((((((((((((((((((((((((     (((((((                     
         ............................    .//////*                     
@@ -27,9 +29,11 @@ void logoL() {
     ((((((((((    (((((((((     (((((((((     (((((((((              
 
 --------------------------------------------------------------------------------)";
+	SetColor(15);
 }
 
 void logoS() {
+	SetColor(2);
 	std::cout << R"(
 	 ______         __          ______     __       __  ___  ___  ___  ___ 
 	/_  __/_ ______/ /  ___    /_  __/__  / /____ _/ / |_  |/ _ \/ _ \/ _ \
@@ -37,4 +41,11 @@ void logoS() {
 	/_/  \_,_/_/ /_.__/\___/   /_/  \___/\__/\_,_/_/ /____/\___/\___/\___/ 
                                                                        
                                                                                     )";
+	SetColor(15);
+}
+
+void SetColor(int n) {
+	HANDLE  hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, n);
 }
