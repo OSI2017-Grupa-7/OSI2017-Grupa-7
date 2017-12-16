@@ -32,36 +32,36 @@ void Pretprogram()
 				std::cout << "4. Srbijanski dinar" << std::endl;
 				std::cout << "5. Britanska funta" << std::endl;
 				std::cout << std::endl << "Odaberi opciju: "; std::cin >> valuta;
-			} while (valuta != 1 && valuta != 2 && valuta != 3 && valuta != 4 && valuta != 5);
-			if (valuta == 1)
+			} while (valuta != '1' && valuta != '2' && valuta != '3' && valuta != '4' && valuta != '5');
+			if (valuta == '1')
 			{
 				std::ofstream value;
 				value.open("Valuta.txt");
 				value << "$";
 				value.close();
 			}
-			if (valuta == 2)
+			if (valuta == '2')
 			{
 				std::ofstream value;
 				value.open("Valuta.txt");
 				value << "€";
 				value.close();
 			}
-			if (valuta == 3)
+			if (valuta == '3')
 			{
 				std::ofstream value;
 				value.open("Valuta.txt");
 				value << "BAM";
 				value.close();
 			}
-			if (valuta == 4)
+			if (valuta == '4')
 			{
 				std::ofstream value;
 				value.open("Valuta.txt");
 				value << "RSD";
 				value.close();
 			}
-			if (valuta == 5)
+			if (valuta == '5')
 			{
 				std::ofstream value;
 				value.open("Valuta.txt");
