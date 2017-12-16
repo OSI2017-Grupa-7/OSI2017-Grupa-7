@@ -21,4 +21,5 @@ public:
 	bool operator==(Person&);
 	Person();
 	~Person();
+	void Mask(std::string&);
 };
