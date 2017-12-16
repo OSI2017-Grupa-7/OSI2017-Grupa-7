@@ -3,11 +3,11 @@
 #include "AdminFunctionals.h"
 #include "AnalystFunctionals.h"
 
+
 int kraj = 1;
 
 int main()
 {
-	system("Color 2");
 	Pretprogram();
 	while (kraj)
 	{
