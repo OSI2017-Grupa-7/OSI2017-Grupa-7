@@ -7,7 +7,7 @@ void AdminAnalystChoose(char &option)
 {
 	do {
 		system("cls");
-		logoL(); std::cout << std::endl;
+		logoL();
 		std::cout << std::endl << "Pristupam sistemu kao:" << std::endl;
 		std::cout <<std::endl<< "1. Administrator" << std::endl;
 		std::cout << "2. Analiticar" << std::endl;
