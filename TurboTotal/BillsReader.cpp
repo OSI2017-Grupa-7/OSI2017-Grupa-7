@@ -18,7 +18,7 @@ std::vector<std::string> get_filenames(std::experimental::filesystem::path path)
 
 void billsReading()
 {
-	std::vector<std::string> bills = get_filenames("C:/Users/Susnjar/Desktop/Projektni_zadatak/TurboTotal/Racuni");
+	std::vector<std::string> bills = get_filenames("Racuni");
 	for (unsigned int i = 0; i < bills.size(); i++)
 	{
 		std::string line;
