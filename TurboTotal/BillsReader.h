@@ -8,4 +8,3 @@
 
 std::vector<std::string> get_filenames(std::experimental::filesystem::path);
 void billsReading();
-int billFormat();

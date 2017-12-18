@@ -35,27 +35,3 @@ void billsReading()
 	getchar();
 	getchar();
 }
-
-int billFormat()
-{
-	std::vector<std::string> bills = get_filenames("Racuni");
-	for (unsigned int i = 0; i < bills.size(); i++)
-	{
-		std::string line;
-		std::ifstream file(bills[i]);
-		for (int j = 0; j < 3; j++)
-			std::getline(file, line);
-		file >> line;
-		if (line == "Racun") std::cout << "Format 1" << std::endl;
-		else if (line == "Maloprodajni") std::cout << "Format 2" << std::endl;
-		else if (line == "Datum:") std::cout << "Format 3" << std::endl;
-		else if (line == "OSI") std::cout << "Format 4" << std::endl;
-		else std::cout << "Format 5" << std::endl;
-
-
-	}
-
-	getchar();
-	getchar();
-	return 1;
-}
