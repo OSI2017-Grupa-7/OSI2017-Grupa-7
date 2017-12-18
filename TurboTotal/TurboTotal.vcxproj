@@ -111,18 +111,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AdminFunctionals.cpp" />
     <ClCompile Include="AnalystFunctionals.cpp" />
     <ClCompile Include="BillsReader.cpp" />
     <ClCompile Include="Functions.cpp" />
+    <ClCompile Include="Logo.cpp" />
     <ClCompile Include="Person.cpp" />
+    <ClCompile Include="Pretprogram.cpp" />
     <ClCompile Include="Report.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdminFunctionals.h" />
     <ClInclude Include="AnalystFunctionals.h" />
     <ClInclude Include="BillsReader.h" />
     <ClInclude Include="Functions.h" />
+    <ClInclude Include="Logo.h" />
     <ClInclude Include="Person.h" />
+    <ClInclude Include="Pretprogram.h" />
     <ClInclude Include="Report.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

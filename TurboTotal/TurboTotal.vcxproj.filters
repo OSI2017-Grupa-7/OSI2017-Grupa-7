@@ -33,6 +33,15 @@
     <ClCompile Include="Report.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Logo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pretprogram.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AdminFunctionals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Person.h">
@@ -48,6 +57,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Report.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Logo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pretprogram.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AdminFunctionals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
