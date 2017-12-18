@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include "Pretprogram.h"
+#include "Functions.h"
 
 void Pretprogram()
 {
@@ -13,6 +14,8 @@ void Pretprogram()
 		getline(myfile, line);
 		if (line == one)
 		{
+			if (!is_file_exist("Racuni"))
+				system("md Racuni");
 			char valuta;
 			myfile.close();
 			std::ofstream file;

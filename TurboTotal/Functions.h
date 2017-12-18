@@ -19,4 +19,4 @@ int isThereMaliciousAdmin(std::string);
 int isThereAnalyst(Person);
 int isThereMaliciousAnalyst(std::string);
 void AdminAnalystChoose(char&);
-
+bool is_file_exist(const char*);
