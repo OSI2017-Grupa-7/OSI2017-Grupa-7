@@ -2,6 +2,7 @@
 #include "Functions.h"
 #include "Logo.h"
 
+
 extern int kraj;
 void AdminFunctionals()
 {
@@ -566,10 +567,13 @@ void AdminFunctionals()
 								std::cout << "2. Analiticar" << std::endl;
 								std::cout << std::endl << "Odaberite korisnicku klasu kojoj zelite mijenjati podatke: "; std::cin >> user;
 							} while (user != '1' && user != '2');
-							system("cls");
+
 
 							if (user == '1')
 							{
+								system("cls");
+								logoS();
+								std::cout << std::endl;
 								char option;
 								do
 								{
@@ -585,6 +589,7 @@ void AdminFunctionals()
 								if (option == '1')
 								{
 									system("cls");
+									logoS();
 									Person pom;
 									std::vector<Person>vec;
 									std::string novo_ime;
@@ -620,6 +625,8 @@ void AdminFunctionals()
 								else if (option == '2')
 								{
 									system("cls");
+									logoS();
+									std::cout << std::endl;
 									Person pom;
 									std::vector<Person>vec;
 									std::string novo_prezime;
@@ -653,6 +660,8 @@ void AdminFunctionals()
 								else if (option == '3')
 								{
 									system("cls");
+									logoS();
+									std::cout << std::endl;
 									Person pom;
 									std::vector<Person>vec;
 									std::string novi_ID;
@@ -664,7 +673,22 @@ void AdminFunctionals()
 									{
 										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
 										{
-											if (ID == a.getID())  pom.setID(novi_ID);
+											while (ID == novi_ID)
+											{
+												std::cout << "Unijeli ste postojeci ID.Molimo pokusajte ponovo.";
+												std::cin >> novi_ID;
+												std::cout << std::endl;
+											}
+
+										}
+										rewind(fp);
+
+										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+										{
+
+											if (ID == a.getID())
+												pom.setID(novi_ID);
+
 											else { std::string ID1(ID); pom.setID(ID1); }
 											std::string surname1(surname); pom.setSurname(surname1);
 											std::string name1(name); pom.setName(name1);
@@ -686,6 +710,8 @@ void AdminFunctionals()
 								else if (option == '4')
 								{
 									system("cls");
+									logoS();
+									std::cout << std::endl;
 									Person pom;
 									std::vector<Person>vec;
 									std::string novi_PIN;
@@ -695,6 +721,17 @@ void AdminFunctionals()
 									char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 									if (fp)
 									{
+										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+										{
+											while (PIN == novi_PIN)
+											{
+												std::cout << "Unijeli ste postojeci PIN.Molimo pokusajte ponovo.";
+												std::cin >> novi_PIN;
+												std::cout << std::endl;
+											}
+										}
+										rewind(fp);
+
 										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
 										{
 											if (ID == a.getID())  pom.setPIN(novi_PIN);
@@ -725,6 +762,9 @@ void AdminFunctionals()
 							}
 							else if (user == '2')
 							{
+								system("cls");
+								logoS();
+								std::cout << std::endl;
 								std::cout << "Unesite id korisnika kojem zelite da mijenjate podatke:";
 								std::string id;
 								std::cin >> id;
@@ -735,7 +775,7 @@ void AdminFunctionals()
 								do
 								{
 
-									std::cout << " Koji podatak zelite da promijenite? " << std::endl;
+									std::cout << "Koji podatak zelite da promijenite? " << std::endl;
 									std::cout << "1.Ime" << std::endl;
 									std::cout << "2.Prezime" << std::endl;
 									std::cout << "3.ID" << std::endl;
@@ -745,7 +785,10 @@ void AdminFunctionals()
 								if (option == '1')
 								{
 									system("cls");
-									char novo_ime[15], name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+									logoS();
+									std::cout << std::endl;
+									std::string novo_ime;
+									char  name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 									Person pom;
 
 
@@ -791,7 +834,10 @@ void AdminFunctionals()
 
 
 									system("cls");
-									char novo_prezime[15], name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+									logoS();
+									std::cout << std::endl;
+									std::string novo_prezime;
+									char  name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 									Person pom;
 
 
@@ -836,7 +882,10 @@ void AdminFunctionals()
 								else if (option == '3')
 								{
 									system("cls");
-									char novi_ID[15], name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+									logoS();
+									std::cout << std::endl;
+									std::string novi_ID;
+									char  name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 									Person pom;
 
 
@@ -846,6 +895,16 @@ void AdminFunctionals()
 									std::vector<Person> vec;
 									if (fp)
 									{
+										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+										{
+											while (ID == novi_ID)
+											{
+												std::cout << "Unijeli ste postojeci ID.Molimo pokusajte ponovo.";
+												std::cin >> novi_ID;
+												std::cout << std::endl;
+											}
+										}
+										rewind(fp);
 
 										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
 										{
@@ -880,7 +939,11 @@ void AdminFunctionals()
 								else if (option == '4')
 								{
 									system("cls");
-									char novi_PIN[15], name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+									logoS();
+									std::cout << std::endl;
+									std::cout << std::endl;
+									std::string novi_PIN;
+									char  name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 									Person pom;
 
 
@@ -890,7 +953,16 @@ void AdminFunctionals()
 									std::vector<Person> vec;
 									if (fp)
 									{
-
+										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+										{
+											while (PIN == novi_PIN)
+											{
+												std::cout << "Unijeli ste postojeci PIN.Molimo pokusajte ponovo.";
+												std::cin >> novi_PIN;
+												std::cout << std::endl;
+											}
+										}
+										rewind(fp);
 										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
 										{
 											std::string ID1(ID);
