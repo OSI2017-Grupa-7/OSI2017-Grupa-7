@@ -1,6 +1,7 @@
 #include "AdminFunctionals.h"
 #include "Functions.h"
 #include "Logo.h"
+
 extern int kraj;
 void AdminFunctionals()
 {
@@ -17,7 +18,7 @@ void AdminFunctionals()
 			k = 0;
 			system("cls");
 			logoS();
-			std::cout <<std::endl<< "NEMATE PRAVO PRISTUPA SISTEMU, KONTAKTIRAJTE ADMINISTRATORA!!";
+			std::cout << std::endl << "NEMATE PRAVO PRISTUPA SISTEMU, KONTAKTIRAJTE ADMINISTRATORA!!";
 			getchar();
 			getchar();
 		}
@@ -40,8 +41,9 @@ void AdminFunctionals()
 							std::cout << "2. Ispis korisnika" << std::endl;
 							std::cout << "3. Obrisi korisnika" << std::endl;
 							std::cout << "4. Omoguci pristup korisniku" << std::endl;
+							std::cout << "5. Promijeni podatke o korisniku" << std::endl;
 							std::cout << std::endl << "Odaberi opciju: "; std::cin >> option1;
-						} while (option1 != '1' && option1 != '2' && option1 != '3' && option1 != '4');
+						} while (option1 != '1' && option1 != '2' && option1 != '3' && option1 != '4' && option1 != '5');
 						/////////////////////////////////////////////////registracija korisnika
 						if (option1 == '1')
 						{
@@ -50,7 +52,7 @@ void AdminFunctionals()
 							{
 								system("cls");
 								logoS();
-								std::cout <<std::endl<< "REGISTRACIJA KORISNIKA" << std::endl;
+								std::cout << std::endl << "REGISTRACIJA KORISNIKA" << std::endl;
 								std::cout << std::endl << "Odaberi korisnicku klasu: " << std::endl;
 								std::cout << std::endl << "1. Administrator" << std::endl;
 								std::cout << "2. Analiticar" << std::endl;
@@ -68,7 +70,7 @@ void AdminFunctionals()
 									do {
 										system("cls");
 										logoS();
-										std::cout <<std::endl<< "TURBO TOTAL 2000" << std::endl;
+										std::cout << std::endl << "TURBO TOTAL 2000" << std::endl;
 										std::cout << std::endl << "REGISTRACIJA NOVOG ADMINISTRATORA" << std::endl;
 										std::cout << std::endl;
 										IDlength = a.readPerson();
@@ -77,7 +79,7 @@ void AdminFunctionals()
 									do
 									{
 										system("cls"); logoS();
-										std::cout <<std::endl<< "Podaci koje ste unijeli: " << std::endl << std::endl;
+										std::cout << std::endl << "Podaci koje ste unijeli: " << std::endl << std::endl;
 										a.printPerson();
 										if (w)
 										{
@@ -85,7 +87,7 @@ void AdminFunctionals()
 											do
 											{
 												system("cls"); logoS();
-												std::cout <<std::endl<< "Podaci koje ste unijeli: " << std::endl << std::endl;
+												std::cout << std::endl << "Podaci koje ste unijeli: " << std::endl << std::endl;
 												a.printPerson();
 												std::cout << std::endl << "Greska! Vec postoji administrator sa takvim podacima." << std::endl;
 												std::cout << std::endl << "Da li zelite ponovo pokusati registrovati novog administratora?" << std::endl;
@@ -118,7 +120,7 @@ void AdminFunctionals()
 									std::ofstream file;
 									file.open("RegistrovaniAdmini.txt", std::ios::app);
 									file << std::setw(15) << std::left << a.getName() << std::setw(15) << std::left << a.getSurname() << std::setw(10) << std::left << a.getID() << std::setw(10) << std::left << a.getPIN() << std::setw(10) << std::left << a.getMalicious() << std::endl;
-									std::cout <<std::endl<< "Novi administrator je uspjesno registrovan, njegovi podaci su:" << std::endl;
+									std::cout << std::endl << "Novi administrator je uspjesno registrovan, njegovi podaci su:" << std::endl;
 									std::cout << std::endl;
 									a.printPerson();
 									getchar();
@@ -138,7 +140,7 @@ void AdminFunctionals()
 									{
 										system("cls");
 										logoS();
-										std::cout <<std::endl<< "TURBO TOTAL 2000" << std::endl;
+										std::cout << std::endl << "TURBO TOTAL 2000" << std::endl;
 										std::cout << std::endl << "REGISTRACIJA NOVOG ANALITICARA" << std::endl;
 										std::cout << std::endl;
 										IDlength = a.readPerson();
@@ -148,7 +150,7 @@ void AdminFunctionals()
 									{
 										system("cls");
 										logoS();
-										std::cout <<std::endl<< "Podaci koje ste unijeli: " << std::endl << std::endl;
+										std::cout << std::endl << "Podaci koje ste unijeli: " << std::endl << std::endl;
 										a.printPerson();
 										if (w)
 										{
@@ -157,7 +159,7 @@ void AdminFunctionals()
 											{
 												system("cls");
 												logoS();
-												std::cout <<std::endl<< "Podaci koje ste unijeli: " << std::endl << std::endl;
+												std::cout << std::endl << "Podaci koje ste unijeli: " << std::endl << std::endl;
 												a.printPerson();
 												std::cout << std::endl << "Greska! Vec postoji analiticar sa takvim podacima." << std::endl;
 												std::cout << std::endl << "Da li zelite ponovo pokusati registrovati novog analiticara?" << std::endl;
@@ -190,7 +192,7 @@ void AdminFunctionals()
 									std::ofstream file;
 									file.open("RegistrovaniAnaliticari.txt", std::ios::app);
 									file << std::setw(15) << std::left << a.getName() << std::setw(15) << std::left << a.getSurname() << std::setw(10) << std::left << a.getID() << std::setw(10) << std::left << a.getPIN() << std::setw(10) << std::left << a.getMalicious() << std::endl;
-									std::cout <<std::endl<< "Novi analiticar je uspjesno registrovan, njegovi podaci su:" << std::endl;
+									std::cout << std::endl << "Novi analiticar je uspjesno registrovan, njegovi podaci su:" << std::endl;
 									std::cout << std::endl;
 									a.printPerson();
 									getchar();
@@ -207,7 +209,7 @@ void AdminFunctionals()
 							{
 								system("cls");
 								logoS();
-								std::cout <<std::endl<< "ISPIS KORISNIKA" << std::endl;
+								std::cout << std::endl << "ISPIS KORISNIKA" << std::endl;
 								std::cout << std::endl << "Odaberi korisnicku klasu: " << std::endl;
 								std::cout << std::endl << "1. Administrator" << std::endl;
 								std::cout << "2. Analiticar" << std::endl;
@@ -222,7 +224,7 @@ void AdminFunctionals()
 									system("cls");
 									logoS();
 									int i = 0;
-									std::cout <<std::endl<< "SPISAK ADMINISTRATORA" << std::endl << std::endl;
+									std::cout << std::endl << "SPISAK ADMINISTRATORA" << std::endl << std::endl;
 									printPersonHeader();
 									while (getline(myfile, line))
 									{
@@ -249,7 +251,7 @@ void AdminFunctionals()
 									system("cls");
 									logoS();
 									int i = 0;
-									std::cout <<std::endl<< "SPISAK ANALITICARA" << std::endl << std::endl;
+									std::cout << std::endl << "SPISAK ANALITICARA" << std::endl << std::endl;
 									printPersonHeader();
 									while (getline(myfile, line))
 									{
@@ -276,7 +278,7 @@ void AdminFunctionals()
 							{
 								system("cls");
 								logoS();
-								std::cout <<std::endl<< "BRISANJE KORISNIKA" << std::endl;
+								std::cout << std::endl << "BRISANJE KORISNIKA" << std::endl;
 								std::cout << std::endl << "1. Obrisi administratora" << std::endl;
 								std::cout << "2. Obrisi analiticara" << std::endl;
 								std::cout << std::endl << "Unesi opciju: "; std::cin >> option3;
@@ -287,7 +289,7 @@ void AdminFunctionals()
 								system("cls");
 								logoS();
 								std::string string;
-								std::cout <<std::endl<< "BRISANJE ADMINISTRATORA" << std::endl << std::endl;
+								std::cout << std::endl << "BRISANJE ADMINISTRATORA" << std::endl << std::endl;
 								char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 								FILE* d;
 								d = fopen("RegistrovaniAdmini.txt", "r");
@@ -305,7 +307,7 @@ void AdminFunctionals()
 								fclose(d);
 
 								printPersonHeader();
-								for (int i = 0; i<vec.size(); i++)
+								for (int i = 0; i < vec.size(); i++)
 									std::cout << i + 1 << ". " << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
 								printPersonFooter();
 
@@ -325,7 +327,7 @@ void AdminFunctionals()
 								system("cls");
 								logoS();
 								std::string string;
-								std::cout <<std::endl<< "BRISANJE ANALITICARA" << std::endl << std::endl;
+								std::cout << std::endl << "BRISANJE ANALITICARA" << std::endl << std::endl;
 
 								char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 								FILE* d;
@@ -344,7 +346,7 @@ void AdminFunctionals()
 								fclose(d);
 
 								printPersonHeader();
-								for (int i = 0; i<vec.size(); i++)
+								for (int i = 0; i < vec.size(); i++)
 									std::cout << i + 1 << ". " << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
 								printPersonFooter();
 
@@ -368,7 +370,7 @@ void AdminFunctionals()
 							{
 								system("cls");
 								logoS();
-								std::cout <<std::endl<< "ODOBRAVANJE PRISTUPA SISTEMU" << std::endl;
+								std::cout << std::endl << "ODOBRAVANJE PRISTUPA SISTEMU" << std::endl;
 								std::cout << std::endl << "1. Odobravanje pristupa administratoru" << std::endl;
 								std::cout << "2. Odobravanje pristupa analiticaru" << std::endl;
 								std::cout << std::endl << "Unesi opciju: "; std::cin >> user;
@@ -381,7 +383,7 @@ void AdminFunctionals()
 								std::string id;
 								char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 								FILE* myfile;
-								std::cout <<std::endl<< "ODOBRAVANJE PRISTUPA ADMINISTRATORU" << std::endl;
+								std::cout << std::endl << "ODOBRAVANJE PRISTUPA ADMINISTRATORU" << std::endl;
 
 								FILE* d;
 								d = fopen("MaliciozniAdmini.txt", "r");
@@ -468,7 +470,7 @@ void AdminFunctionals()
 								std::string id;
 								char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 								FILE* myfile;
-								std::cout <<std::endl<< "ODOBRAVANJE PRISTUPA ANALITICARU" << std::endl;
+								std::cout << std::endl << "ODOBRAVANJE PRISTUPA ANALITICARU" << std::endl;
 
 								FILE* d;
 								d = fopen("MaliciozniAnaliticari.txt", "r");
@@ -547,6 +549,380 @@ void AdminFunctionals()
 								{
 									std::cout << std::endl << "Nijedan od analiticara nije maliciozan." << std::endl;
 								}
+							}
+						}
+						if (option1 == '5')
+						{
+							char user;
+
+
+							do
+							{
+								system("cls");
+								logoS();
+								std::cout << std::endl << "PROMJENA PODATAKA KORISNIKA" << std::endl;
+
+								std::cout << std::endl << "1. Administrator" << std::endl;
+								std::cout << "2. Analiticar" << std::endl;
+								std::cout << std::endl << "Odaberite korisnicku klasu kojoj zelite mijenjati podatke: "; std::cin >> user;
+							} while (user != '1' && user != '2');
+							system("cls");
+
+							if (user == '1')
+							{
+								char option;
+								do
+								{
+
+									std::cout << " Koji podatak zelite da promijenite? " << std::endl;
+									std::cout << "1.Ime" << std::endl;
+									std::cout << "2.Prezime" << std::endl;
+									std::cout << "3.ID" << std::endl;
+									std::cout << "4.PIN" << std::endl;
+									std::cin >> option;
+								} while (option != '1' && option != '2' && option != '3' && option != '4');
+								FILE *fp = fopen("RegistrovaniAdmini.txt", "r");
+								if (option == '1')
+								{
+									system("cls");
+									Person pom;
+									std::vector<Person>vec;
+									std::string novo_ime;
+									std::cout << "Unesite vase novo ime:";
+									std::cin >> novo_ime;
+									std::cout << std::endl;
+									char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+									if (fp)
+									{
+										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+										{
+											if (ID == a.getID())  pom.setName(novo_ime);
+											else { std::string name1(name); pom.setName(name1); }
+											std::string surname1(surname); pom.setSurname(surname1);
+											std::string ID1(ID); pom.setID(ID1);
+											std::string PIN1(PIN); pom.setPIN(PIN1);
+											std::string maliciozan1(maliciozan); pom.setMalicious(maliciozan1);
+											vec.push_back(pom);
+										}
+										fclose(fp);
+
+									}
+									std::ofstream file;
+									file.open("RegistrovaniAdmini.txt");
+									if (file.is_open())
+										for (int i = 0; i < vec.size(); i++)
+											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
+									file.close();
+
+
+
+								}
+								else if (option == '2')
+								{
+									system("cls");
+									Person pom;
+									std::vector<Person>vec;
+									std::string novo_prezime;
+									std::cout << "Unesite vase novo prezime:";
+									std::cin >> novo_prezime;
+									std::cout << std::endl;
+									char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+									if (fp)
+									{
+										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+										{
+											if (ID == a.getID())  pom.setSurname(novo_prezime);
+											else { std::string surname1(surname); pom.setSurname(surname1); }
+											std::string name1(name); pom.setName(name1);
+											std::string ID1(ID); pom.setID(ID1);
+											std::string PIN1(PIN); pom.setPIN(PIN1);
+											std::string maliciozan1(maliciozan); pom.setMalicious(maliciozan1);
+											vec.push_back(pom);
+										}
+										fclose(fp);
+
+									}
+									std::ofstream file;
+									file.open("RegistrovaniAdmini.txt");
+									if (file.is_open())
+										for (int i = 0; i < vec.size(); i++)
+											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
+									file.close();
+
+								}
+								else if (option == '3')
+								{
+									system("cls");
+									Person pom;
+									std::vector<Person>vec;
+									std::string novi_ID;
+									std::cout << "Unesite vas novi ID:";
+									std::cin >> novi_ID;
+									std::cout << std::endl;
+									char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+									if (fp)
+									{
+										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+										{
+											if (ID == a.getID())  pom.setID(novi_ID);
+											else { std::string ID1(ID); pom.setID(ID1); }
+											std::string surname1(surname); pom.setSurname(surname1);
+											std::string name1(name); pom.setName(name1);
+											std::string PIN1(PIN); pom.setPIN(PIN1);
+											std::string maliciozan1(maliciozan); pom.setMalicious(maliciozan1);
+											vec.push_back(pom);
+										}
+										fclose(fp);
+
+									}
+									std::ofstream file;
+									file.open("RegistrovaniAdmini.txt");
+									if (file.is_open())
+										for (int i = 0; i < vec.size(); i++)
+											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
+									file.close();
+
+								}
+								else if (option == '4')
+								{
+									system("cls");
+									Person pom;
+									std::vector<Person>vec;
+									std::string novi_PIN;
+									std::cout << "Unesite vas novi PIN:";
+									std::cin >> novi_PIN;
+									std::cout << std::endl;
+									char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+									if (fp)
+									{
+										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+										{
+											if (ID == a.getID())  pom.setPIN(novi_PIN);
+											else { std::string PIN1(PIN); pom.setPIN(PIN1); }
+											std::string surname1(surname); pom.setSurname(surname1);
+											std::string ID1(ID); pom.setID(ID1);
+											std::string name1(name); pom.setName(name1);
+											std::string maliciozan1(maliciozan); pom.setMalicious(maliciozan1);
+											vec.push_back(pom);
+										}
+										fclose(fp);
+
+									}
+									std::ofstream file;
+									file.open("RegistrovaniAdmini.txt");
+									if (file.is_open())
+										for (int i = 0; i < vec.size(); i++)
+											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
+									file.close();
+
+								}
+
+
+
+
+
+
+							}
+							else if (user == '2')
+							{
+								std::cout << "Unesite id korisnika kojem zelite da mijenjate podatke:";
+								std::string id;
+								std::cin >> id;
+								std::cout << std::endl;
+								FILE *fp = fopen("RegistrovaniAnaliticari.txt", "r");
+
+								char option;
+								do
+								{
+
+									std::cout << " Koji podatak zelite da promijenite? " << std::endl;
+									std::cout << "1.Ime" << std::endl;
+									std::cout << "2.Prezime" << std::endl;
+									std::cout << "3.ID" << std::endl;
+									std::cout << "4.PIN" << std::endl;
+									std::cin >> option;
+								} while (option != '1' && option != '2' && option != '3' && option != '4');
+								if (option == '1')
+								{
+									system("cls");
+									char novo_ime[15], name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+									Person pom;
+
+
+									std::cout << "Unesite novo ime korisnika:";
+									std::cin >> novo_ime;
+									std::cout << std::endl;
+									std::vector<Person> vec;
+									if (fp)
+									{
+
+										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+										{
+											std::string ID1(ID); pom.setID(ID1);
+											if (ID1 == id) pom.setName(novo_ime);
+											else { std::string name1(name); pom.setName(name1); }
+											std::string surname1(surname); pom.setSurname(surname1);
+
+											std::string PIN1(PIN); pom.setPIN(PIN1);
+											std::string maliciozan1(maliciozan); pom.setMalicious(maliciozan1);
+
+											vec.push_back(pom);
+										}
+
+
+										fclose(fp);
+
+									}
+									std::ofstream file;
+									file.open("RegistrovaniAnaliticari.txt");
+									if (file.is_open())
+									{
+										for (int i = 0; i < vec.size(); i++)
+											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
+										file.close();
+
+									}
+
+
+
+								}
+								else if (option == '2')
+								{
+
+
+									system("cls");
+									char novo_prezime[15], name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+									Person pom;
+
+
+									std::cout << "Unesite novo prezime korisnika:";
+									std::cin >> novo_prezime;
+									std::cout << std::endl;
+									std::vector<Person> vec;
+									if (fp)
+									{
+
+										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+										{
+											std::string ID1(ID); pom.setID(ID1);
+											if (ID1 == id) pom.setSurname(novo_prezime);
+											else { std::string surname1(surname); pom.setSurname(surname1); }
+											std::string name1(name); pom.setName(name1);
+
+
+											std::string PIN1(PIN); pom.setPIN(PIN1);
+											std::string maliciozan1(maliciozan); pom.setMalicious(maliciozan1);
+
+											vec.push_back(pom);
+										}
+
+
+										fclose(fp);
+
+									}
+									std::ofstream file;
+									file.open("RegistrovaniAnaliticari.txt");
+									if (file.is_open())
+									{
+										for (int i = 0; i < vec.size(); i++)
+											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
+										file.close();
+
+									}
+
+
+
+								}
+								else if (option == '3')
+								{
+									system("cls");
+									char novi_ID[15], name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+									Person pom;
+
+
+									std::cout << "Unesite novi ID korisnika:";
+									std::cin >> novi_ID;
+									std::cout << std::endl;
+									std::vector<Person> vec;
+									if (fp)
+									{
+
+										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+										{
+											std::string ID1(ID);
+											if (ID1 == id) pom.setID(novi_ID);
+											else pom.setID(ID1);
+											std::string surname1(surname); pom.setSurname(surname1);
+											std::string name1(name); pom.setName(name1);
+
+
+											std::string PIN1(PIN); pom.setPIN(PIN1);
+											std::string maliciozan1(maliciozan); pom.setMalicious(maliciozan1);
+
+											vec.push_back(pom);
+										}
+
+
+										fclose(fp);
+
+									}
+									std::ofstream file;
+									file.open("RegistrovaniAnaliticari.txt");
+									if (file.is_open())
+									{
+										for (int i = 0; i < vec.size(); i++)
+											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
+										file.close();
+
+									}
+
+								}
+								else if (option == '4')
+								{
+									system("cls");
+									char novi_PIN[15], name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+									Person pom;
+
+
+									std::cout << "Unesite novi PIN korisnika:";
+									std::cin >> novi_PIN;
+									std::cout << std::endl;
+									std::vector<Person> vec;
+									if (fp)
+									{
+
+										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+										{
+											std::string ID1(ID);
+											if (ID1 == id) pom.setPIN(novi_PIN);
+											else { std::string PIN1(PIN); pom.setPIN(PIN1); }
+											std::string surname1(surname); pom.setSurname(surname1);
+											std::string name1(name); pom.setName(name1);
+
+
+
+											std::string maliciozan1(maliciozan); pom.setMalicious(maliciozan1);
+
+											vec.push_back(pom);
+										}
+
+
+										fclose(fp);
+
+									}
+									std::ofstream file;
+									file.open("RegistrovaniAnaliticari.txt");
+									if (file.is_open())
+									{
+										for (int i = 0; i < vec.size(); i++)
+											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
+										file.close();
+
+									}
+
+								}
+
+
 							}
 						}
 
