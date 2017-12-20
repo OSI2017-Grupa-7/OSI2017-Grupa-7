@@ -19,8 +19,6 @@ void Pretprogram()
 			char valuta;
 			myfile.close();
 			std::ofstream file;
-			file.open("1.txt");
-			file << "0";
 			do
 			{
 				system("cls");
@@ -41,6 +39,8 @@ void Pretprogram()
 				std::ofstream value;
 				value.open("Valuta.txt");
 				value << "$";
+				file.open("1.txt");
+				file << "0";
 				value.close();
 			}
 			if (valuta == '2')
@@ -48,6 +48,8 @@ void Pretprogram()
 				std::ofstream value;
 				value.open("Valuta.txt");
 				value << "€";
+				file.open("1.txt");
+				file << "0";
 				value.close();
 			}
 			if (valuta == '3')
@@ -55,6 +57,8 @@ void Pretprogram()
 				std::ofstream value;
 				value.open("Valuta.txt");
 				value << "BAM";
+				file.open("1.txt");
+				file << "0";
 				value.close();
 			}
 			if (valuta == '4')
@@ -62,6 +66,8 @@ void Pretprogram()
 				std::ofstream value;
 				value.open("Valuta.txt");
 				value << "RSD";
+				file.open("1.txt");
+				file << "0";
 				value.close();
 			}
 			if (valuta == '5')
@@ -69,6 +75,8 @@ void Pretprogram()
 				std::ofstream value;
 				value.open("Valuta.txt");
 				value << "GBP";
+				file.open("1.txt");
+				file << "0";
 				value.close();
 			}
 			getchar();
