@@ -36,7 +36,7 @@ void monthSaldoReport()
 	std::cout << std::endl << " 1. Januar          2. Februar         3. Mart" << std::endl;
 	std::cout << " 4. April           5. Maj             6. Jun" << std::endl;
 	std::cout << " 7. Jul             8. Avgust          9. Septembar" << std::endl;
-	std::cout << "10. Oktobar        11. Novembar       12.Decembar" << std::endl;
+	std::cout << "10. Oktobar        11. Novembar       12. Decembar" << std::endl;
 	std::cout << std::endl << "Unesi opciju: "; std::cin >> mjesec;
 	} while (mjesec != "1" && mjesec != "2" && mjesec != "3" && mjesec != "4" && mjesec != "5" && mjesec != "6" &&
 		mjesec != "7" && mjesec != "8" && mjesec != "9" && mjesec != "10" && mjesec != "11" && mjesec != "12");
