@@ -555,8 +555,6 @@ void AdminFunctionals()
 						if (option1 == '5')
 						{
 							char user;
-
-
 							do
 							{
 								system("cls");
@@ -568,23 +566,25 @@ void AdminFunctionals()
 								std::cout << std::endl << "Odaberite korisnicku klasu kojoj zelite mijenjati podatke: "; std::cin >> user;
 							} while (user != '1' && user != '2');
 
-
 							if (user == '1')
 							{
-								system("cls");
-								logoS();
-								std::cout << std::endl;
 								char option;
 								do
 								{
-
+								system("cls");
+								logoS();
+								std::cout << std::endl;
+								
+				
 									std::cout << " Koji podatak zelite da promijenite? " << std::endl;
-									std::cout << "1.Ime" << std::endl;
-									std::cout << "2.Prezime" << std::endl;
-									std::cout << "3.ID" << std::endl;
-									std::cout << "4.PIN" << std::endl;
+									std::cout << std::endl << "1. Ime" << std::endl;
+									std::cout << "2. Prezime" << std::endl;
+									std::cout << "3. ID" << std::endl;
+									std::cout << "4. PIN" << std::endl;
+									std::cout << std::endl << "Unesi opciju: ";
 									std::cin >> option;
 								} while (option != '1' && option != '2' && option != '3' && option != '4');
+								
 								FILE *fp = fopen("RegistrovaniAdmini.txt", "r");
 								if (option == '1')
 								{
@@ -593,7 +593,7 @@ void AdminFunctionals()
 									Person pom;
 									std::vector<Person>vec;
 									std::string novo_ime;
-									std::cout << "Unesite vase novo ime:";
+									std::cout <<std::endl<< "Unesite vase novo ime: ";
 									std::cin >> novo_ime;
 									std::cout << std::endl;
 									char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
@@ -618,9 +618,6 @@ void AdminFunctionals()
 										for (int i = 0; i < vec.size(); i++)
 											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
 									file.close();
-
-
-
 								}
 								else if (option == '2')
 								{
@@ -630,7 +627,7 @@ void AdminFunctionals()
 									Person pom;
 									std::vector<Person>vec;
 									std::string novo_prezime;
-									std::cout << "Unesite vase novo prezime:";
+									std::cout <<std::endl<< "Unesite vase novo prezime: ";
 									std::cin >> novo_prezime;
 									std::cout << std::endl;
 									char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
@@ -665,7 +662,7 @@ void AdminFunctionals()
 									Person pom;
 									std::vector<Person>vec;
 									std::string novi_ID;
-									std::cout << "Unesite vas novi ID:";
+									std::cout <<std::endl<< "Unesite vas novi ID: ";
 									std::cin >> novi_ID;
 									std::cout << std::endl;
 									char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
@@ -675,7 +672,7 @@ void AdminFunctionals()
 										{
 											while (ID == novi_ID)
 											{
-												std::cout << "Unijeli ste postojeci ID.Molimo pokusajte ponovo.";
+												std::cout << "Unijeli ste postojeci ID. Molimo pokusajte ponovo.";
 												std::cin >> novi_ID;
 												std::cout << std::endl;
 											}
@@ -715,7 +712,7 @@ void AdminFunctionals()
 									Person pom;
 									std::vector<Person>vec;
 									std::string novi_PIN;
-									std::cout << "Unesite vas novi PIN:";
+									std::cout << "Unesite vas novi PIN: ";
 									std::cin >> novi_PIN;
 									std::cout << std::endl;
 									char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
@@ -725,7 +722,7 @@ void AdminFunctionals()
 										{
 											while (PIN == novi_PIN)
 											{
-												std::cout << "Unijeli ste postojeci PIN.Molimo pokusajte ponovo.";
+												std::cout << "Unijeli ste postojeci PIN. Molimo pokusajte ponovo.";
 												std::cin >> novi_PIN;
 												std::cout << std::endl;
 											}
@@ -753,19 +750,13 @@ void AdminFunctionals()
 									file.close();
 
 								}
-
-
-
-
-
-
 							}
 							else if (user == '2')
 							{
 								system("cls");
 								logoS();
 								std::cout << std::endl;
-								std::cout << "Unesite id korisnika kojem zelite da mijenjate podatke:";
+								std::cout << "Unesite ID korisnika kojem zelite da mijenjate podatke: ";
 								std::string id;
 								std::cin >> id;
 								std::cout << std::endl;
@@ -774,12 +765,15 @@ void AdminFunctionals()
 								char option;
 								do
 								{
-
-									std::cout << "Koji podatak zelite da promijenite? " << std::endl;
-									std::cout << "1.Ime" << std::endl;
-									std::cout << "2.Prezime" << std::endl;
-									std::cout << "3.ID" << std::endl;
-									std::cout << "4.PIN" << std::endl;
+									system("cls");
+									logoS();
+									std::cout <<std::endl<< "Mijenjaju se podaci korisnika: " << id << std::endl;
+									std::cout << std::endl<<"Koji podatak zelite da promijenite? " << std::endl;
+									std::cout <<std::endl<< "1. Ime" << std::endl;
+									std::cout << "2. Prezime" << std::endl;
+									std::cout << "3. ID" << std::endl;
+									std::cout << "4. PIN" << std::endl;
+									std::cout << std::endl << "Unesi opciju: ";
 									std::cin >> option;
 								} while (option != '1' && option != '2' && option != '3' && option != '4');
 								if (option == '1')
@@ -791,28 +785,22 @@ void AdminFunctionals()
 									char  name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 									Person pom;
 
-
-									std::cout << "Unesite novo ime korisnika:";
+									std::cout << "Unesite novo ime korisnika: ";
 									std::cin >> novo_ime;
 									std::cout << std::endl;
 									std::vector<Person> vec;
 									if (fp)
 									{
-
 										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
 										{
 											std::string ID1(ID); pom.setID(ID1);
 											if (ID1 == id) pom.setName(novo_ime);
 											else { std::string name1(name); pom.setName(name1); }
 											std::string surname1(surname); pom.setSurname(surname1);
-
 											std::string PIN1(PIN); pom.setPIN(PIN1);
 											std::string maliciozan1(maliciozan); pom.setMalicious(maliciozan1);
-
 											vec.push_back(pom);
 										}
-
-
 										fclose(fp);
 
 									}
@@ -825,29 +813,22 @@ void AdminFunctionals()
 										file.close();
 
 									}
-
-
-
 								}
 								else if (option == '2')
 								{
-
-
-									system("cls");
+	      							system("cls");
 									logoS();
 									std::cout << std::endl;
 									std::string novo_prezime;
 									char  name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 									Person pom;
-
-
-									std::cout << "Unesite novo prezime korisnika:";
+             
+									std::cout << "Unesite novo prezime korisnika: ";
 									std::cin >> novo_prezime;
 									std::cout << std::endl;
 									std::vector<Person> vec;
 									if (fp)
 									{
-
 										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
 										{
 											std::string ID1(ID); pom.setID(ID1);
@@ -861,10 +842,7 @@ void AdminFunctionals()
 
 											vec.push_back(pom);
 										}
-
-
 										fclose(fp);
-
 									}
 									std::ofstream file;
 									file.open("RegistrovaniAnaliticari.txt");
@@ -875,9 +853,6 @@ void AdminFunctionals()
 										file.close();
 
 									}
-
-
-
 								}
 								else if (option == '3')
 								{
@@ -888,8 +863,7 @@ void AdminFunctionals()
 									char  name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 									Person pom;
 
-
-									std::cout << "Unesite novi ID korisnika:";
+									std::cout << "Unesite novi ID korisnika: ";
 									std::cin >> novi_ID;
 									std::cout << std::endl;
 									std::vector<Person> vec;
@@ -899,7 +873,7 @@ void AdminFunctionals()
 										{
 											while (ID == novi_ID)
 											{
-												std::cout << "Unijeli ste postojeci ID.Molimo pokusajte ponovo.";
+												std::cout << "Unijeli ste postojeci ID. Molimo pokusajte ponovo.";
 												std::cin >> novi_ID;
 												std::cout << std::endl;
 											}
@@ -913,17 +887,11 @@ void AdminFunctionals()
 											else pom.setID(ID1);
 											std::string surname1(surname); pom.setSurname(surname1);
 											std::string name1(name); pom.setName(name1);
-
-
 											std::string PIN1(PIN); pom.setPIN(PIN1);
 											std::string maliciozan1(maliciozan); pom.setMalicious(maliciozan1);
-
 											vec.push_back(pom);
 										}
-
-
 										fclose(fp);
-
 									}
 									std::ofstream file;
 									file.open("RegistrovaniAnaliticari.txt");
@@ -932,9 +900,7 @@ void AdminFunctionals()
 										for (int i = 0; i < vec.size(); i++)
 											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
 										file.close();
-
 									}
-
 								}
 								else if (option == '4')
 								{
@@ -945,9 +911,7 @@ void AdminFunctionals()
 									std::string novi_PIN;
 									char  name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 									Person pom;
-
-
-									std::cout << "Unesite novi PIN korisnika:";
+									std::cout << "Unesite novi PIN korisnika: ";
 									std::cin >> novi_PIN;
 									std::cout << std::endl;
 									std::vector<Person> vec;
@@ -957,7 +921,7 @@ void AdminFunctionals()
 										{
 											while (PIN == novi_PIN)
 											{
-												std::cout << "Unijeli ste postojeci PIN.Molimo pokusajte ponovo.";
+												std::cout << "Unijeli ste postojeci PIN. Molimo pokusajte ponovo.";
 												std::cin >> novi_PIN;
 												std::cout << std::endl;
 											}
@@ -970,17 +934,10 @@ void AdminFunctionals()
 											else { std::string PIN1(PIN); pom.setPIN(PIN1); }
 											std::string surname1(surname); pom.setSurname(surname1);
 											std::string name1(name); pom.setName(name1);
-
-
-
 											std::string maliciozan1(maliciozan); pom.setMalicious(maliciozan1);
-
 											vec.push_back(pom);
 										}
-
-
 										fclose(fp);
-
 									}
 									std::ofstream file;
 									file.open("RegistrovaniAnaliticari.txt");
@@ -989,16 +946,12 @@ void AdminFunctionals()
 										for (int i = 0; i < vec.size(); i++)
 											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
 										file.close();
-
 									}
-
 								}
-
-
 							}
 						}
-
 					}
+
 					do
 					{
 						std::cout << std::endl << "0. Odjavi se" << std::endl;
