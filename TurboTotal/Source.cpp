@@ -12,10 +12,7 @@ int main()
 	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
 	startLogo();
 	int i = 0;
-	while (i < 1000000000)
-	{
-		i++;
-	} 
+	timer(3);
 	system("cls");
 	Pretprogram();
 	while (kraj)

@@ -89,3 +89,10 @@ void startLogo()
                                                                                     )";
 	SetColor(15);
 }
+
+void timer(int sec)
+{
+	Sleep(sec * 1000);
+}
+
+
