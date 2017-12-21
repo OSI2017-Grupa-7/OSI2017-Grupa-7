@@ -3,12 +3,14 @@
 #include "AdminFunctionals.h"
 #include "AnalystFunctionals.h"
 #include "Logo.h"
+#include <windows.h>
 #include <cstdlib>
 int kraj = 1;
 
 int main()
 {
-	system("MODE CON COLS=201 LINES=70");
+	system("mode con COLS=700");
+	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
 	startLogo();
 	int i = 0;
 	while (i < 1000000000)
