@@ -19,7 +19,7 @@ void AdminAnalystChoose(char &option)
 void printPersonHeader()
 {
 	std::cout << "====================================================================" << std::endl;
-	std::cout << "RB.IME            PREZIME        ID       PIN        PRISTUP        " << std::endl;
+	std::cout << "RB.IME            PREZIME        ID        PIN       PRISTUP        " << std::endl;
 	std::cout << "====================================================================" << std::endl;
 }
 

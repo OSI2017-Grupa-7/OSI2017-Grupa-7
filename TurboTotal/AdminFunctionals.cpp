@@ -555,13 +555,13 @@ void AdminFunctionals()
 						}
 						if (option1 == '5')
 						{
+							FILE* fp = fopen("RegistrovaniAdmini.txt", "r");
 							char user;
 							do
 							{
 								system("cls");
 								logoS();
 								std::cout << std::endl << "PROMJENA PODATAKA KORISNIKA" << std::endl;
-
 								std::cout << std::endl << "1. Administrator" << std::endl;
 								std::cout << "2. Analiticar" << std::endl;
 								std::cout << std::endl << "Odaberite korisnicku klasu kojoj zelite mijenjati podatke: "; std::cin >> user;
@@ -586,9 +586,10 @@ void AdminFunctionals()
 									std::cin >> option;
 								} while (option != '1' && option != '2' && option != '3' && option != '4');
 
-								FILE *fp = fopen("RegistrovaniAdmini.txt", "r");
+								
 								if (option == '1')
 								{
+									
 									system("cls");
 									logoS();
 									Person pom;
@@ -619,9 +620,12 @@ void AdminFunctionals()
 										for (int i = 0; i < vec.size(); i++)
 											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
 									file.close();
+									
+									
 								}
-								else if (option == '2')
+							 if (option == '2')
 								{
+								    
 									system("cls");
 									logoS();
 									std::cout << std::endl;
@@ -653,10 +657,11 @@ void AdminFunctionals()
 										for (int i = 0; i < vec.size(); i++)
 											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
 									file.close();
-
+									
 								}
-								else if (option == '3')
+							 if (option == '3')
 								{
+								 
 									system("cls");
 									logoS();
 									std::cout << std::endl;
@@ -667,10 +672,12 @@ void AdminFunctionals()
 									std::cin >> novi_ID;
 									while (Admin_ID(novi_ID))
 									{
-										std::cout << "Unijeli ste postojeci ID.Molimo pokusajte ponovo.";
+										std::cout <<std::endl<< "Unijeli ste postojeci ID. Molimo pokusajte ponovo.";
+										getchar();
+										getchar();
 										system("cls");
 										logoS();
-										std::cout << std::endl << "Unesite vas novi ID:";
+										std::cout << std::endl << "Unesite vas novi ID: ";
 										std::cin >> novi_ID;
 										rewind(fp);
 									}
@@ -703,10 +710,11 @@ void AdminFunctionals()
 										for (int i = 0; i < vec.size(); i++)
 											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
 									file.close();
-
+									
 								}
-								else if (option == '4')
+							 if (option == '4')
 								{
+								 
 									system("cls");
 									logoS();
 									std::cout << std::endl;
@@ -717,10 +725,12 @@ void AdminFunctionals()
 									std::cin >> novi_PIN;
 									while (Admin_PIN(novi_PIN))
 									{
-										std::cout << "Unijeli ste postojeci PIN.Molimo pokusajte ponovo.";
+										std::cout <<std::endl<< "Unijeli ste postojeci PIN. Molimo pokusajte ponovo.";
+										getchar();
+										getchar();
 										system("cls");
 										logoS();
-										std::cout << std::endl << "Unesite vas novi PIN:";
+										std::cout << std::endl << "Unesite vas novi PIN: ";
 										std::cin >> novi_PIN;
 										rewind(fp);
 									}
@@ -749,11 +759,13 @@ void AdminFunctionals()
 										for (int i = 0; i < vec.size(); i++)
 											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
 									file.close();
-
+									
 								}
+							 
 							}
-							else if (user == '2')
+							 if (user == '2')
 							{
+
 								system("cls");
 								logoS();
 								std::cout << std::endl;
@@ -815,7 +827,7 @@ void AdminFunctionals()
 
 									}
 								}
-								else if (option == '2')
+							 if (option == '2')
 								{
 									system("cls");
 									logoS();
@@ -855,7 +867,7 @@ void AdminFunctionals()
 
 									}
 								}
-								else if (option == '3')
+								if (option == '3')
 								{
 									system("cls");
 									logoS();
@@ -868,10 +880,12 @@ void AdminFunctionals()
 									std::cin >> novi_ID;
 									while (Analyst_ID(novi_ID))
 									{
-										std::cout << "Unijeli ste postojeci ID.Molimo pokusajte ponovo.";
+										std::cout <<std::endl<< "Unijeli ste postojeci ID. Molimo pokusajte ponovo.";
+										getchar();
+										getchar();
 										system("cls");
 										logoS();
-										std::cout << std::endl << "Unesite novi ID:";
+										std::cout << std::endl << "Unesite novi ID: ";
 										std::cin >> novi_ID;
 										rewind(fp);
 									}
@@ -902,7 +916,7 @@ void AdminFunctionals()
 										file.close();
 									}
 								}
-								else if (option == '4')
+								 if (option == '4')
 								{
 									system("cls");
 									logoS();
@@ -915,7 +929,9 @@ void AdminFunctionals()
 									std::cin >> novi_PIN;
 									while (Analyst_PIN(novi_PIN))
 									{
-										std::cout << "Unijeli ste postojeci PIN.Molimo pokusajte ponovo.";
+										std::cout<<std::endl << "Unijeli ste postojeci PIN. Molimo pokusajte ponovo.";
+										getchar();
+										getchar();
 										system("cls");
 										logoS();
 										std::cout << std::endl << "Unesite novi PIN:";
