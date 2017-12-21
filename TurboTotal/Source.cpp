@@ -9,7 +9,6 @@ int kraj = 1;
 
 int main()
 {
-	system("mode con COLS=700");
 	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
 	startLogo();
 	int i = 0;
