@@ -20,3 +20,7 @@ int isThereAnalyst(Person);
 int isThereMaliciousAnalyst(std::string);
 void AdminAnalystChoose(char&);
 bool is_file_exist(const char*);
+bool Admin_ID(std::string);
+bool Admin_PIN(std::string);
+bool Analyst_ID(std::string);
+bool Analyst_PIN(std::string);

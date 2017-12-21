@@ -333,3 +333,119 @@ bool is_file_exist(const char *fileName)
 	std::ifstream infile(fileName);
 	return infile.good();
 }
+bool Admin_ID(std::string id)
+{
+	char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+	FILE* fp;
+	fp = fopen("RegistrovaniAdmini.txt", "r");
+	std::vector <Person> vec;
+	Person pom;
+	if (fp)
+	{
+		while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+		{
+			std::string name1(name); pom.setName(name1);
+			std::string surname1(surname); pom.setSurname(surname1);
+			std::string ID1(ID); pom.setID(ID1);
+			std::string PIN1(PIN); pom.setPIN(PIN1);
+			std::string maliciozan1(maliciozan); pom.setMalicious(maliciozan1);
+			vec.push_back(pom);
+		}
+		fclose(fp);
+	}
+
+	for (unsigned int i = 0; i < vec.size(); i++)
+	{
+		if (vec[i].getID() == id)
+			return true;
+	}
+	return false;
+}
+bool Admin_PIN(std::string pin)
+{
+	char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+	FILE* fp;
+	fp = fopen("RegistrovaniAdmini.txt", "r");
+	std::vector <Person> vec;
+	Person pom;
+	if (fp)
+	{
+		while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+		{
+			std::string name1(name); pom.setName(name1);
+			std::string surname1(surname); pom.setSurname(surname1);
+			std::string ID1(ID); pom.setID(ID1);
+			std::string PIN1(PIN); pom.setPIN(PIN1);
+			std::string maliciozan1(maliciozan); pom.setMalicious(maliciozan1);
+			vec.push_back(pom);
+		}
+		fclose(fp);
+	}
+
+	for (unsigned int i = 0; i < vec.size(); i++)
+	{
+		if (vec[i].getPIN() == pin)
+			return true;
+	}
+	return false;
+
+}
+bool Analyst_ID(std::string id)
+{
+	char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+	FILE* fp;
+	fp = fopen("RegistrovaniAnaliticari.txt", "r");
+	std::vector <Person> vec;
+	Person pom;
+	if (fp)
+	{
+		while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+		{
+			std::string name1(name); pom.setName(name1);
+			std::string surname1(surname); pom.setSurname(surname1);
+			std::string ID1(ID); pom.setID(ID1);
+			std::string PIN1(PIN); pom.setPIN(PIN1);
+			std::string maliciozan1(maliciozan); pom.setMalicious(maliciozan1);
+			vec.push_back(pom);
+		}
+		fclose(fp);
+	}
+
+	for (unsigned int i = 0; i < vec.size(); i++)
+	{
+		if (vec[i].getID() == id)
+			return true;
+	}
+	return false;
+
+
+}
+bool Analyst_PIN(std::string pin)
+{
+	char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+	FILE* fp;
+	fp = fopen("RegistrovaniAnaliticari.txt", "r");
+	std::vector <Person> vec;
+	Person pom;
+	if (fp)
+	{
+		while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
+		{
+			std::string name1(name); pom.setName(name1);
+			std::string surname1(surname); pom.setSurname(surname1);
+			std::string ID1(ID); pom.setID(ID1);
+			std::string PIN1(PIN); pom.setPIN(PIN1);
+			std::string maliciozan1(maliciozan); pom.setMalicious(maliciozan1);
+			vec.push_back(pom);
+		}
+		fclose(fp);
+	}
+
+	for (unsigned int i = 0; i < vec.size(); i++)
+	{
+		if (vec[i].getPIN() == pin)
+			return true;
+	}
+	return false;
+
+}
