@@ -561,9 +561,9 @@ void AdminFunctionals()
 								system("cls");
 								logoS();
 								std::cout << std::endl << "PROMJENA PODATAKA KORISNIKA" << std::endl;
-								std::cout << std::endl << "1. Licni podaci (samo za administratora)" << std::endl;
+								std::cout << std::endl << "1.Licni podaci(samo za administratora)" << std::endl;
 								std::cout << "2. Analiticar" << std::endl;
-								std::cout << std::endl << "Unesi opciju: "; std::cin >> user;
+								std::cout << std::endl << "Odaberite kome zelite mijenjati podatke: "; std::cin >> user;
 							} while (user != '1' && user != '2');
 
 							if (user == '1')
@@ -574,7 +574,9 @@ void AdminFunctionals()
 									system("cls");
 									logoS();
 									std::cout << std::endl;
-									std::cout << "Koji podatak zelite da promijenite? " << std::endl;
+
+
+									std::cout << " Koji podatak zelite da promijenite? " << std::endl;
 									std::cout << std::endl << "1. Ime" << std::endl;
 									std::cout << "2. Prezime" << std::endl;
 									std::cout << "3. ID" << std::endl;
@@ -614,11 +616,9 @@ void AdminFunctionals()
 									std::ofstream file;
 									file.open("RegistrovaniAdmini.txt");
 									if (file.is_open())
-									{
 										for (int i = 0; i < vec.size(); i++)
 											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
-										file.close();
-									}
+									file.close();
 
 
 								}
@@ -653,11 +653,9 @@ void AdminFunctionals()
 									std::ofstream file;
 									file.open("RegistrovaniAdmini.txt");
 									if (file.is_open())
-									{
 										for (int i = 0; i < vec.size(); i++)
 											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
-										file.close();
-									}
+									file.close();
 
 								}
 								if (option == '3')
@@ -708,11 +706,9 @@ void AdminFunctionals()
 									std::ofstream file;
 									file.open("RegistrovaniAdmini.txt");
 									if (file.is_open())
-									{
 										for (int i = 0; i < vec.size(); i++)
 											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
-										file.close();
-									}
+									file.close();
 
 								}
 								if (option == '4')
@@ -759,12 +755,9 @@ void AdminFunctionals()
 									std::ofstream file;
 									file.open("RegistrovaniAdmini.txt");
 									if (file.is_open())
-									{
-					
-									for (int i = 0; i < vec.size(); i++)
-										file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
+										for (int i = 0; i < vec.size(); i++)
+											file << std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
 									file.close();
-								}
 
 								}
 
@@ -781,7 +774,7 @@ void AdminFunctionals()
 								std::cin >> id;
 								while (!Analyst_ID(id))
 								{
-									std::cout << "Korisnik ciji je ID "<<id<<" nije pronadjen. Molimo pokusajte ponovo."<<std::endl;
+									std::cout << "Korisnik ciji je id"<<id<<" nije pronadjen.Molimo pokusajte ponovo.";
 									getchar();
 									getchar();
 									system("cls");
@@ -796,31 +789,9 @@ void AdminFunctionals()
 								char option;
 								do
 								{
-									char  name[15], surname[15], ID[15], PIN[15], maliciozan[15];
-									std::vector<Person> vec;
-									Person pom;
-									while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
-									{
-										std::string name1(name); pom.setName(name1);
-										std::string surname1(surname); pom.setSurname(surname1);
-										std::string ID1(ID); pom.setID(ID1);
-										std::string PIN1(PIN); pom.setPIN(PIN1);
-										std::string maliciozan1(maliciozan); pom.setMalicious(maliciozan1);
-										vec.push_back(pom);
-									}
-									fclose(fp);
-									unsigned int i;
-									FILE *fp = fopen("RegistrovaniAnaliticari.txt", "r");
-									for (i = 0; i < vec.size(); i++)
-										if (id == vec[i].getID()) break;
-
 									system("cls");
 									logoS();
-									std::cout << std::endl;
-									std::cout << std::endl << "Mijenjaju se podaci korisnika: " << std::endl<<std::endl;
-									printPersonHeader();
-									std::cout<<"1. "<<std::setw(15) << std::left << vec[i].getName() << std::setw(15) << std::left << vec[i].getSurname() << std::setw(10) << std::left << vec[i].getID() << std::setw(10) << std::left << vec[i].getPIN() << std::setw(10) << std::left << vec[i].getMalicious() << std::endl;
-									printPersonFooter();
+									std::cout << std::endl << "Mijenjaju se podaci korisnika: " << id << std::endl;
 									std::cout << std::endl << "Koji podatak zelite da promijenite? " << std::endl;
 									std::cout << std::endl << "1. Ime" << std::endl;
 									std::cout << "2. Prezime" << std::endl;
@@ -974,7 +945,7 @@ void AdminFunctionals()
 										getchar();
 										system("cls");
 										logoS();
-										std::cout << std::endl << "Unesite novi PIN: ";
+										std::cout << std::endl << "Unesite novi PIN:";
 										std::cin >> novi_PIN;
 										rewind(fp);
 									}
@@ -985,7 +956,7 @@ void AdminFunctionals()
 										while (fscanf(fp, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
 										{
 											
-											if (ID == id) pom.setPIN(novi_PIN);
+											if (ID1 == id) pom.setPIN(novi_PIN);
 											else { std::string PIN1(PIN); pom.setPIN(PIN1); }
 											std::string surname1(surname); pom.setSurname(surname1);
 											std::string name1(name); pom.setName(name1);
@@ -1025,7 +996,7 @@ void AdminFunctionals()
 			}
 			else
 			{
-				std::cout << std::endl<<std::endl << "ID ili sifra nisu korektno uneseni. Broj preostalih pokusaja: " << --i << " (pritisni 'Enter' za sledeci pokusaj)";
+				std::cout << std::endl << "ID ili sifra nisu korektno uneseni. Broj preostalih pokusaja: " << --i << " (pritisni 'Enter' za sledeci pokusaj)";
 				getchar();
 				getchar();
 			}

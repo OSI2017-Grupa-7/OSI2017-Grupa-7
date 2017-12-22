@@ -74,7 +74,7 @@ void AnalystFunctionals()
 			}
 			else
 			{
-				std::cout << std::endl<<std::endl << "ID ili sifra nisu korektno uneseni. Broj preostalih pokusaja: " << --i << " (pritisni 'Enter' za sledeci pokusaj)";
+				std::cout << std::endl << "ID ili sifra nisu korektno uneseni. Broj preostalih pokusaja: " << --i << " (pritisni 'Enter' za sledeci pokusaj)";
 				getchar();
 				getchar();
 			}
