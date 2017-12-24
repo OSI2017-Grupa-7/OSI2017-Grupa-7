@@ -561,9 +561,9 @@ void AdminFunctionals()
 								system("cls");
 								logoS();
 								std::cout << std::endl << "PROMJENA PODATAKA KORISNIKA" << std::endl;
-								std::cout << std::endl << "1.Licni podaci(samo za administratora)" << std::endl;
+								std::cout << std::endl << "1. Licni podaci (samo za administratora)" << std::endl;
 								std::cout << "2. Analiticar" << std::endl;
-								std::cout << std::endl << "Odaberite kome zelite mijenjati podatke: "; std::cin >> user;
+								std::cout << std::endl << "Unesi opciju: "; std::cin >> user;
 							} while (user != '1' && user != '2');
 
 							if (user == '1')
@@ -582,7 +582,7 @@ void AdminFunctionals()
 									std::cout << "2. Prezime" << std::endl;
 									std::cout << "3. ID" << std::endl;
 									std::cout << "4. PIN" << std::endl;
-									std::cout << std::endl << "Unesi opciju: ";
+									std::cout << std::endl << "Unesite opciju: ";
 									std::cin >> option;
 								} while (option != '1' && option != '2' && option != '3' && option != '4');
 
@@ -676,7 +676,7 @@ void AdminFunctionals()
 										std::cin >> novi_ID;
 										while (novi_ID.length() != 4)
 										{
-											std::cout << std::endl << "Greska!ID mora imati 4 znaka.";
+											std::cout << std::endl << "Greska! ID mora imati 4 znaka."<<std::endl;
 											std::cout << std::endl << "Pritisnite 'Enter'.";
 											getchar(); getchar();
 											system("cls");
@@ -698,7 +698,7 @@ void AdminFunctionals()
 										std::cin >> novi_ID;
 										while (novi_ID.length() != 4)
 										{
-											std::cout << std::endl << "Greska!ID mora imati 4 znaka.";
+											std::cout << std::endl << "Greska! ID mora imati 4 znaka."<<std::endl;
 											std::cout << std::endl << "Pritisnite 'Enter'.";
 											getchar(); getchar();
 											system("cls");
@@ -760,7 +760,7 @@ void AdminFunctionals()
 									std::cin >> novi_PIN;
 									while (novi_PIN.length() != 4)
 									{
-										std::cout << std::endl << "Greska!PIN mora imati 4 znaka.";
+										std::cout << std::endl << "Greska! PIN mora imati 4 znaka."<<std::endl;
 										std::cout << std::endl << "Pritisnite 'Enter'.";
 										getchar();
 										getchar();
@@ -782,7 +782,7 @@ void AdminFunctionals()
 										std::cin >> novi_PIN;
 										while (novi_PIN.length() != 4)
 										{
-											std::cout << std::endl << "Greska!PIN mora imati 4 znaka.";
+											std::cout << std::endl << "Greska! PIN mora imati 4 znaka."<<std::endl;
 											std::cout << std::endl << "Pritisnite 'Enter'.";
 											getchar();
 											getchar();
@@ -839,7 +839,7 @@ void AdminFunctionals()
 								std::cin >> id;
 								while (id.length() != 4)
 								{
-									std::cout << std::endl << "Greska!ID mora imati 4 znaka.";
+									std::cout << std::endl << "Greska! ID mora imati 4 znaka."<<std::endl;
 									std::cout << std::endl << "Pritisnite 'Enter'.";
 									getchar();
 									getchar();
@@ -871,13 +871,33 @@ void AdminFunctionals()
 								{
 									system("cls");
 									logoS();
-									std::cout << std::endl << "Mijenjaju se podaci korisnika: " << id << std::endl;
+									char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
+									FILE* myfile;
+									myfile = fopen("RegistrovaniAnaliticari.txt", "r");
+									std::vector <Person> v;
+									while (fscanf(myfile, "%15s %15s %10s %10s %15s\n", name, surname, ID, PIN, maliciozan) == 5)
+									{
+										Person b;
+										std::string nname(name); b.setName(nname);
+										std::string ssurname(surname); b.setSurname(ssurname);
+										std::string IID(ID); b.setID(IID);
+										std::string PPIN(PIN); b.setPIN(PPIN);
+										std::string mmaliciozan(maliciozan); b.setMalicious(mmaliciozan);
+										v.push_back(b);
+									}
+									fclose(myfile);
+									unsigned int i;
+									for (i = 0; i < v.size(); i++)
+										if (v[i].getID() == id)
+											break;
+
+									std::cout << std::endl << "Mijenjaju se podaci korisnika: " << v[i].getName()<<" "<<v[i].getSurname() << std::endl;
 									std::cout << std::endl << "Koji podatak zelite da promijenite? " << std::endl;
 									std::cout << std::endl << "1. Ime" << std::endl;
 									std::cout << "2. Prezime" << std::endl;
 									std::cout << "3. ID" << std::endl;
 									std::cout << "4. PIN" << std::endl;
-									std::cout << std::endl << "Unesi opciju: ";
+									std::cout << std::endl << "Unesite opciju: ";
 									std::cin >> option;
 								} while (option != '1' && option != '2' && option != '3' && option != '4');
 								if (option == '1')
@@ -1121,7 +1141,7 @@ void AdminFunctionals()
 						std::cout << std::endl << "0. Odjavi se" << std::endl;
 						std::cout << "1. Vrati se na pocetak profila" << std::endl;
 						std::cout << "2. Izadji iz aplikacije" << std::endl;
-						std::cout << std::endl << "Unesi opciju: "; std::cin >> t;
+						std::cout << std::endl << "Unesite opciju: "; std::cin >> t;
 						if (t == '0') kraj = 1;
 						if (t == '2')
 						{
