@@ -10,6 +10,8 @@ void buyerReport()
 	std::cout << "Unesite ime i prezime kupca: "<<std::endl;
 	std::cout << std::endl << "Ime: ";  std::cin >> ime;
 	std::cout << std::endl << "Prezime: "; std::cin >> prezime;
+
+	std::cout << std::endl << "IZVJESTAJ ZA KUPCA: " << ime << " " << prezime << std::endl;
 	//uci u bazu kupaca i ispisati izvjestaj
 }
 
@@ -18,9 +20,13 @@ void productReport()
 	system("cls");
 	logoS();
 	std::cout <<std::endl<< "IZVJESTAJ PO ARTIKLU" << std::endl<<std::endl;
-	std::string naziv;
-	std::cout << "Unesite naziv artikla: " << std::endl;
-	std::cout << std::endl << "Naziv: ";  std::cin >> naziv;
+	std::string sifra;
+	std::cout << "Unesite sifru artikla: " << std::endl;
+	std::cout << std::endl << "Sifra: ";  std::cin >> sifra;
+
+
+	std::cout << std::endl << "IZVJESTAJ ZA ARTIKAL: " << sifra <<std::endl;
+
 	//uci u bazu artikala i ispisati izvjestaj
 }
 
