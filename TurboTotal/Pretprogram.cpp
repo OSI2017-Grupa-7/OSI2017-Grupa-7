@@ -80,6 +80,14 @@ void Pretprogram()
 				value.close();
 			}
 			getchar();
+			Person admin;
+			admin.setName("admin");
+			admin.setSurname("admin");
+			admin.setID("0000");
+			admin.setPIN("0000");
+			admin.setMalicious("odobren");
+			int k = 1;
+			prijava(admin, k);
 		}
 	}
 }

@@ -4,3 +4,4 @@
 #include "Functions.h"
 
 void AdminFunctionals();
+void prijava(Person, int&);
