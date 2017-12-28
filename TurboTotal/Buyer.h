@@ -1,13 +1,13 @@
 #pragma once
 #include <string>
 #include <iostream>
-class Kupac
+class Buyer
 {
 	std::string ime, prezime;
 public:
-	Kupac();
-	Kupac(std::string, std::string);
-	~Kupac();
+	Buyer();
+	Buyer(std::string, std::string);
+	~Buyer();
 	void setIme(std::string);
 	void setPrezime(std::string);
 	std::string getIme();

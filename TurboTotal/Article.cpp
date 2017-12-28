@@ -1,23 +1,23 @@
 #include "Article.h"
 
-Artikal::Artikal(){}
+Article::Article(){}
 
-Artikal::Artikal(std::string naziv, std::string sifra, double cijena) :naziv(naziv), sifra(sifra), cijena(cijena) {}
+Article::Article(std::string naziv, std::string sifra, double cijena) :naziv(naziv), sifra(sifra), cijena(cijena) {}
 
-Artikal::~Artikal(){}
+Article::~Article(){}
 
-void Artikal::setNaziv(std::string n) { naziv = n; }
+void Article::setNaziv(std::string n) { naziv = n; }
 
-void Artikal::setSifra(std::string s) { sifra = s; }
+void Article::setSifra(std::string s) { sifra = s; }
 
-void Artikal::setCijena(double c) { cijena = c; }
+void Article::setCijena(double c) { cijena = c; }
 
-std::string Artikal::getNaziv() { return naziv;}
+std::string Article::getNaziv() { return naziv;}
 
-std::string Artikal::getSifra() { return sifra;}
+std::string Article::getSifra() { return sifra;}
 
-double Artikal::getCijena() { return cijena;}
+double Article::getCijena() { return cijena;}
 
-void Artikal::print() { std::cout << sifra << " " << naziv<<" " << cijena<<std::endl;}
+void Article::print() { std::cout << sifra << " " << naziv<<" " << cijena<<std::endl;}
 
 

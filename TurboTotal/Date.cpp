@@ -1,16 +1,16 @@
 #include "Date.h"
 
-Datum::Datum(){}
+Date::Date(){}
 
-Datum::Datum(int dan, int mjesec, int godina):dan(dan),mjesec(mjesec),godina(godina){}
+Date::Date(int dan, int mjesec, int godina):dan(dan),mjesec(mjesec),godina(godina){}
 
-void Datum::setDatum(int d, int m, int g)
+void Date::setDatum(int d, int m, int g)
 {
 	dan = d;
 	mjesec = m;
 	godina = g;
 }
 
-void Datum::print() { std::cout << dan << "." << mjesec << "." << godina<<"."<<std::endl;}
+void Date::print() { std::cout << dan << "." << mjesec << "." << godina<<"."<<std::endl;}
 
-Datum::~Datum() {}
+Date::~Date() {}

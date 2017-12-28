@@ -1,17 +1,17 @@
 #include "Buyer.h"
 
-Kupac::Kupac(){}
+Buyer::Buyer(){}
 
-Kupac::Kupac(std::string ime, std::string prezime):ime(ime),prezime(prezime){}
+Buyer::Buyer(std::string ime, std::string prezime):ime(ime),prezime(prezime){}
 
-Kupac::~Kupac(){}
+Buyer::~Buyer(){}
 
-void Kupac::setIme(std::string i) { ime = i; }
+void Buyer::setIme(std::string i) { ime = i; }
 
-void Kupac::setPrezime(std::string p) { prezime = p; }
+void Buyer::setPrezime(std::string p) { prezime = p; }
 
-std::string Kupac::getIme() { return ime;}
+std::string Buyer::getIme() { return ime;}
 
-std::string Kupac::getPrezime() { return prezime; }
+std::string Buyer::getPrezime() { return prezime; }
 
-void Kupac::print() { std::cout << ime << " " << prezime<<std::endl;}
+void Buyer::print() { std::cout << ime << " " << prezime<<std::endl;}

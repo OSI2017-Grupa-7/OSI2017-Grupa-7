@@ -1,15 +1,15 @@
 #pragma once
 #include <iostream>
 #include <string>
-class Artikal
+class Article
 {
 	std::string naziv, sifra;
 	double cijena;
 	
 public:
-	Artikal();
-	Artikal(std::string,std::string sifra, double);
-	~Artikal();
+	Article();
+	Article(std::string,std::string sifra, double);
+	~Article();
 	void setNaziv(std::string);
 	void setSifra(std::string);
 	void setCijena(double);

@@ -3,20 +3,20 @@
 #include "Buyer.h"
 #include "Date.h"
 
-Racun::Racun() {}
+Receipt::Receipt() {}
 
-Racun::Racun(std::vector<Artikal> artikal, Kupac kupac,Datum datum): artikal(artikal),kupac(kupac),datum(datum){}
+Receipt::Receipt(std::vector<Article> artikal, Buyer kupac,Date datum): artikal(artikal),kupac(kupac),datum(datum){}
 
-Racun::~Racun() {}
+Receipt::~Receipt() {}
 
-void Racun::setRacun(std::vector<Artikal> a, Kupac k, Datum d)
+void Receipt::setRacun(std::vector<Article> a, Buyer b, Date d)
 {
 	artikal = a;
-	kupac = k;
+	kupac = b;
 	datum = d;
 }
 
-void Racun::print()
+void Receipt::print()
 {
 	kupac.print();
 	datum.print();

@@ -3,16 +3,16 @@
 #include "Artikal.h"
 #include "Datum.h"
 #include <vector>
-class Racun
+class Receipt
 {
 	std::vector<Artikal> artikal;
-	Kupac kupac;
-	Datum datum;
+	Buyer kupac;
+	Date datum;
 public:
-	Racun();
-	Racun(std::vector<Artikal> , Kupac,Datum);
-	~Racun();
-	void setRacun(std::vector<Artikal>, Kupac,Datum);
+	Receipt();
+	Receipt(std::vector<Article> , Buyer,Date);
+	~Receipt();
+	void setRacun(std::vector<Article>, Buyer,Date);
 	void print();
 };
 
