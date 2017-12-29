@@ -1,11 +1,11 @@
 #pragma once
-#include "Kupac.h"
-#include "Artikal.h"
-#include "Datum.h"
+#include "Buyer.h"
+#include "Article.h"
+#include "Date.h"
 #include <vector>
 class Receipt
 {
-	std::vector<Artikal> artikal;
+	std::vector<Article> artikal;
 	Buyer kupac;
 	Date datum;
 public:
