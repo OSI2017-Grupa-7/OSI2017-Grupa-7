@@ -1,5 +1,9 @@
 #include "Format3.h"
 
+void parseDate(const std::string& string, int& day, int& month, int& year) {
+	std::sscanf(string.c_str(), "%d/%d/%d", &day, &month, &year);
+}
+
 
 std::ifstream& GotoLine(std::ifstream& file, unsigned int num) {
 	file.seekg(std::ios::beg);
