@@ -14,9 +14,10 @@ void Pretprogram()
 		getline(myfile, line);
 		if (line == one)
 		{
-				system("md Racuni");
-				system("md Kupci");
-				system("md Artkili");
+			system("md Racuni");
+			system("md Kupci");
+			system("md Artkili");
+			system("md Obradjeni_racuni");
 			char valuta;
 			myfile.close();
 			std::ofstream file;
