@@ -30,7 +30,7 @@ void boi(std::string& trash, std::string& st2, double& kol, int& i) {
 
 
 void format3(std::string& bill) {
-	std::ifstream file("Racuni/" + bill);
+	std::ifstream file(bill);
 	file.seekg(0, file.beg);
 	std::string trash, st1, st2;
 	std::vector<std::string> st;
@@ -102,10 +102,9 @@ void format3(std::string& bill) {
 	}
 
 	std::ofstream kupci("Kupci/" + kupac + ".txt", std::ios::app);
-
+	kupci << day << "." << month << "." << year << std::endl;
 	for (int i = 0; i < count; i++)
 		kupci << st[i] << " " << kolV[i] << " " << cijenaV[i] << " " << ukupnoV[i] << std::endl;
-	kupci << day << "." << month << "." << "year" << std::endl;
 	kupci << total << std::endl << pdv << std::endl << totalp << std::endl;
 	kupci << "--------------------------" << std::endl;
 	file.close();
