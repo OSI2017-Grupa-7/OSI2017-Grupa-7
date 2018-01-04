@@ -41,10 +41,11 @@ void format3(std::string& bill) {
 	int day, month, year;
 	int count = 0;
 	double sum = 0;
-	std::string rac = "Racuni/" + bill, err = "Error/" + bill, obr = "Obradjeni_racuni/" + bill;
+	bill.erase(0, 7);
+	/*std::string rac = "Racuni/" + bill, err = "Error/" + bill, obr = "Obradjeni_racuni/" + bill;
 	const char* rac_path = rac.c_str();
 	const char* err_path = err.c_str();
-	const char* obr_path = obr.c_str();
+	const char* obr_path = obr.c_str();*/
 
 	GotoLine(file, 3);
 	file >> trash >> kupac;
@@ -61,7 +62,12 @@ void format3(std::string& bill) {
 	
 	if (totalp != total + pdv) {
 		file.close();
-		rename(rac_path, err_path);
+		std::ofstream processed_file("Racuni/" + bill);
+		std::ifstream old_file("Error/" + bill);
+		std::string line;
+		while (getline(old_file, line))
+			processed_file << line << std::endl;
+		//rename(rac_path, err_path);
 		return;
 	}
 
@@ -97,7 +103,12 @@ void format3(std::string& bill) {
 
 	if (sum != total) {
 		file.close();
-		rename(rac_path, err_path);
+		std::ofstream processed_file("Racuni/" + bill);
+		std::ifstream old_file("Error/" + bill);
+		std::string line;
+		while (getline(old_file, line))
+			processed_file << line << std::endl;
+		//rename(rac_path, err_path);
 		return;
 	}
 
@@ -109,5 +120,9 @@ void format3(std::string& bill) {
 	kupci << "--------------------------" << std::endl;
 	file.close();
 	kupci.close();
-	rename(rac_path, obr_path);
+	std::ofstream processed_file("Obradjeni_racuni/" + bill);
+	std::ifstream old_file("Racuni/" + bill);
+	std::string line;
+	while (getline(old_file, line))
+		processed_file << line << std::endl;
 }

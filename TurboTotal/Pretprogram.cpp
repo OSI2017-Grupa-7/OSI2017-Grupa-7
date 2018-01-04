@@ -18,6 +18,7 @@ void Pretprogram()
 			system("md Kupci");
 			system("md Artkili");
 			system("md Obradjeni_racuni");
+			system("md Error");
 			char valuta;
 			myfile.close();
 			std::ofstream file;
