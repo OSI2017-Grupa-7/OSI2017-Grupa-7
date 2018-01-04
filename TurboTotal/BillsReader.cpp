@@ -15,12 +15,23 @@ std::vector<std::string> get_filenames(std::experimental::filesystem::path path)
 	return filenames;
 }
 
+void removeBillProcessed(std::vector<std::string> bills)
+{
+	for (unsigned int i = 0; i < bills.size(); i++)
+	{
+		char * writable = new char[bills[i].size() + 1];
+		std::copy(bills[i].begin(), bills[i].end(), writable);
+		writable[bills[i].size()] = '\0';
+		remove(writable);
+		delete[]writable;
+	}
+}
 
 void billsReading()
 {
 	std::vector<std::string> bills = get_filenames("Racuni");
-	//treba onemoguciti da se citaju racuni koji su prethodno obradjeni
-	billFormat(bills);
+	billFormat(bills);//delegirajuca fja za svaki od formata
+	removeBillProcessed(bills);//fja koja remove-a obradjene racune
 }
 
 int billFormat(std::vector<std::string> bills)
@@ -65,7 +76,6 @@ void format5Processing(std::string name)
 	while (getline(old_file, line))
 		processed_file << line << std::endl;
 }
-
 void findNameSurnameDate(std::string name, std::string& buyer_name, std::string&date)
 {
 	int i;
