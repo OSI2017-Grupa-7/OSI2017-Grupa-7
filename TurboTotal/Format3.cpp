@@ -62,11 +62,10 @@ void format3(std::string& bill) {
 	
 	if (totalp != total + pdv) {
 		file.close();
-		std::ofstream processed_file("Racuni/" + bill);
-		std::ifstream old_file("Error/" + bill);
-		std::string line;
-		while (getline(old_file, line))
-			processed_file << line << std::endl;
+		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
+		error_file += "_error.txt";
+		std::ofstream processed_file(error_file);
+		processed_file << "Greska u obracunu: Ukupna cijena = Ukupno + PDV nije dobro obracunato!!!" << std::endl;
 		//rename(rac_path, err_path);
 		return;
 	}
@@ -103,11 +102,10 @@ void format3(std::string& bill) {
 
 	if (sum != total) {
 		file.close();
-		std::ofstream processed_file("Racuni/" + bill);
-		std::ifstream old_file("Error/" + bill);
-		std::string line;
-		while (getline(old_file, line))
-			processed_file << line << std::endl;
+		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
+		error_file += "_error.txt";
+		std::ofstream processed_file(error_file);
+		processed_file << "Greska u obracunu: kolicina*cijena=ukupno nije dobro obracunato!!!" << std::endl;
 		//rename(rac_path, err_path);
 		return;
 	}
@@ -116,7 +114,7 @@ void format3(std::string& bill) {
 	kupci << day << "." << month << "." << year << std::endl;
 	for (int i = 0; i < count; i++) {
 		std::ofstream article("Artikli/" + st[i] + ".txt", std::ios::app);
-		article << kupac << std::endl << datum << std::endl << kolV[i] << " " << cijenaV[i] << " " << ukupnoV[i] << std::endl;
+		article << kupac << std::endl << day << "." << month << "." << year << std::endl << kolV[i] << " " << cijenaV[i] << " " << ukupnoV[i] << std::endl;
 		article << "---------------------------" << std::endl;
 		article.close();
 		article.clear();
