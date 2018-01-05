@@ -178,7 +178,7 @@ void format5Processing(std::string name)
 void findNameSurnameDate(std::string name, std::string& buyer_name, std::string&date)
 {
 	int i;
-	for (i = 0; i < name.length() && name[i] != '_'; i++)
+	for (i = 0; i < name.length() && name[i] != '#'; i++)
 		buyer_name += name[i];
 	i += 1;
 	for (i; i < name.length() && name[i] != 'c'; i++)
