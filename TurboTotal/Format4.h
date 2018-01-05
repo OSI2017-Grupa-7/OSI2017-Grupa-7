@@ -89,7 +89,7 @@ void readformat4(std::string& bill)
 	double calcPDV;
 	calcPDV = bezPDV * 17 / 100;
 
-	if (bezPDV == sum && brojac == num && PDV == calcPDV)
+	if (bezPDV == sum && brojac == num && PDV == calcPDV && total == PDV + bezPDV)
 	{
 		//kupac.txt
 		std::string buyer_dat;
