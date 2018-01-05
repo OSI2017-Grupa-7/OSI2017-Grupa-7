@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <Windows.h>
 #include "Format3.h"
+#include "Format4.h"
 
 std::vector<std::string> get_filenames(std::experimental::filesystem::path path)
 {
@@ -91,7 +92,7 @@ int billFormat(std::vector<std::string> bills)
 		if (line == "Racun") std::cout << "Format 1" << std::endl;
 		else if (line == "Maloprodajni") std::cout << "Format 2" << std::endl;
 		else if (line == "Datum:") { format3(bills[i]); }
-		else if (line == "OSI") std::cout << "Format 4" << std::endl;
+		else if (line == "OSI") { readformat4(bills[i]); }
 		else
 		{
 			bills[i].erase(0, 7);
@@ -224,9 +225,9 @@ void findArticles(std::string name, std::string buyer_txt)
 				}
 		}
 	}
-	buyer_file <<std::setw(2)<< total-total*0.17 << std::endl;
+	buyer_file <<std::setw(2)<< total << std::endl;
 	buyer_file << std::setw(2) << total*0.17<<std::endl;
-	buyer_file << std::setw(2) << total<<std::endl;
+	buyer_file << std::setw(2) << total+total*0.17<<std::endl;
 	buyer_file << "------------------------------" << std::endl;
 	buyer_file.close();
 }
