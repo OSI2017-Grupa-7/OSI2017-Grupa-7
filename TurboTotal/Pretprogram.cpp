@@ -16,7 +16,7 @@ void Pretprogram()
 		{
 			system("md Racuni");
 			system("md Kupci");
-			system("md Artkili");
+			system("md Artikli");
 			system("md Obradjeni_racuni");
 			system("md Error");
 			char valuta;
