@@ -114,8 +114,14 @@ void format3(std::string& bill) {
 
 	std::ofstream kupci("Kupci/" + kupac + ".txt", std::ios::app);
 	kupci << day << "." << month << "." << year << std::endl;
-	for (int i = 0; i < count; i++)
+	for (int i = 0; i < count; i++) {
+		std::ofstream article("Artikli/" + st[i] + ".txt", std::ios::app);
+		article << kupac << std::endl << datum << std::endl << kolV[i] << " " << cijenaV[i] << " " << ukupnoV[i] << std::endl;
+		article << "---------------------------" << std::endl;
+		article.close();
+		article.clear();
 		kupci << st[i] << " " << kolV[i] << " " << cijenaV[i] << " " << ukupnoV[i] << std::endl;
+	}
 	kupci << total << std::endl << pdv << std::endl << totalp << std::endl;
 	kupci << "--------------------------" << std::endl;
 	file.close();
