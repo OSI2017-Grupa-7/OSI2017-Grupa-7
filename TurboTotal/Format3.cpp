@@ -35,6 +35,7 @@ void format3(std::string& bill) {
 	std::string trash, st1, st2;
 	std::vector<std::string> st;
 	double kol, cijena, ukupno;
+	std::vector<std::string> st2V;
 	std::vector<double> kolV, cijenaV, ukupnoV;
 	std::string kupac, datum;
 	double total, pdv, totalp;
@@ -70,6 +71,15 @@ void format3(std::string& bill) {
 		return;
 	}
 
+	if (total * 0.17 != pdv) {
+		file.close();
+		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
+		error_file += "_error.txt";
+		std::ofstream processed_file(error_file);
+		processed_file << "Greska u obracunu: PDV = 0.17 * Ukupno nije dobro obracunato!!!" << std::endl;
+		return;
+	}
+
 	for (int i = 0; i < 9; i++)
 		std::getline(file, trash);
 
@@ -85,12 +95,22 @@ void format3(std::string& bill) {
 			i++;
 		}
 
+		st2V.push_back(st2);
 		st.push_back(st2 + ' ' + st1);
 		count++;
 
 		boi(trash, st2, kol, i);
 		boi(trash, st2, cijena, i);
 		boi(trash, st2, ukupno, i);
+
+		if (ukupno != cijena * kol) {
+			file.close();
+			std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
+			error_file += "_error.txt";
+			std::ofstream processed_file(error_file);
+			processed_file << "Greska u obracunu: Ukupno = Cijena * Kolicina nije dobro obracunato!!!" << std::endl;
+			return;
+		}
 
 		kolV.push_back(kol); cijenaV.push_back(cijena); ukupnoV.push_back(ukupno);
 		trash.clear();
@@ -113,7 +133,7 @@ void format3(std::string& bill) {
 	std::ofstream kupci("Kupci/" + kupac + ".txt", std::ios::app);
 	kupci << day << "." << month << "." << year << std::endl;
 	for (int i = 0; i < count; i++) {
-		std::ofstream article("Artikli/" + st[i] + ".txt", std::ios::app);
+		std::ofstream article("Artikli/" + st2V[i] + ".txt", std::ios::app);
 		article << kupac << std::endl << day << "." << month << "." << year << std::endl << kolV[i] << " " << cijenaV[i] << " " << ukupnoV[i] << std::endl;
 		article << "---------------------------" << std::endl;
 		article.close();
