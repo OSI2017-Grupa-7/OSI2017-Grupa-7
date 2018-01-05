@@ -68,6 +68,7 @@ void putArticles(std::string name,std::string buyer_name,std::string date)
 						price.erase();
 						total.erase();
 	}
+	file.close();
 
 }
 
@@ -141,6 +142,7 @@ int validation(std::string name)
 						price.erase();
 						total.erase();
 	}
+	file.close();
 	return 1;
 }
 
@@ -166,6 +168,10 @@ void format5Processing(std::string name)
 		std::string line;
 		while (getline(old_file, line))
 			processed_file << line << std::endl;
+
+		buyer_file.close();
+		processed_file.close();
+		old_file.close();
 	}
 	else
 	{
@@ -222,4 +228,5 @@ void findArticles(std::string name, std::string buyer_txt)
 	buyer_file << std::setw(2) << total*0.17<<std::endl;
 	buyer_file << std::setw(2) << total<<std::endl;
 	buyer_file << "------------------------------" << std::endl;
+	buyer_file.close();
 }
