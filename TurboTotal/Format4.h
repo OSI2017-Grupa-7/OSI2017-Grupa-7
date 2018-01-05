@@ -108,7 +108,7 @@ void readformat4(std::string& bill)
 		//artikli
 		for (int i = 0; i < num; i++)
 		{
-			std::string artikal = array[i].name;
+			std::string artikal = array[i].number;
 			std::string article_dat;
 			article_dat = "Artikli/" + artikal + ".txt";
 			std::ofstream article_file(article_dat, std::ios::app);
