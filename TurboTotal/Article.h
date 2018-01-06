@@ -4,7 +4,7 @@
 class Article
 {
 	std::string naziv, sifra;
-	double cijena;
+	double cijena,kolicina;
 	
 public:
 	Article();
@@ -13,9 +13,11 @@ public:
 	void setNaziv(std::string);
 	void setSifra(std::string);
 	void setCijena(double);
+	void setKolicina(double);
 	std::string getNaziv();
 	std::string getSifra();
 	double getCijena();
+	double getKolicina() { return kolicina; }
     void print();
 };
 

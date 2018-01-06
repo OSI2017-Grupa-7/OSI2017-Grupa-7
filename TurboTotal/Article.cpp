@@ -12,6 +12,11 @@ void Article::setSifra(std::string s) { sifra = s; }
 
 void Article::setCijena(double c) { cijena = c; }
 
+void Article::setKolicina(double kol)
+{
+	kolicina = kol;
+}
+
 std::string Article::getNaziv() { return naziv;}
 
 std::string Article::getSifra() { return sifra;}
