@@ -1,5 +1,6 @@
 #include "Format1.h"
 #include <string>
+#include <algorithm>
 using std::string;
 
 struct Artikal {
@@ -71,6 +72,7 @@ void format1(std::string& file)
 	std::getline(fp, pom);
 	fp >> pom;
 	fp >> datum;
+	std::replace(datum.begin(), datum.end(), '/', '.');
 	std::getline(fp, pom);
 	std::getline(fp, pom);
 	std::getline(fp, pom);
