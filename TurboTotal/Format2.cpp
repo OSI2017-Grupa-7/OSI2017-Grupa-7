@@ -1,15 +1,17 @@
 #include "Format2.h"
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <algorithm>
 
 
 
 
 
-
-void buyer_file_output(std::string file_name, std::string date, std::vector<Article>& vec, double total, double pdv, double turbo_total)
+void buyer_file_output(std::string buyer_name, std::string date, std::vector<Article>& vec, double total, double pdv, double turbo_total)
 {
-	std::ofstream fp; fp.open(file_name);
+	std::ofstream  fp(buyer_name, std::ios::app);
+	
 	std::string sifra, naziv; double kol, cijena, uk;
 
 	fp << date << std::endl;
@@ -17,23 +19,23 @@ void buyer_file_output(std::string file_name, std::string date, std::vector<Arti
 	{
 		sifra = vec[i].getSifra(); naziv = vec[i].getNaziv(); kol = vec[i].getKolicina(); cijena = vec[i].getCijena();
 		uk = kol*cijena;
-		fp << sifra << " " << naziv << " " << kol << " " << cijena << " " << uk << std::endl;
+		fp << naziv << sifra << " " << kol << " " << cijena << " " << uk << std::endl;
 
 	}
 	fp << total << std::endl << pdv << std::endl << turbo_total << std::endl;
 	fp << "---------------------------------------" << std::endl;
 	fp.close();
 }
-void article_file_output(std::string file_name, std::string name, std::string date, Article& art, double pdv)
+void article_file_output(std::string file_name, std::string name, std::string date, Article& art)
 {
 
-	std::ofstream fp; fp.open(file_name);
+	std::ofstream  fp(file_name, std::ios::app);
 	fp << name << std::endl << date << std::endl;
-	double kol, cijena, uk, uk_pdv;
+	double kol, cijena, uk;
 	kol = art.getKolicina(); cijena = art.getCijena();
 	uk = kol*cijena;
-	uk_pdv = uk + pdv;
-	fp << kol << " " << cijena << " " << uk << " " << pdv << " " << uk_pdv << std::endl;
+	
+	fp << kol << " " << cijena << " " << uk <<  std::endl;
 	fp << "---------------------------------------" << std::endl;
 	fp.close();
 
@@ -46,89 +48,166 @@ void article_file_output(std::string file_name, std::string name, std::string da
 void format2Processing(std::string file_name)
 {
 	std::ifstream fp("Racuni/" + file_name);
-	std::string line, pom, name, buyer_file;
+	std::string line, pom, name,surname, buyer_file,uk,pdv,uk_pdv,date;
+	double ukupno, PDV, ukupno_pdv;
+	bool flag = true;
+	
 
-	pom = "Kupac:";
+	
 
 
 
 	if (fp.is_open())
 	{
-		std::cout << " Otvorena je datoteka pod nazivom  " << file_name;
-		for (int i = 0; i < 6; i++)
-			std::getline(fp, line);//hvatam prvih 5 linija koda ukljucujuci i onu gdje je kupac:
 
-		for (int i = pom.length() + 1; i < line.length(); i++)//i pocinje nakon rijeci kupac:,da odmah preskocim to i hvatam ime
-		{
-			int j = 0;
-			if (line[i] != ' ')
-				name[j++] = line[i];
-		}
-		for (int i = 0; i < 3; i++)
+		
+		
+		for (int i = 0; i < 5; i++)
 			std::getline(fp, line);
+		
+		fp >> pom >> name>> surname;
+		std::getline(fp, line);
+		std::string buyer_name = name + surname;
+		
+		std::getline(fp, line);
+		std::getline(fp, line);
+		
+		
 		std::vector<Article> vec;
 		std::string art_name, code, dash;
-		dash = "-";
+		
 		double measure, price, total;
-		fp >> art_name >> code >> dash >> measure >> dash >> price >> dash >> total;
-		while (art_name != "---------------------------------------")
+		bool flag = true;
+		
+		
+		while(flag==true)
 		{
+			
 			Article art;
-
-
-
+			std::getline(fp, pom);
+			fp >> art_name;
+			if (art_name == "---------------------------------------")break;
+			fp >> code >> dash >> measure >> dash >> price >> dash >> total;
+			
 			if ((measure*price) != total)
 			{
 				fp.close();
 				std::string error_name = "Error/" + file_name + "_error" + ".txt";
 				std::ofstream error; error.open(error_name);
 				if (error.is_open())
-					error << "Racun sadrzi gresku-ukupna vrijednost (kolicina*cijena) nije ispravna";
+					error << "Racun sadrzi gresku-ukupna vrijednost (kolicina*cijena) nije ispravna.";
 				error.close();
 				return;
 			}
+
+			
+			
+			
+			
+
+
+
+
+			
 			art.setNaziv(art_name); art.setSifra(code);
 			art.setKolicina(measure); art.setCijena(price);
 			vec.push_back(art);
-			fp >> art_name >> code >> dash >> measure >> dash >> price >> dash >> total;
-		}
+			
+			
+			
+		} 
+		std::getline(fp, line);
+		fp >> pom >> uk;
+		
+		std::getline(fp, line);
+		fp >> pom >> pdv;
+		
+		std::getline(fp, line);
+		std::string pom1, pom2;
+		fp >> pom>>pom1>>pom2>>uk_pdv;
+		
+		std::getline(fp, line);
+		fp >> pom >> date;
+		std::replace(date.begin(), date.end(), '/', '.');
+		
+		
+		
+		ukupno = stod(uk);
+		PDV = stod(pdv);
+		ukupno_pdv = stod(uk_pdv);
+		double sum = 0,pdv1;
 
-		double turbo_total = 0, turbo_total_pdv = 0, pdv;
-		std::string date, pdv_s;
-		for (int i = 0; i < 3; i++)
-			std::getline(fp, line);
-		std::string pom1 = "PDV:", pom2 = "Datum:";
-		for (int i = pom1.length() + 1; i < line.length(); i++)
-		{
-			int j = 0;
-			if (line[i] != ' ')
-				pdv_s[j++] = line[i];
-		}
-		pdv = stod(pdv_s);//string u double
+
 		for (int i = 0; i < vec.size(); i++)
 		{
-			turbo_total += vec[i].getKolicina()*vec[i].getCijena();
+			sum += vec[i].getKolicina()*vec[i].getCijena();
 		}
-		turbo_total_pdv = turbo_total + pdv;
-		std::getline(fp, line);
-		std::getline(fp, line);
-
-
-		for (int i = pom2.length() + 1; i < line.length(); i++)
+		
+		if (sum != ukupno)
 		{
-			int j = 0;
-			if (line[i] != ' ')
-				date[j++] = line[i];
+			fp.close();
+			std::string error_name = "Error/" + file_name + "_error" + ".txt";
+			std::ofstream error; error.open(error_name);
+			if (error.is_open())
+				error << "Racun sadrzi gresku-ukupna vrijednost(bez PDV-a) nije dobro izracunata.";
+			error.close();
+			return;
+
 		}
-		buyer_file = "Kupci/" + name + ".txt";
-		buyer_file_output(buyer_file, date, vec, turbo_total, pdv, turbo_total_pdv);
+
+		
+		
+		pdv1 = 0.17 * ukupno;
+		
+		
+		if (pdv1 != PDV)
+		{
+			fp.close();
+			std::string error_name = "Error/" + file_name + "_error" + ".txt";
+			std::ofstream error; error.open(error_name);
+			if (error.is_open())
+				error << "Racun sadrzi gresku-PDV nije dobro izracunat.";
+			error.close();
+			return;
+
+		}
+		
+		
+		if (ukupno_pdv != (PDV + ukupno))
+		{
+			fp.close();
+			std::string error_name = "Error/" + file_name + "_error" + ".txt";
+			std::ofstream error; error.open(error_name);
+			if (error.is_open())
+				error << "Racun sadrzi gresku-ukupna vrijednost za placanje(pdv+ukupno) nije dobro izracunata.";
+			error.close();
+			return;
+
+		}
+		std::string art_file, buyer_file;
+		
+		buyer_file = "Kupci/" + buyer_name + ".txt";
+		
+		buyer_file_output(buyer_file, date, vec, ukupno, PDV, ukupno_pdv);
 		for (int i = 0; i < vec.size(); i++)
 		{
-			std::string sifra = vec[i].getSifra(), article_file;
-			article_file = "Artikli/" + sifra + ".txt";
-			article_file_output(article_file, name, date, vec[i], pdv);
-
+			art_file = "Artikli/" + vec[i].getSifra() + ".txt";
+			article_file_output(art_file, buyer_name, date, vec[i]);
 		}
+		
+
+	   
+
+
+		
+		
+		
+		
+		
+
+		
+
+
 
 		fp.close();
 
