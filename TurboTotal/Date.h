@@ -3,11 +3,11 @@
 
 class Date
 {
-	int dan, mjesec, godina;
+	int day, month, year;
 public:
 	Date();
 	Date(int, int, int);
-	void setDatum(int, int, int);
+	void setDate(int, int, int);
 	void print();
 	~Date();
 };

@@ -5,13 +5,13 @@
 #include "AnalystFunctionals.h"
 #include "Logo.h"
 
-extern int kraj;
+extern int application_exit;
 
 void AnalystFunctionals()
 {
 	Person a;
 	system("cls");
-	int i = 3, p = 1, k = 1;
+	int i = 3, p = 1, k = 1;//p-oznacava uspjesnu/neuspjesnu prijavu,i-broji neuspjele prijave
 	while (i && k)
 	{
 		system("cls");
@@ -31,7 +31,7 @@ void AnalystFunctionals()
 			if (p == 1)
 			{
 				billsReading();//FUNKCIJA ZA CITANJE, OBRADU, SKLADISTENJE RACUNA
-				char t = '1';
+				char t = '1';//t omogucava vracanje na pocetak profila
 				while (t=='1')
 				{
 					k = 0;
@@ -63,10 +63,10 @@ void AnalystFunctionals()
 						std::cout << "1. Vrati se na pocetak profila" << std::endl;
 						std::cout << "2. Izadji iz aplikacije" << std::endl;
 						std::cout << std::endl << "Unesi opciju: "; std::cin >> t;
-						if (t == '0') kraj = 1;
+						if (t == '0') application_exit = 1;
 						if (t == '2')
 						{
-							kraj = 0;
+							application_exit = 0;
 							t = '0';
 						}
 					} while (t != '0' && t != '1' && t != '2');
@@ -81,6 +81,7 @@ void AnalystFunctionals()
 
 		}
 	}
+	//dio koda koji oznacava kod neuspjele prijave koji podatak nije korektno unesen (p==2 za ID, p==3 za PIN)
 	if (!i && (p == 2 || p == 3))
 	{
 		if (p == 2)

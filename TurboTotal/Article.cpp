@@ -2,27 +2,24 @@
 
 Article::Article(){}
 
-Article::Article(std::string naziv, std::string sifra, double cijena) :naziv(naziv), sifra(sifra), cijena(cijena) {}
+Article::Article(std::string name, std::string code, double price) :name(name), code(code), price(price) {}
 
 Article::~Article(){}
 
-void Article::setNaziv(std::string n) { naziv = n; }
+void Article::setName(std::string n) { name = n; }
 
-void Article::setSifra(std::string s) { sifra = s; }
+void Article::setCode(std::string s) { code = s; }
 
-void Article::setCijena(double c) { cijena = c; }
+void Article::setPrice(double c) { price = c; }
 
-void Article::setKolicina(double kol)
-{
-	kolicina = kol;
-}
+void Article::setAmount(double amountt) { amount = amountt;}
 
-std::string Article::getNaziv() { return naziv;}
+std::string Article::getName() { return name;}
 
-std::string Article::getSifra() { return sifra;}
+std::string Article::getCode() { return code;}
 
-double Article::getCijena() { return cijena;}
+double Article::getPrice() { return price;}
 
-void Article::print() { std::cout << sifra << " " << naziv<<" " << cijena<<std::endl;}
+void Article::print() { std::cout << code << " " << name<<" " <<price<<std::endl;}
 
 

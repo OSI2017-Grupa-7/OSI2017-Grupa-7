@@ -2,16 +2,16 @@
 
 Buyer::Buyer(){}
 
-Buyer::Buyer(std::string ime, std::string prezime):ime(ime),prezime(prezime){}
+Buyer::Buyer(std::string name, std::string surname):name(name),surname(surname){}
 
 Buyer::~Buyer(){}
 
-void Buyer::setIme(std::string i) { ime = i; }
+void Buyer::setName(std::string i) { name = i; }
 
-void Buyer::setPrezime(std::string p) { prezime = p; }
+void Buyer::setSurname(std::string p) {surname = p; }
 
-std::string Buyer::getIme() { return ime;}
+std::string Buyer::getName() { return name;}
 
-std::string Buyer::getPrezime() { return prezime; }
+std::string Buyer::getSurname() { return surname; }
 
-void Buyer::print() { std::cout << ime << " " << prezime<<std::endl;}
+void Buyer::print() { std::cout << name << " " << surname<<std::endl;}

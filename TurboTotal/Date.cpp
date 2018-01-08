@@ -2,15 +2,15 @@
 
 Date::Date(){}
 
-Date::Date(int dan, int mjesec, int godina):dan(dan),mjesec(mjesec),godina(godina){}
+Date::Date(int day, int month, int year):day(day),month(month),year(year){}
 
-void Date::setDatum(int d, int m, int g)
+void Date::setDate(int d, int m, int g)
 {
-	dan = d;
-	mjesec = m;
-	godina = g;
+	day = d;
+	month = m;
+	year = g;
 }
 
-void Date::print() { std::cout << dan << "." << mjesec << "." << godina<<"."<<std::endl;}
+void Date::print() { std::cout << day << "." << month << "." << year<<"."<<std::endl;}
 
 Date::~Date() {}

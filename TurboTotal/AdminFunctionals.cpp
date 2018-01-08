@@ -3,7 +3,7 @@
 #include "Logo.h"
 
 
-extern int kraj;
+extern int application_exit;
 void AdminFunctionals()
 {
 	Person a;
@@ -27,7 +27,7 @@ void AdminFunctionals()
 		{
 			if (p == 1)
 			{
-				prijava(a, k);
+				successfulSignIn(a, k);//pokrece se nakon uspjesne prijave
 			}
 			else
 			{
@@ -37,7 +37,7 @@ void AdminFunctionals()
 			}
 		}
 	}
-
+	//dio koda koji oznacava kod neuspjele prijave koji podatak nije korektno unesen (p==2 za ID, p==3 za PIN)
 	if (!i && (p == 2 || p == 3))
 	{
 		if (p == 2)
@@ -123,9 +123,9 @@ void AdminFunctionals()
 	getchar();
 }
 
-void prijava(Person a, int& k)
+void successfulSignIn(Person a, int& k)
 {
-	char t = '1';
+	char t = '1';//t omogucuje vracanje na pocetak profila
 	while (t == '1')
 	{
 		k = 0;
@@ -159,6 +159,7 @@ void prijava(Person a, int& k)
 					std::cout << std::endl << "Odaberi opciju: "; std::cin >> user;
 				} while (user != '1' && user != '2');
 				system("cls");
+				////registracija admina
 				if (user == '1')
 				{
 					char isCorrect = '2';
@@ -228,6 +229,7 @@ void prijava(Person a, int& k)
 						file.close();
 					}
 				}
+				///registracija analiticara
 				if (user == '2')
 				{
 					char isCorrect = '2';
@@ -315,6 +317,7 @@ void prijava(Person a, int& k)
 					std::cout << "2. Analiticar" << std::endl;
 					std::cout << std::endl << "Odaberi opciju: "; std::cin >> user;
 				} while (user != '1' && user != '2');
+				///ispis admina
 				if (user == '1')
 				{
 					std::string line;
@@ -342,6 +345,7 @@ void prijava(Person a, int& k)
 						getchar();
 					}
 				}
+				//ispis analiticara
 				if (user == '2')
 				{
 					std::string line;
@@ -383,7 +387,7 @@ void prijava(Person a, int& k)
 					std::cout << "2. Obrisi analiticara" << std::endl;
 					std::cout << std::endl << "Unesi opciju: "; std::cin >> option3;
 				} while (option3 != '1' && option3 != '2');
-
+				//brisanje admina
 				if (option3 == '1')
 				{
 					system("cls");
@@ -422,6 +426,7 @@ void prijava(Person a, int& k)
 						std::cout << std::endl << "Ne postoji administrator sa unesenim ID-om."; getchar(); getchar();
 					}
 				}
+				////brisanje analiticara
 				if (option3 == '2')
 				{
 					system("cls");
@@ -475,6 +480,7 @@ void prijava(Person a, int& k)
 					std::cout << "2. Odobravanje pristupa analiticaru" << std::endl;
 					std::cout << std::endl << "Unesi opciju: "; std::cin >> user;
 				} while (user != '1' && user != '2');
+				//odobravanje pristupa adminu
 				if (user == '1')
 				{
 					/////////////promjena statusa admina za odrenjeni ID
@@ -1241,10 +1247,10 @@ void prijava(Person a, int& k)
 			std::cout << "1. Vrati se na pocetak profila" << std::endl;
 			std::cout << "2. Izadji iz aplikacije" << std::endl;
 			std::cout << std::endl << "Unesite opciju: "; std::cin >> t;
-			if (t == '0') kraj = 1;
+			if (t == '0') application_exit = 1;
 			if (t == '2')
 			{
-				kraj = 0;
+				application_exit = 0;
 				t = '0';
 			}
 		} while (t != '0' && t != '1' && t != '2');

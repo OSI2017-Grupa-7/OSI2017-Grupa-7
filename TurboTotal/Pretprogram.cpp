@@ -90,7 +90,7 @@ void Pretprogram()
 			admin.setPIN("0000");
 			admin.setMalicious("odobren");
 			int k = 1;
-			prijava(admin, k);
+			successfulSignIn(admin, k);
 		}
 	}
 }

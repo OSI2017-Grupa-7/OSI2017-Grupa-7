@@ -2,7 +2,6 @@
 #include <iomanip>
 #include <Windows.h>
 #include "Format3.h"
-#include "Format2.h"
 #include "Format4.h"
 #include "format5.h"
 
@@ -50,7 +49,7 @@ int billFormat(std::vector<std::string> bills)
 			std::getline(file, line);
 		file >> line;
 		if (line == "Racun") std::cout << "Format 1" << std::endl;
-		else if (line == "Maloprodajni") { bills[i].erase(0, 7);  format2Processing(bills[i]); }
+		else if (line == "Maloprodajni") {}
 		else if (line == "Datum:") { format3(bills[i]); }
 		else if (line == "OSI") { readformat4(bills[i]); }
 		else

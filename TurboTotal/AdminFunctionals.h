@@ -4,4 +4,4 @@
 #include "Functions.h"
 
 void AdminFunctionals();
-void prijava(Person, int&);
+void successfulSignIn(Person, int&);//uspjesna prijava

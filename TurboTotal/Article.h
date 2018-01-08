@@ -3,21 +3,21 @@
 #include <string>
 class Article
 {
-	std::string naziv, sifra;
-	double cijena,kolicina;
+	std::string name, code;
+	double price, amount;
 	
 public:
 	Article();
-	Article(std::string,std::string sifra, double);
+	Article(std::string,std::string, double);
 	~Article();
-	void setNaziv(std::string);
-	void setSifra(std::string);
-	void setCijena(double);
-	void setKolicina(double);
-	std::string getNaziv();
-	std::string getSifra();
-	double getCijena();
-	double getKolicina() { return kolicina; }
+	void setName(std::string);
+	void setCode(std::string);
+	void setPrice(double);
+	void setAmount(double);
+	std::string getName();
+	std::string getCode();
+	double getPrice();
+	double getAmount() { return amount; }
     void print();
 };
 

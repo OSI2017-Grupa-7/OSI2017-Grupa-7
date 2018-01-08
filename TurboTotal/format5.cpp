@@ -93,39 +93,56 @@ void findNameSurnameDate(std::string name, std::string& buyer_name, std::string&
 void findArticles(std::string name, std::string buyer_txt)
 {
 	std::ifstream file("Racuni/" + name);
-	double total = 0;
+	double total_total = 0;
 	double double_price;
-	int new_line_counter = 0;
-	file.seekg(30);
+	std::string line;
+	getline(file, line);
 	std::ofstream buyer_file(buyer_txt, std::ios::app);
 	if (file.is_open())
 	{
 		std::string line;
 		while (getline(file, line))
 		{
-			std::string pom;
-			for (int i = 0; i < line.length(); i++)
+			int i = 0;
+			std::string code, amount, price, total;
+
+			for (i = 0; i < line.length(); i++)
 				if (line[i] != ';')
-					pom += line[i];
-				else
-				{
-					new_line_counter += 1;
-					buyer_file << pom << " ";
-					if (new_line_counter > 3)
-					{
-						std::string::size_type sz;
-						double_price = stod(pom, &sz);
-						total += double_price;
-						buyer_file << std::endl;
-						new_line_counter = 0;
-					}
-					pom.erase();
-				}
+					code += line[i];
+				else break;
+				buyer_file << code << " ";
+				i++;
+				for (i; i < line.length(); i++)
+					if (line[i] != ';')
+						amount += line[i];
+					else break;
+					buyer_file << amount << " ";
+
+					i++;
+					for (i; i < line.length(); i++)
+						if (line[i] != ';')
+							price += line[i];
+						else break;
+
+						buyer_file << price << " ";
+						i++;
+						for (i; i < line.length(); i++)
+								total += line[i];
+						buyer_file << total << std::endl;
+							std::string::size_type sz;
+		
+							double double_total = stod(total, &sz);
+							total_total += double_total;
+								
+							code.erase();
+							amount.erase();
+							price.erase();
+							total.erase();
 		}
 	}
-	buyer_file << std::setw(2) << total - total*0.17 << std::endl;
-	buyer_file << std::setw(2) << total*0.17 << std::endl;
-	buyer_file << std::setw(2) << total << std::endl;
+	buyer_file << std::setw(2) << total_total << std::endl;
+	buyer_file << std::setw(2) <<total_total*0.17 << std::endl;
+	buyer_file << std::setw(2) << total_total+total_total*0.17 << std::endl;
 	buyer_file << "------------------------------" << std::endl;
 	buyer_file.close();
 }
