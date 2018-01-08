@@ -14,7 +14,7 @@ std::ifstream& GotoLine(std::ifstream& file, unsigned int num) {
 }
 
 
-void boi(std::string& trash, std::string& st2, double& kol, int& i) {
+void parse(std::string& trash, std::string& st2, double& kol, int& i) {
 	while (trash[i] == '=')
 		i++;
 
@@ -30,24 +30,26 @@ void boi(std::string& trash, std::string& st2, double& kol, int& i) {
 
 
 void format3(std::string& bill) {
-	std::ifstream file(bill);
-	file.seekg(0, file.beg);
-	std::string trash, st1, st2;
-	std::vector<std::string> st;
-	double kol, cijena, ukupno;
-	std::vector<std::string> st2V;
-	std::vector<double> kolV, cijenaV, ukupnoV;
-	std::string kupac, datum;
-	double total, pdv, totalp;
-	int day, month, year;
-	int count = 0;
-	double sum = 0;
-	bill.erase(0, 7);
+	std::ifstream file(bill);//ucitavanje datoteke
+	file.seekg(0, file.beg);//postavljanje pokazivaca na pocetak
+	std::string trash, st1, st2;//pomocne promjenljive
+	std::vector<std::string> st;// vektor stringova u kojem se smjestaju ime i sifra artikla
+	double kol, cijena, ukupno;// pomocne promjenljive za ucitavanje
+	std::vector<std::string> st2V;// vektor sifri artikala
+	std::vector<double> kolV, cijenaV, ukupnoV;// vektori za smjestanje informacija o kolicini, cijeni i kolicina*cijena
+	std::string kupac, datum;//pomocne promjenljive
+	double total, pdv, totalp;// informacije ucitane sa racuna: ukupno bez pdv-a, obracunat pdv, ukupno + obracunat pdv
+	int day, month, year;// posebne promjenljive za datum
+	int count = 0;// brojac za broj ucitanih artikala
+	double sum = 0;// promjenljiva za provjeru ucitane ukupne vrijednosti racuna
+	bill.erase(0, 7);//brisanje putanje Racuni/ kao bi se moglo koristi ime datoteke
+
 	/*std::string rac = "Racuni/" + bill, err = "Error/" + bill, obr = "Obradjeni_racuni/" + bill;
 	const char* rac_path = rac.c_str();
 	const char* err_path = err.c_str();
 	const char* obr_path = obr.c_str();*/
 
+	///////////////izdvajanje potrebnih informacija iz ucitane datoteke
 	GotoLine(file, 3);
 	file >> trash >> kupac;
 	file.seekg(0, file.beg);
@@ -61,6 +63,7 @@ void format3(std::string& bill) {
 	file >> trash >> trash >> trash >> totalp;
 	file.seekg(0, file.beg);
 	
+	///////////ako je tacan uslov, ucitana datoteka se premjesta u Error folder
 	if (totalp != total + pdv) {
 		file.close();
 		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
@@ -71,6 +74,7 @@ void format3(std::string& bill) {
 		return;
 	}
 
+	///////////ako je tacan uslov, ucitana datoteka se premjesta u Error folder
 	if (total * 0.17 != pdv) {
 		file.close();
 		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
@@ -85,6 +89,7 @@ void format3(std::string& bill) {
 
 	parseDate(datum, day, month, year);
 
+	/////////// izdvajanje potrebnih informacija u pomocne promjenljive i dodavanje u vektore sve dok se ne dodje do -
 	while (file >> st1 >> trash && st1[0] != '-') {
 
 		trash.push_back('=');
@@ -99,10 +104,11 @@ void format3(std::string& bill) {
 		st.push_back(st2 + ' ' + st1);
 		count++;
 
-		boi(trash, st2, kol, i);
-		boi(trash, st2, cijena, i);
-		boi(trash, st2, ukupno, i);
+		parse(trash, st2, kol, i);
+		parse(trash, st2, cijena, i);
+		parse(trash, st2, ukupno, i);
 
+		///////////ako je tacan uslov, ucitana datoteka se premjesta u Error folder
 		if (ukupno != cijena * kol) {
 			file.close();
 			std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
@@ -119,7 +125,7 @@ void format3(std::string& bill) {
 
 	for (int i = 0; i < count; i++)
 		sum = sum + ukupnoV[i];
-
+	///////////ako je tacan uslov, ucitana datoteka se premjesta u Error folder
 	if (sum != total) {
 		file.close();
 		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
@@ -129,9 +135,10 @@ void format3(std::string& bill) {
 		//rename(rac_path, err_path);
 		return;
 	}
-
-	std::ofstream kupci("Kupci/" + kupac + ".txt", std::ios::app);
+	/////////////ispis ucitanih informacija u odredjene datoteke 
+	std::ofstream kupci("Kupci/" + kupac + ".txt", std::ios::app);// kreiranje datoteke sa imenom kupca u folder Kupci
 	kupci << day << "." << month << "." << year << std::endl;
+	////////////petlja za formiranje datoteka za artikle u koju se upisuju odredjene informacije za artikal i kupca
 	for (int i = 0; i < count; i++) {
 		std::ofstream article("Artikli/" + st2V[i] + ".txt", std::ios::app);
 		article << kupac << std::endl << day << "." << month << "." << year << std::endl << kolV[i] << " " << cijenaV[i] << " " << ukupnoV[i] << std::endl;
@@ -144,6 +151,7 @@ void format3(std::string& bill) {
 	kupci << "--------------------------" << std::endl;
 	file.close();
 	kupci.close();
+	/////////////prebacivanje ucitane datoteke iz foldera Racuni u Obradjeni_racuni jer nema gresaka u datoteci
 	std::ofstream processed_file("Obradjeni_racuni/" + bill);
 	std::ifstream old_file("Racuni/" + bill);
 	std::string line;
