@@ -23,13 +23,13 @@ void readformat4(std::string& bill)
 
 	FILE *f;
 	int num = 0;
-	if (f = fopen(bill.c_str(), "r"))
+	if (f = fopen(bill.c_str(), "r")) //prebrojavanje artikala
 	{
 		ARTICLE p;
-		char pomo[50];
+		char help[50];
 		for (int i = 0; i < 7; i++)
 		{
-			fgets(pomo, 50, f);
+			fgets(help, 50, f);
 		}
 		while (fscanf(f, "%s %s - %lf - %lf - %lf", p.name, p.number, &p.amount, &p.price, &p.total) == 5)
 		{
@@ -39,17 +39,17 @@ void readformat4(std::string& bill)
 	}
 
 	array = (ARTICLE*)malloc((num + 1) * sizeof(ARTICLE));
-	if (f = fopen(bill.c_str(), "r"))
+	if (f = fopen(bill.c_str(), "r"))  // kupljenje artikala u niz
 	{
-		char pomo[50];
+		char help[50];
 		for (int i = 0; i < 7; i++)
 		{
-			fgets(pomo, 50, f);
+			fgets(help, 50, f);
 		}
-		int pom = 0;
-		while (fscanf(f, "%s %s - %lf - %lf - %lf", array[pom].name, array[pom].number, &array[pom].amount, &array[pom].price, &array[pom].total) == 5)
+		int n = 0;
+		while (fscanf(f, "%s %s - %lf - %lf - %lf", array[n].name, array[n].number, &array[n].amount, &array[n].price, &array[n].total) == 5)
 		{
-			pom++;
+			n++;
 		}
 		fclose(f);
 	}
@@ -60,8 +60,8 @@ void readformat4(std::string& bill)
 		file >> help;
 	}
 
-	double total, PDV, bezPDV;
-	file >> bezPDV;
+	double total, PDV, wPDV;
+	file >> wPDV;
 	getline(file, help);
 	file >> trash >> PDV;
 	getline(file, help);
@@ -72,21 +72,21 @@ void readformat4(std::string& bill)
 	for (int i = 0; i < num; i++)
 		sum = sum + array[i].total;
 
-	int brojac = 0;
+	int counter = 0;
 	for (int i = 0; i < num; i++)
 	{
 		if ((array[i].price) * array[i].amount == array[i].total)
 		{
-			brojac++;
+			counter++;
 		}
 	}
 
 	double calcPDV;
-	calcPDV = bezPDV * 17 / 100;
+	calcPDV = wPDV * 17 / 100;
 
-	if (bezPDV == sum && brojac == num && PDV == calcPDV && total == PDV + bezPDV)
+	if (wPDV == sum && counter == num && PDV == calcPDV && total == PDV + wPDV)
 	{
-		//kupac.txt
+		//kreiranje kupac.txt
 		std::string buyer_dat;
 		buyer_dat = "Kupci/" + buyer + ".txt";
 		std::ofstream buyer_file(buyer_dat, std::ios::app);
@@ -95,17 +95,17 @@ void readformat4(std::string& bill)
 		{
 			buyer_file << array[i].number << " " << array[i].name << " " << array[i].amount << " " << array[i].price << " " << array[i].total << std::endl;
 		}
-		bezPDV = total - PDV;
-		buyer_file << bezPDV << std::endl;
+		wPDV = total - PDV;
+		buyer_file << wPDV << std::endl;
 		buyer_file << PDV << std::endl;
 		buyer_file << total << std::endl;
 		buyer_file << "------------------------------" << std::endl;
-		//artikli
+		//kreiranje posebnog txt fajla za svaki artikal
 		for (int i = 0; i < num; i++)
 		{
-			std::string artikal = array[i].number;
+			std::string article = array[i].number;
 			std::string article_dat;
-			article_dat = "Artikli/" + artikal + ".txt";
+			article_dat = "Artikli/" + article + ".txt";
 			std::ofstream article_file(article_dat, std::ios::app);
 			article_file << buyer << std::endl;
 			article_file << date << "." << std::endl;
@@ -113,7 +113,7 @@ void readformat4(std::string& bill)
 			article_file << "------------------------------" << std::endl;
 		}
 
-		//obradjeni_racuni
+		//kreiranje txt u folderu obradjeni_racuni
 		std::ifstream old_file(bill);
 		bill.erase(0, 7);
 		std::ofstream processed_file("Obradjeni_racuni/" + bill);
@@ -123,7 +123,7 @@ void readformat4(std::string& bill)
 			processed_file << line << std::endl;
 		}
 	}
-	else   //greska pri racunu
+	else   //greska pri validaciji racuna
 	{
 		bill.erase(0, 7);
 		std::string error_dat = "Error/" + bill.erase(bill.length() - 4, bill.length());
