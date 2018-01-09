@@ -14,7 +14,7 @@ void buyer_file_output(std::string buyer_name, std::string date, std::vector<Art
 	
 	std::string code, name; double amount, price, total1;//podaci karakteristicni za artikal
 
-	fp << date << std::endl;
+	fp << date <<"."<< std::endl;
 	for (int i = 0; i < vec.size(); i++)//petlja koja vrsi upis clanova niza Artikala u datoteku
 	{
 		code = vec[i].getCode(); name = vec[i].getName(); amount = vec[i].getAmount(); price= vec[i].getPrice();
@@ -30,7 +30,7 @@ void article_file_output(std::string file_name, std::string name, std::string da
 {
 
 	std::ofstream  fp(file_name, std::ios::app);//otvaram tekst. datoteku Artikal.txt,takodje u append mode,kao i kod kupca
-	fp << name << std::endl << date << std::endl;
+	fp << name << std::endl << date <<"."<< std::endl;
 	double amount, price, total;
 	amount = art.getAmount(); price = art.getPrice();
 	total = amount*price;
