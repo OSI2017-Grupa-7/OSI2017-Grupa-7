@@ -137,11 +137,11 @@ void format3(std::string& bill) {
 	}
 	/////////////ispis ucitanih informacija u odredjene datoteke 
 	std::ofstream buyers("Kupci/" + buyer + ".txt", std::ios::app);// kreiranje datoteke sa imenom kupca u folder Kupci
-	buyers << day << "." << month << "." << year << std::endl;
+	buyers << day << "." << month << "." << year << "." << std::endl;
 	////////////petlja za formiranje datoteka za artikle u koju se upisuju odredjene informacije za artikal i kupca
 	for (int i = 0; i < count; i++) {
 		std::ofstream article("Artikli/" + st2V[i] + ".txt", std::ios::app);
-		article << buyer << std::endl << day << "." << month << "." << year << std::endl << ammountV[i] << " " << priceV[i] << " " << totV[i] << std::endl;
+		article << buyer << std::endl << day << "." << month << "." << year << "." << std::endl << ammountV[i] << " " << priceV[i] << " " << totV[i] << std::endl;
 		article << "---------------------------" << std::endl;
 		article.close();
 		article.clear();
