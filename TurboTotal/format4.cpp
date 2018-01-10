@@ -15,8 +15,9 @@ void readformat4(std::string& bill)
 	std::string buyer, date;
 	std::string trash;
 
-	file >> trash >> buyer;
-	getline(file, line);
+	file.seekg(7);
+	getline(file, buyer);
+
 	file >> trash >> date;
 	date[2] = '.';
 	date[5] = '.';
@@ -93,7 +94,7 @@ void readformat4(std::string& bill)
 		buyer_file << date << "." << std::endl;
 		for (int i = 0; i < num; i++)
 		{
-			buyer_file << array[i].number << " " << array[i].name << " " << array[i].amount << " " << array[i].price << " " << array[i].total << std::endl;
+			buyer_file << array[i].number << array[i].name << " " << array[i].amount << " " << array[i].price << " " << array[i].total << std::endl;
 		}
 		wPDV = total - PDV;
 		buyer_file << wPDV << std::endl;
@@ -103,9 +104,10 @@ void readformat4(std::string& bill)
 		//kreiranje posebnog txt fajla za svaki artikal
 		for (int i = 0; i < num; i++)
 		{
+			std::string name = array[i].name;
 			std::string article = array[i].number;
 			std::string article_dat;
-			article_dat = "Artikli/" + article + ".txt";
+			article_dat = "Artikli/" + article + name ".txt";
 			std::ofstream article_file(article_dat, std::ios::app);
 			article_file << buyer << std::endl;
 			article_file << date << "." << std::endl;
@@ -129,7 +131,22 @@ void readformat4(std::string& bill)
 		std::string error_dat = "Error/" + bill.erase(bill.length() - 4, bill.length());
 		error_dat += "_error.txt";
 		std::ofstream proccesed_file(error_dat);
-		proccesed_file << "Greska u obracunu ukupne cijene!" << std::endl;
+		if (counter != num)
+		{
+			proccesed_file << "Proizvod kolicine i cijene jednog od artikala nije dobro izracunat. " << std::endl;
+		}
+		else if (wPDV != sum)
+		{
+			proccesed_file << "Ukupna cijena bez PDV svih proizvoda nije dobro izracunata. " << std::endl;
+		}
+		else if (PDV != calcPDV)
+		{
+			proccesed_file << "PDV nije dobro izracunat. " << std::endl;
+		}
+		else
+		{
+			proccesed_file << "Ukupna suma bez PDV plus PDV nije dobro izracunata. " << std::endl;
+		}
 	}
 
 }
