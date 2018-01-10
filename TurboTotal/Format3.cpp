@@ -35,7 +35,6 @@ void format3(std::string& bill) {
 	std::string trash, st1, st2;//pomocne promjenljive
 	std::vector<std::string> st;// vektor stringova u kojem se smjestaju ime i sifra artikla
 	double ammount, price, tot;// pomocne promjenljive za ucitavanje
-	std::vector<std::string> st2V;// vektor sifri artikala
 	std::vector<double> ammountV, priceV, totV;// vektori za smjestanje informacija o kolicini, cijeni i kolicina*cijena
 	std::string buyer, date;//pomocne promjenljive
 	double total, pdv, totalp;// informacije ucitane sa racuna: ukupno bez pdv-a, obracunat pdv, ukupno + obracunat pdv
@@ -100,8 +99,7 @@ void format3(std::string& bill) {
 			i++;
 		}
 
-		st2V.push_back(st2);
-		st.push_back(st2 + ' ' + st1);
+		st.push_back(st2 + st1);
 		count++;
 
 		parse(trash, st2, ammount, i);
@@ -140,7 +138,7 @@ void format3(std::string& bill) {
 	buyers << day << "." << month << "." << year << "." << std::endl;
 	////////////petlja za formiranje datoteka za artikle u koju se upisuju odredjene informacije za artikal i kupca
 	for (int i = 0; i < count; i++) {
-		std::ofstream article("Artikli/" + st2V[i] + ".txt", std::ios::app);
+		std::ofstream article("Artikli/" + st[i] + ".txt", std::ios::app);
 		article << buyer << std::endl << day << "." << month << "." << year << "." << std::endl << ammountV[i] << " " << priceV[i] << " " << totV[i] << std::endl;
 		article << "---------------------------" << std::endl;
 		article.close();
