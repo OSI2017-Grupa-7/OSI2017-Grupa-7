@@ -94,7 +94,7 @@ void readformat4(std::string& bill)
 		buyer_file << date << "." << std::endl;
 		for (int i = 0; i < num; i++)
 		{
-			buyer_file << array[i].number << array[i].name << " " << array[i].amount << " " << array[i].price << " " << array[i].total << std::endl;
+			buyer_file << array[i].name << array[i].number << " " << array[i].amount << " " << array[i].price << " " << array[i].total << std::endl;
 		}
 		wPDV = total - PDV;
 		buyer_file << wPDV << std::endl;
@@ -107,7 +107,7 @@ void readformat4(std::string& bill)
 			std::string name = array[i].name;
 			std::string article = array[i].number;
 			std::string article_dat;
-			article_dat = "Artikli/" + article + name ".txt";
+			article_dat = "Artikli/" + name + article + ".txt";
 			std::ofstream article_file(article_dat, std::ios::app);
 			article_file << buyer << std::endl;
 			article_file << date << "." << std::endl;
