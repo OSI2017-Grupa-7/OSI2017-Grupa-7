@@ -50,7 +50,9 @@ void format3(std::string& bill) {
 
 	///////////////izdvajanje potrebnih informacija iz ucitane datoteke
 	GotoLine(file, 3);
-	file >> trash >> buyer;
+	std::getline(file, buyer);
+	buyer.erase(0, 6);
+	//file >> trash >> buyer;
 	file.seekg(0, file.beg);
 	GotoLine(file, 4);
 	file >> trash >> date;
@@ -99,7 +101,7 @@ void format3(std::string& bill) {
 			i++;
 		}
 
-		st.push_back(st2 + st1);
+		st.push_back(st1 + ' ' +  st2);
 		count++;
 
 		parse(trash, st2, ammount, i);
