@@ -51,7 +51,7 @@ void format3(std::string& bill) {
 	///////////////izdvajanje potrebnih informacija iz ucitane datoteke
 	GotoLine(file, 3);
 	std::getline(file, buyer);
-	buyer.erase(0, 6);
+	buyer.erase(0, 7);
 	//file >> trash >> buyer;
 	file.seekg(0, file.beg);
 	GotoLine(file, 4);
