@@ -2,46 +2,80 @@
 
 void readForBuyerReport(std::string file_name) 
 {
-	std::string name_file = file_name + ".txt";
+	std::string name_file = "Kupci/" + file_name + ".txt";
 	std::ifstream file(name_file);
 	std::string line("0");
-	int d = 1, m = 1, g = 1,day,month,year;
-	int date_control = 0,article_counter = 0,new_bill_counter=0;
 	std::string pom;
 	std::vector<Article> v;
 	std::vector<BuyerReport> vec;
-
+	
+	int buyer_report_counter = 0,k=1;
+	std::string counter;
+	while (getline(file, counter))
+	{
+		if (counter[0] == '-')
+			buyer_report_counter++;
+	}
+	file.clear();
+	file.seekg(0);
 	if (file.is_open())
 	{
-		while (!file.eof())
+		while (!file.eof() && buyer_report_counter)
 		{
+			buyer_report_counter--;
 			v.erase(v.begin(),v.end());
 			BuyerReport buyer_report;
 			std::string end_of_bill;
 			do
 			{
+
 				Article article;
-				std::string date,code,name,amount,price,total;
-				getline(file,date);//pronadjen datum jednog buyer_reporta
+				std::string date, code, name, amount, price, total;
+				if (k == 1)
+				{
+				    getline(file, date);//pronadjen datum jednog buyer_reporta	
+					k = 0;
+			    }
+				else
+				{
+					getline(file, date);
+					getline(file, date);
+				}
 				end_of_bill = date;
 				std::string articles,last_article;
 				do
 				{
+					
 					code.erase(); name.erase(); amount.erase(); price.erase(); total.erase();
 					getline(file, articles);
 					
 					if (articles.length() < 10) { last_article = articles; break; };
-					int i = 0;
-					for (i; i < articles.length(); i++)
-						if (articles[i] != ' ')
-							code += articles[i];
-						else break;
-					i++;
-					for (i; i < articles.length(); i++)
-						if (articles[i] != ' ')
-							name += articles[i];
-						else break;
-					i++;
+					int i = 0,spaces=0;
+					for (int k = 0; k < articles.length(); k++)
+						if (articles[k] == ' ')
+							spaces++;
+					if (spaces == 4)
+					{
+						for (i; i < articles.length(); i++)
+							if (articles[i] != ' ')
+								code += articles[i];
+							else break;
+							i++;
+							code += ' ';
+							for (i; i < articles.length(); i++)
+								if (articles[i] != ' ')
+									code += articles[i];
+								else break;
+								i++;
+					}
+					else
+					{
+						for (i; i < articles.length(); i++)
+							if (articles[i] != ' ')
+								code += articles[i];
+							else break;
+							i++;
+					}
 					for (i; i < articles.length(); i++)
 						if (articles[i] != ' ')
 							amount += articles[i];
@@ -51,29 +85,34 @@ void readForBuyerReport(std::string file_name)
 						if (articles[i] != ' ')
 							price += articles[i];
 						else break;
+						
 					i++;
 					for (i; i < articles.length(); i++)
 						if (articles[i] != ' ')
 							total += articles[i];
 						else break;
+						
 			
 			article.setCode(code);
-			article.setName(name);
+			//article.setName(name);
 			article.setAmount(stod(amount));
 			article.setPrice(stod(price));
 			article.setTotal(stod(total));
+			
 			v.push_back(article);//dodan jedan artikal u vektor artikala
 					
-				} while (articles.length() > 10);
+				} while (articles.length() > 8);
 
 				std::string pdvs;
 				
 				////////////////////////////////
 				std::string no_pdv=last_article;
+				std::string pom_line;
 				std::string pdv;
 				std::string plus_pdv;
 				file >> pdv;
 				file >> plus_pdv;
+				file >> pom_line;
 
 				buyer_report.setNo_pdv(stod(no_pdv));
 				buyer_report.setPdv(stod(pdv));
@@ -82,9 +121,9 @@ void readForBuyerReport(std::string file_name)
 				buyer_report.setDate(date);//setovan datum jednom buyer_reportu
 				buyer_report.setVec(v);//setovan vektor artikala u jednom buyer_reportu
 				vec.push_back(buyer_report);//dodan jedan buyer_report u vektor
-
-				getline(file, end_of_bill);
-				getline(file, end_of_bill);
+				
+				
+				end_of_bill = pom_line;
 			} while (end_of_bill[0] != '-');
 	    }
 	}
