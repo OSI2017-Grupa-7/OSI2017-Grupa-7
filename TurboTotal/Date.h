@@ -8,6 +8,12 @@ public:
 	Date();
 	Date(int, int, int);
 	void setDate(int, int, int);
+	int getDay();
+	int getMonth();
+	int getYear();
+	void setDay(int);
+	void setMonth(int);
+	void setYear(int);
 	void print();
 	~Date();
 };

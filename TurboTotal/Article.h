@@ -1,10 +1,11 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <iomanip>
 class Article
 {
 	std::string name, code;
-	double price, amount;
+	double price, amount,total;
 	
 public:
 	Article();
@@ -14,6 +15,7 @@ public:
 	void setCode(std::string);
 	void setPrice(double);
 	void setAmount(double);
+	void setTotal(double);
 	std::string getName();
 	std::string getCode();
 	double getPrice();

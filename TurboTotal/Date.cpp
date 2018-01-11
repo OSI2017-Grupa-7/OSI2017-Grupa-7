@@ -11,6 +11,36 @@ void Date::setDate(int d, int m, int g)
 	year = g;
 }
 
+int Date::getDay()
+{
+	return day;
+}
+
+int Date::getMonth()
+{
+	return month;
+}
+
+int Date::getYear()
+{
+	return year;
+}
+
+void Date::setDay(int d)
+{
+	day = d;
+}
+
+void Date::setMonth(int m)
+{
+	month = m;
+}
+
+void Date::setYear(int y)
+{
+	year = y;
+}
+
 void Date::print() { std::cout << day << "." << month << "." << year<<"."<<std::endl;}
 
 Date::~Date() {}

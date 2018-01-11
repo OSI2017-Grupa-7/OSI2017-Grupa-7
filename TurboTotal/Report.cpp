@@ -1,17 +1,23 @@
 #include "Report.h"
 #include  "Logo.h"
+#include "BuyerReport.h"
 
 void buyerReport()
 {
 	system("cls");
 	logoS();
-	std::string ime, prezime;
+	std::string name, surname, search_name;
 	std::cout <<std::endl<< "IZVJESTAJ PO KUPCU" << std::endl << std::endl;
 	std::cout << "Unesite ime i prezime kupca: "<<std::endl;
-	std::cout << std::endl << "Ime: ";  std::cin >> ime;
-	std::cout << std::endl << "Prezime: "; std::cin >> prezime;
+	std::cout << std::endl << "Ime: ";  std::cin >> name;
+	std::cout << std::endl << "Prezime: "; std::cin >> surname;
 
-	std::cout << std::endl << "IZVJESTAJ ZA KUPCA: " << ime << " " << prezime << std::endl;
+	system("cls");
+	logoS();
+	std::cout << std::endl << "IZVJESTAJ ZA KUPCA" << std::endl;
+	std::cout<<std::endl<<"Kupac: "<< name << " " <<surname<< std::endl;
+
+	readForBuyerReport(name + surname);
 	//uci u bazu kupaca i ispisati izvjestaj
 }
 

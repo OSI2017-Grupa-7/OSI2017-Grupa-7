@@ -54,11 +54,7 @@ int billFormat(std::vector<std::string> bills)
 		else if (line == "Maloprodajni") { bills[i].erase(0, 7); format2Processing(bills[i]); }
 		else if (line == "Datum:") { format3(bills[i]); }
 		else if (line == "OSI") { readformat4(bills[i]); }
-		else
-		{
-			bills[i].erase(0, 7);
-			format5Processing(bills[i]);
-		}
+		else { bills[i].erase(0, 7);format5Processing(bills[i]);}
 	}
 	return 1;
 }
