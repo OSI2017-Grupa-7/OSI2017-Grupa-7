@@ -11,7 +11,7 @@ void readForBuyerReport(std::string file_name)
 	std::vector<BuyerReport> vec;
 	std::vector<Article> art_total;
 	Article pom_art("a", "cedomir", 1);
-	
+	double totalForTotalReport = 0;
 	art_total.push_back(pom_art);
 	
 	int buyer_report_counter = 0,k=1;
@@ -20,7 +20,7 @@ void readForBuyerReport(std::string file_name)
 	{
 		if (counter[0] == '-')
 			buyer_report_counter++;
-	}
+	}//izbrojani buyer_reporti
 	file.clear();
 	file.seekg(0);
 	if (file.is_open())
@@ -58,7 +58,7 @@ void readForBuyerReport(std::string file_name)
 					int i = 0,spaces=0;
 					for (int k = 0; k < articles.length(); k++)
 						if (articles[k] == ' ')
-							spaces++;
+							spaces++;//razlikovanje sifre: abc 123 i a123
 					if (spaces == 4)
 					{
 						for (i; i < articles.length(); i++)
@@ -71,7 +71,7 @@ void readForBuyerReport(std::string file_name)
 								if (articles[i] != ' ')
 									code += articles[i];
 								else break;
-								i++;
+								i++;//pronalazak sifre artikla
 					}
 					else
 					{
@@ -84,18 +84,18 @@ void readForBuyerReport(std::string file_name)
 					for (i; i < articles.length(); i++)
 						if (articles[i] != ' ')
 							amount += articles[i];
-						else break;
+						else break;//kolicina artikla
 					i++;
 					for (i; i < articles.length(); i++)
 						if (articles[i] != ' ')
 							price += articles[i];
-						else break;
+						else break;//cijena artikla
 						
 					i++;
 					for (i; i < articles.length(); i++)
 						if (articles[i] != ' ')
 							total += articles[i];
-						else break;
+						else break;//ukupna cijena artikla
 						
 			
 			article.setCode(code);
@@ -103,6 +103,7 @@ void readForBuyerReport(std::string file_name)
 			article.setAmount(stod(amount));
 			article.setPrice(stod(price));
 			article.setTotal(stod(total));
+			totalForTotalReport += stod(total);//dodavanje za ukupnu cijenu
 			v.push_back(article);//dodan jedan artikal u vektor artikal
 			int p = 1;
 			for (unsigned int i = 0; i < art_total.size(); i++)
@@ -116,7 +117,7 @@ void readForBuyerReport(std::string file_name)
 			if (p == 1)
 			{
 				art_total.push_back(article);
-			}
+			}//dodavanje artikala u vektor za konacan izvjestaj svih artiklaa za jednog kupca, ako vec ima artikal, samo poveca total i kolicinu
 					
 				} while (articles.length() > 8);
 
@@ -143,6 +144,33 @@ void readForBuyerReport(std::string file_name)
 				end_of_bill = pom_line;
 			} while (end_of_bill[0] != '-');
 	    }
+		printBuyerReport(vec);
+		art_total.erase(art_total.begin());
+		std::cout << std::endl << "UKUPNO ZA SVE ARTIKLE: " << std::endl;
+		printAllArticlesForReport(art_total);
+
+		std::ifstream fileee("Valuta.txt");
+		std::string value;
+		fileee >> value;//citanje valute
+
+		std::ostringstream os;
+		os << totalForTotalReport;
+		std::string totalForTotalReport_value = os.str() + ' ' + value;//stvaranje formata oblika 'cijena (valuta)'
+
+		double pdv = totalForTotalReport*0.17;
+
+		std::ostringstream oss;
+		oss << pdv;
+		std::string pdv_value = oss.str() + ' ' + value;
+
+		double plus_pdv = pdv + totalForTotalReport;
+		std::ostringstream osss;
+		osss << plus_pdv;
+		std::string plus_pdv_value = osss.str() + ' ' + value;
+
+		std::cout << std::endl << "Bez PDV: " << totalForTotalReport_value << std::endl;
+		std::cout << "PDV: " << pdv_value << std::endl;
+		std::cout << "Sa PDV: " << plus_pdv_value << std::endl;//ispis ukupnog pdva i sve sto ide uz njega
 	}
 	
 	else
@@ -150,10 +178,7 @@ void readForBuyerReport(std::string file_name)
 		std::cout << std::endl << "Ne postoji kupac sa tim imenom!!" << std::endl;
 	}
 
-	printBuyerReport(vec);
-	art_total.erase(art_total.begin());
-	std::cout << std::endl << "UKUPNO ZA SVE ARTIKLE: " << std::endl;
-	printAllArticlesForReport(art_total);
+	
 	getchar();
 	getchar();
 }
