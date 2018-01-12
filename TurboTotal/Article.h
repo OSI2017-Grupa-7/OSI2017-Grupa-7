@@ -20,6 +20,7 @@ public:
 	std::string getCode();
 	double getPrice();
 	double getAmount() { return amount; }
+	double getTotal() { return total; }
     void print();
 	void printForReport();
 };

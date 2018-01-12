@@ -9,6 +9,10 @@ void readForBuyerReport(std::string file_name)
 	std::string pom;
 	std::vector<Article> v;
 	std::vector<BuyerReport> vec;
+	std::vector<Article> art_total;
+	Article pom_art("a", "cedomir", 1);
+	
+	art_total.push_back(pom_art);
 	
 	int buyer_report_counter = 0,k=1;
 	std::string counter;
@@ -99,8 +103,20 @@ void readForBuyerReport(std::string file_name)
 			article.setAmount(stod(amount));
 			article.setPrice(stod(price));
 			article.setTotal(stod(total));
-			
-			v.push_back(article);//dodan jedan artikal u vektor artikala
+			v.push_back(article);//dodan jedan artikal u vektor artikal
+			int p = 1;
+			for (unsigned int i = 0; i < art_total.size(); i++)
+				if (article.getCode() == art_total[i].getCode())
+				{
+					art_total[i].setAmount(article.getAmount() + stod(amount));
+					art_total[i].setTotal(article.getTotal() + stod(total));
+					p = 0;
+					break;
+				}
+			if (p == 1)
+			{
+				art_total.push_back(article);
+			}
 					
 				} while (articles.length() > 8);
 
@@ -135,6 +151,9 @@ void readForBuyerReport(std::string file_name)
 	}
 
 	printBuyerReport(vec);
+	art_total.erase(art_total.begin());
+	std::cout << std::endl << "UKUPNO ZA SVE ARTIKLE: " << std::endl;
+	printAllArticlesForReport(art_total);
 	getchar();
 	getchar();
 }
@@ -157,6 +176,16 @@ void printArticleHeader()
 void printArticleFooter()
 {
 	std::cout << "======================================" << std::endl;
+}
+
+void printAllArticlesForReport(std::vector<Article> vec)
+{
+	printArticleHeader();
+	for (unsigned int i = 0; i < vec.size(); i++)
+	{
+		vec[i].printForReport();
+	}
+	printArticleFooter();
 }
 
 BuyerReport::BuyerReport() {}
