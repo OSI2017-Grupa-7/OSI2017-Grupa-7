@@ -7,7 +7,15 @@
 
 
 
-
+void trim(std::string &s)
+{
+	size_t p = s.find_first_not_of(" \t");//vraca poziciju prvog karaktera koji nije prazan prostor
+   s.erase(0, p);//brisanje razmaka sve do pojave prvog karaktera koji nije bjelina
+	
+		    p = s.find_last_not_of(" \t");//vraca poziciju posljednjeg karaktera koji nije space
+			if (std::string::npos != p)
+				s.erase(p + 1);
+}
 void buyer_file_output(std::string buyer_name, std::string date, std::vector<Article>& vec, double total, double pdv, double turbo_total)
 {
 	std::ofstream  fp(buyer_name, std::ios::app);//otvaram teks. datoteku kupac,u append mode,da se ne brise postojeci sadrzaj prilikom sljedeceg upisivanja u datoteku
@@ -30,12 +38,12 @@ void article_file_output(std::string file_name, std::string name, std::string da
 {
 
 	std::ofstream  fp(file_name, std::ios::app);//otvaram tekst. datoteku Artikal.txt,takodje u append mode,kao i kod kupca
-	fp << name << std::endl <<" "<< date <<"."<< std::endl;
+	fp << name << std::endl << date <<"."<< std::endl;
 	double amount, price, total;
 	amount = art.getAmount(); price = art.getPrice();
 	total = amount*price;
 	
-	fp <<" "<< amount << " " << price << " " << total <<  std::endl;
+	fp << amount << " " << price << " " << total <<  std::endl;
 	fp << "---------------------------------------" << std::endl;
 	fp.close();
 
@@ -71,6 +79,8 @@ void format2Processing(std::string file_name)
 
 		
 		std::string buyer_name = line;//buyer_name=ime kupca
+		trim(buyer_name);
+
 		std::getline(fp, line);
 		std::getline(fp, line);
 		
