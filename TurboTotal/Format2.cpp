@@ -19,7 +19,7 @@ void buyer_file_output(std::string buyer_name, std::string date, std::vector<Art
 	{
 		code = vec[i].getCode(); name = vec[i].getName(); amount = vec[i].getAmount(); price= vec[i].getPrice();
 		total1 = amount*price;
-		fp << name << code << " " << amount << " " << price << " " <<total1 << std::endl;
+		fp << name <<" "<< code << " " << amount << " " << price << " " <<total1 << std::endl;
 
 	}
 	fp << total << std::endl << pdv << std::endl << turbo_total << std::endl;
@@ -30,12 +30,12 @@ void article_file_output(std::string file_name, std::string name, std::string da
 {
 
 	std::ofstream  fp(file_name, std::ios::app);//otvaram tekst. datoteku Artikal.txt,takodje u append mode,kao i kod kupca
-	fp << name << std::endl << date <<"."<< std::endl;
+	fp << name << std::endl <<" "<< date <<"."<< std::endl;
 	double amount, price, total;
 	amount = art.getAmount(); price = art.getPrice();
 	total = amount*price;
 	
-	fp << amount << " " << price << " " << total <<  std::endl;
+	fp <<" "<< amount << " " << price << " " << total <<  std::endl;
 	fp << "---------------------------------------" << std::endl;
 	fp.close();
 
@@ -69,7 +69,7 @@ void format2Processing(std::string file_name)
 		fp >> tmp;//hvatanje rijeci Kupac:
 		std::getline(fp, line);//hvatanje stringa iza rijeci kupac
 
-		line.erase(remove_if(line.begin(), line.end(), isspace), line.end());//funkcija koja brise razmake u stringu,posto getline uhvati citav red,zajedno sa prazninama izmedju rijeci
+		
 		std::string buyer_name = line;//buyer_name=ime kupca
 		std::getline(fp, line);
 		std::getline(fp, line);
@@ -193,7 +193,7 @@ void format2Processing(std::string file_name)
 		buyer_file_output(buyer_file, date, vec, total, PDV, total_pdv);//poziv funkcije za upis podataka o kupcima u datoteku
 		for (int i = 0; i < vec.size(); i++)
 		{
-			art_file = "Artikli/" + vec[i].getCode() + ".txt";//omogucava kreiranje txt fajla u folderu "Artikli/"
+			art_file = "Artikli/" + vec[i].getName()+ " " + vec[i].getCode() + ".txt";//omogucava kreiranje txt fajla u folderu "Artikli/"
 			article_file_output(art_file, buyer_name, date, vec[i]);//poziv funkcije za upis podataka o artiklima u datoteku
 		}
 		
