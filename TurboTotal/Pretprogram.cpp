@@ -19,6 +19,22 @@ void Pretprogram()
 			system("md Artikli");
 			system("md Obradjeni_racuni");
 			system("md Error");
+			std::ofstream regAdmins("RegistrovaniAdmini.txt");
+			std::ofstream regAnalysts("RegistrovaniAnaliticari.txt");
+			std::ofstream malAdmins("MaliciozniAdmini.txt");
+			std::ofstream malAnalysts("MaliciozniAnaliticari.txt");
+			Person admin;
+			admin.setName("admin");
+			admin.setSurname("admin");
+			admin.setID("0000");
+			admin.setPIN("0000");
+			admin.setMalicious("odobren");
+			regAdmins << std::setw(15) << std::left << admin.getName() << std::setw(15) << std::left << admin.getSurname() << std::setw(10) << std::left << admin.getID() << std::setw(10) << std::left << admin.getPIN() << std::setw(10) << std::left << admin.getMalicious() << std::endl;
+			regAdmins.close();
+			regAnalysts.close();
+			malAdmins.close();
+			malAnalysts.close();
+
 			char valuta;
 			myfile.close();
 			std::ofstream file;
@@ -83,12 +99,7 @@ void Pretprogram()
 				value.close();
 			}
 			getchar();
-			Person admin;
-			admin.setName("admin");
-			admin.setSurname("admin");
-			admin.setID("0000");
-			admin.setPIN("0000");
-			admin.setMalicious("odobren");
+			
 			int k = 1;
 			successfulSignIn(admin, k);
 		}

@@ -25,3 +25,5 @@ public:
 };
 
 void printBuyerReport(std::vector<BuyerReport>);
+void printArticleHeader();
+void printArticleFooter();

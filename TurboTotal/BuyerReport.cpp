@@ -1,4 +1,5 @@
 #include "BuyerReport.h"
+#include <sstream>
 
 void readForBuyerReport(std::string file_name) 
 {
@@ -142,10 +143,20 @@ void printBuyerReport(std::vector<BuyerReport> vec)
 {
 	for (unsigned int i = 0; i < vec.size(); i++)
 	{
-		std::cout << "===============" << std::endl;
 		vec[i].print();
-		std::cout << "================" << std::endl<<std::endl;
 	}
+}
+
+void printArticleHeader()
+{
+	std::cout<<std::endl<< "======================================" << std::endl;
+	std::cout << "SIFRA     KOLICINA  CIJENA    UKUPNO" << std::endl;
+	std::cout << "======================================" << std::endl;
+}
+
+void printArticleFooter()
+{
+	std::cout << "======================================" << std::endl;
 }
 
 BuyerReport::BuyerReport() {}
@@ -164,13 +175,29 @@ void BuyerReport::setVec(std::vector<Article> v) { vec = v;}
 
 void BuyerReport::print()
 {
-	std::cout <<"Datum: "<< date << std::endl<<std::endl;
-
+	std::cout << std::endl << "Datum: " << date << std::endl;
+	printArticleHeader();
 	for (unsigned int i = 0; i < vec.size(); i++)
-		 vec[i].print();
-	
-	std::cout << std::endl << "Bez PDV: " << no_pdv << std::endl;
-	std::cout << "PDV: " << pdv << std::endl;
-	std::cout << "Sa PDV: " << plus_pdv << std::endl;
-	
+		vec[i].printForReport();
+
+	std::ifstream file("Valuta.txt");
+	std::string value;
+	file >> value;
+
+	std::ostringstream os;
+	os << no_pdv;
+	std::string no_pdv_value = os.str() + ' ' + value;
+
+	std::ostringstream oss;
+	oss << pdv;
+	std::string pdv_value = oss.str() + ' ' + value;
+
+	std::ostringstream osss;
+	osss << plus_pdv;
+	std::string plus_pdv_value = osss.str() + ' ' + value;
+
+	std::cout << std::endl << "Bez PDV: " << no_pdv_value << std::endl;
+	std::cout << "PDV: " << pdv_value << std::endl;
+	std::cout << "Sa PDV: " << plus_pdv_value << std::endl;
+	printArticleFooter();
 }

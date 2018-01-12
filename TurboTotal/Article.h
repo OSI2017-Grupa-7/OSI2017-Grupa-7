@@ -21,5 +21,6 @@ public:
 	double getPrice();
 	double getAmount() { return amount; }
     void print();
+	void printForReport();
 };
 
