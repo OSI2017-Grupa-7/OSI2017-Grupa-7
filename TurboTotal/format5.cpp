@@ -77,7 +77,7 @@ void format5Processing(std::string name)
 		std::string error_file = "Error/" + name.erase(name.length() - 4, name.length());
 		error_file += "_error.txt";
 		std::ofstream processed_file(error_file);
-		processed_file << "Greska u obracunu: kolicina*cijena=ukupno nije dobro obracunato!!!" << std::endl;
+		processed_file << "Racun sadrzi gresku-ukupna vrijednost (kolicina*cijena) za jedan od artikala nije ispravna." << std::endl;
 	}
 }
 void findNameSurnameDate(std::string name, std::string& buyer_name, std::string&date)
