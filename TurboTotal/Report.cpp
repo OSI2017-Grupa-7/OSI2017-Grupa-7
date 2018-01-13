@@ -126,3 +126,29 @@ void monthSaldoReport()
 	}
 //uci u bazu artikala i ispisati izvjestaj
 }
+
+
+std::string input() {
+	char a;
+	char temp[35];
+	int i = 0;
+	std::string str;
+	std::cout << "Unesite kupca:";
+	while (1) {
+		a = _getch();
+		if ((a >= 'a' && a <= 'z') || (a >= 'A' && a <= 'Z') || (a >= '0' && a <= '9') || a == ' ') {
+			temp[i++] = a;
+			std::cout << a;
+		}
+		if (a == '\b' && i > 0) {
+			std::cout << "\b \b";
+			i--;
+		}
+		if (a == '\r') {
+			temp[i] = '\0';
+			break;
+		}
+	}
+	str = temp;
+	return str;
+}
