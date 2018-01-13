@@ -7,6 +7,7 @@
 
 
 
+
 void trim(std::string &s)
 {
 	size_t p = s.find_first_not_of(" \t");//vraca poziciju prvog karaktera koji nije prazan prostor
@@ -88,29 +89,34 @@ void format2Processing(std::string file_name)
 		std::vector<Article> vec;//inicijalizacija niza artikala,pomocni objekat za smijestanje ucitanih artikala
 		std::string art_name, code, dash;//dash su crtice "-",takodje pomocna promjenljiva za hvatanje crtice
 		
-		double amount, price, total;
+		double amount, price, total1;
 		bool flag = true;
 		
 		
 		while(flag==true)
+		
 		{
 			
 			Article art;//pomocna promjenljiva koja se stavlja u niz artikala
 			std::getline(fp, line);
 			fp >> art_name;
-			if (art_name == "---------------------------------------")break;//osigurava izlazak iz while petlje,odnosno prestanak unosa artikala u niz
-			fp >> code >> dash >> amount >> dash >> price >> dash >> total;
 			
-			if ((amount*price) != total)//validacija racuna-provjerava da li je dobro izracunata ukupna vrijednost artikle pojedinacno
+			if (art_name == "---------------------------------------")break;//osigurava izlazak iz while petlje,odnosno prestanak unosa artikala u niz
+			fp >> code >> dash >> amount >> dash >> price >> dash >> total1;
+			
+			if ((amount*price) != total1)//validacija racuna-provjerava da li je dobro izracunata ukupna vrijednost artikle pojedinacno
 			{
 				fp.close();
-				std::string error_name = "Error/" + file_name + "_error" + ".txt";//pravljenje txt fajla u folderu Error
+				std::string error_name = "Error/" + file_name.erase(file_name.length() - 4, file_name.length());//pravljenje txt fajla u folderu Error
+				error_name += "_error.txt";
 				std::ofstream error; error.open(error_name);
 				if (error.is_open())
-					error << "Racun sadrzi gresku-ukupna vrijednost (kolicina*cijena) nije ispravna.";
+					error << "Racun sadrzi gresku-ukupna vrijednost (kolicina*cijena) za jedan od artikala nije ispravna.";
 				error.close();
 				return;
 			}
+			
+
 
 			
 			
@@ -124,41 +130,56 @@ void format2Processing(std::string file_name)
 			art.setName(art_name); art.setCode(code);
 			art.setAmount(amount); art.setPrice(price);
 			vec.push_back(art);
+		
+
 			
 			
-			
-		} 
+		}   
 		std::getline(fp, line);
+		
+		std::getline(fp, line);
+		
+		
+		
+
 		fp >> tmp >> total_string;//memorisanje promjenljive ukupna_vrijednost u obliku stringa
+		
 		
 		std::getline(fp, line);
 		fp >> tmp >> pdv_string;//memorisanje pdv-a u obliku stringa
+		
 		
 		std::getline(fp, line);
 		std::string tmp1, tmp2;//tmp,tmp1,tmp2 u ovom slucaju predstavljaju pomocnepromjenljive za memorisanje stringova ukupno,za,placanje
 		fp >> tmp>>tmp1>>tmp2>>total_pdv_string;
 		
+		
 		std::getline(fp, line);
 		fp >> tmp >> date;//memorisanje datuma u string date
+		
 		std::replace(date.begin(), date.end(), '/', '.');//funkcija koja zamjenjuje svako pojavljivanje karaktera /,sa . kod datuma,ukoliko je datum oblika dan/mj/god
 		
 		
 		
 		total = stod(total_string);//funkcija koja prevodi string u double podataka
+		
 		PDV = stod(pdv_string);
+		
 		total_pdv = stod(total_pdv_string);
+		
 		double sum = 0,pdv1;//sum je pomocna promjenljiva za sabiranje ukupnih vrijednosti svih artikala u datoteci,pdv1 je takodje samo pomocna promjenljiva za poredjenje PDV-a(validacija racuna)
 
 
 		for (int i = 0; i < vec.size(); i++)
 		{
-			sum += vec[i].getAmount()*vec[i].getPrice();//sabiranje ukupnih vrijednosti svih artikala
+			sum += (vec[i].getAmount())*(vec[i].getPrice());//sabiranje ukupnih vrijednosti svih artikala
 		}
 		
 		if (sum != total)//dio koda koji provjerava da li je dobro izracunata ukupna vrijednost(bez pdv-a)
 		{
 			fp.close();
-			std::string error_name = "Error/" + file_name + "_error" + ".txt";
+			std::string error_name = "Error/" + file_name.erase(file_name.length() - 4, file_name.length());
+			error_name += "_error.txt";
 			std::ofstream error; error.open(error_name);
 			if (error.is_open())
 				error << "Racun sadrzi gresku-ukupna vrijednost(bez PDV-a) nije dobro izracunata.";
@@ -169,13 +190,16 @@ void format2Processing(std::string file_name)
 
 		
 		
-		pdv1 = 0.17 * total;//racuna pdv kao 17% ukupne cijene
+		pdv1 = sum * 17 /100;//racuna pdv kao 17% ukupne cijene
 		
 		
-		if (pdv1 != PDV)//dio koda koji provjerava da li je dobro izracunat PDV
+		
+		if (PDV != pdv1)//dio koda koji provjerava da li je PDV dobro izracunat
+
 		{
 			fp.close();
-			std::string error_name = "Error/" + file_name + "_error" + ".txt";
+			std::string error_name = "Error/" + file_name.erase(file_name.length() - 4, file_name.length());
+			error_name += "_error.txt";
 			std::ofstream error; error.open(error_name);
 			if (error.is_open())
 				error << "Racun sadrzi gresku-PDV nije dobro izracunat.";
@@ -183,12 +207,14 @@ void format2Processing(std::string file_name)
 			return;
 
 		}
+		double total_plus_pdv = pdv1 + sum;
 		
 		
-		if (total_pdv != (PDV + total))//dio koda koji provjerava da li je dobro izracunata ukupna vrijednost za placanje(ukupno+pdv)
+		if (total_pdv != total_plus_pdv)//dio koda koji provjerava da li je dobro izracunata ukupna vrijednost za placanje(ukupno+pdv)
 		{
 			fp.close();
-			std::string error_name = "Error/" + file_name + "_error" + ".txt";
+			std::string error_name = "Error/" + file_name.erase(file_name.length() - 4, file_name.length());
+			error_name += "_error.txt";
 			std::ofstream error; error.open(error_name);
 			if (error.is_open())
 				error << "Racun sadrzi gresku-ukupna vrijednost za placanje(pdv+ukupno) nije dobro izracunata.";

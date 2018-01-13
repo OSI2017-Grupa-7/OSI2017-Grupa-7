@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Article.h"
+#include "BillsReader.h"
 
 
 
