@@ -42,7 +42,7 @@ void format3(std::string& bill) {
 	int count = 0;// brojac za broj ucitanih artikala
 	double sum = 0;// promjenljiva za provjeru ucitane ukupne vrijednosti racuna
 	bill.erase(0, 7);//brisanje putanje Racuni/ kao bi se moglo koristi ime datoteke
-	int n = 0;// brojac za broj linija koji ima do -
+	int n = 0, r = 0;// brojac za broj linija koji ima do -
 	/*std::string rac = "Racuni/" + bill, err = "Error/" + bill, obr = "Obradjeni_racuni/" + bill;
 	const char* rac_path = rac.c_str();
 	const char* err_path = err.c_str();
@@ -60,7 +60,9 @@ void format3(std::string& bill) {
 	do {
 		std::getline(file, trash);
 		n++;
-	} while (trash[0] != '-');
+		if(trash[0] == '-')
+			r++;
+	} while (r!= 2 && trash[0] != '-');
 	file.seekg(0, file.beg);
 	GotoLine(file, n + 2);
 	file >> trash >> total >> trash >> pdv;
