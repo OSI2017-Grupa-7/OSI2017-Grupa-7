@@ -57,12 +57,13 @@ void format3(std::string& bill) {
 	GotoLine(file, 4);
 	file >> trash >> date;
 	file.seekg(0, file.beg);
-	do {
+	while (r != 2) 
+	{
 		std::getline(file, trash);
 		n++;
-		if(trash[0] == '-')
+		if (trash[0] == '-')
 			r++;
-	} while (r!= 2 && trash[0] != '-');
+	}
 	file.seekg(0, file.beg);
 	GotoLine(file, n + 2);
 	file >> trash >> total >> trash >> pdv;
@@ -83,7 +84,7 @@ void format3(std::string& bill) {
 	}
 
 	///////////ako je tacan uslov, ucitana datoteka se premjesta u Error folder
-	if (total * 0.17 != pdv) {
+	if ((total * 0.17) != pdv) {
 		file.close();
 		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
 		error_file += "_error.txt";
