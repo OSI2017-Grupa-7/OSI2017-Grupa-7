@@ -19,6 +19,7 @@ void Pretprogram()
 			system("md Artikli");
 			system("md Obradjeni_racuni");
 			system("md Error");
+			system("md Racuni_sa_greskom");
 			std::ofstream regAdmins("RegistrovaniAdmini.txt");
 			std::ofstream regAnalysts("RegistrovaniAnaliticari.txt");
 			std::ofstream malAdmins("MaliciozniAdmini.txt");
@@ -66,7 +67,7 @@ void Pretprogram()
 			{
 				std::ofstream value;
 				value.open("Valuta.txt");
-				value << "€";
+				value << "E";
 				file.open("1.txt");
 				file << "0";
 				value.close();
@@ -75,7 +76,7 @@ void Pretprogram()
 			{
 				std::ofstream value;
 				value.open("Valuta.txt");
-				value << "BAM";
+				value << "KM";
 				file.open("1.txt");
 				file << "0";
 				value.close();
