@@ -72,27 +72,6 @@ void format3(std::string& bill) {
 	file >> trash >> trash >> trash >> totalp;
 	file.seekg(0, file.beg);
 	
-	///////////ako je tacan uslov, ucitana datoteka se premjesta u Error folder
-	if (totalp != total + pdv) {
-		file.close();
-		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
-		error_file += "_error.txt";
-		std::ofstream processed_file(error_file);
-		processed_file << "Greska u obracunu: Ukupna cijena = Ukupno + PDV nije dobro obracunato!!!" << std::endl;
-		//rename(rac_path, err_path);
-		return;
-	}
-
-	///////////ako je tacan uslov, ucitana datoteka se premjesta u Error folder
-	if ((total * 0.17) != pdv) {
-		file.close();
-		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
-		error_file += "_error.txt";
-		std::ofstream processed_file(error_file);
-		processed_file << "Greska u obracunu: PDV = 0.17 * Ukupno nije dobro obracunato!!!" << std::endl;
-		return;
-	}
-
 	for (int i = 0; i < 9; i++)
 		std::getline(file, trash);
 
@@ -122,7 +101,7 @@ void format3(std::string& bill) {
 			std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
 			error_file += "_error.txt";
 			std::ofstream processed_file(error_file);
-			processed_file << "Greska u obracunu: Ukupno = Cijena * Kolicina nije dobro obracunato!!!" << std::endl;
+			processed_file << "Racun sadrzi gresku-ukupna vrijednost (kolicina*cijena) za jedan od artikala nije ispravna." << std::endl;
 			return;
 		}
 
@@ -139,10 +118,32 @@ void format3(std::string& bill) {
 		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
 		error_file += "_error.txt";
 		std::ofstream processed_file(error_file);
-		processed_file << "Greska u obracunu: kolicina*cijena=ukupno nije dobro obracunato!!!" << std::endl;
+		processed_file << "Racun sadrzi gresku-ukupna vrijednost(bez PDV-a) nije dobro izracunata." << std::endl;
 		//rename(rac_path, err_path);
 		return;
 	}
+
+	///////////ako je tacan uslov, ucitana datoteka se premjesta u Error folder
+	else if ((total * 0.17) != pdv) {
+		file.close();
+		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
+		error_file += "_error.txt";
+		std::ofstream processed_file(error_file);
+		processed_file << "Racun sadrzi gresku-PDV nije dobro izracunat." << std::endl;
+		return;
+	}
+
+	///////////ako je tacan uslov, ucitana datoteka se premjesta u Error folder
+	else if (totalp != total + pdv) {
+		file.close();
+		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
+		error_file += "_error.txt";
+		std::ofstream processed_file(error_file);
+		processed_file << "Racun sadrzi gresku-ukupna vrijednost za placanje(pdv+ukupno) nije dobro izracunata." << std::endl;
+		//rename(rac_path, err_path);
+		return;
+	}
+
 	/////////////ispis ucitanih informacija u odredjene datoteke 
 	std::ofstream buyers("Kupci/" + buyer + ".txt", std::ios::app);// kreiranje datoteke sa imenom kupca u folder Kupci
 	buyers << day << "." << month << "." << year << "." << std::endl;
