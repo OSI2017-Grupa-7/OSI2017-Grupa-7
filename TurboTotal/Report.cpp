@@ -6,18 +6,16 @@ void buyerReport()
 {
 	system("cls");
 	logoS();
-	std::string name,surname, search_name;
 	std::cout <<std::endl<< "IZVJESTAJ PO KUPCU" << std::endl << std::endl;
-	std::cout << "Unesite ime i prezime kupca: "<<std::endl;
-	std::cout << std::endl << "Ime: "; std::cin >> name;
-	std::cout << "Prezime: "; std::cin >> surname;
+	std::cout << std::endl << "Unesite kupca: ";
+	std::string name = input();
 
 	system("cls");
 	logoS();
 	std::cout << std::endl << "IZVJESTAJ ZA KUPCA" << std::endl;
-	std::cout<<std::endl<<"Kupac: "<< name <<" "<<surname<< std::endl;
+	std::cout<<std::endl<<"Kupac: "<< name << std::endl;
 
-	readForBuyerReport(name +' '+ surname);
+	readForBuyerReport(name);
 	//uci u bazu kupaca i ispisati izvjestaj
 }
 
@@ -133,7 +131,6 @@ std::string input() {
 	char temp[35];
 	int i = 0;
 	std::string str;
-	std::cout << "Unesite kupca:";
 	while (1) {
 		a = _getch();
 		if ((a >= 'a' && a <= 'z') || (a >= 'A' && a <= 'Z') || (a >= '0' && a <= '9') || a == ' ') {

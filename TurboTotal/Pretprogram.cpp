@@ -3,6 +3,7 @@
 #include <string>
 #include "Pretprogram.h"
 #include "Functions.h"
+#include "Logo.h"
 
 void Pretprogram()
 {
@@ -19,6 +20,7 @@ void Pretprogram()
 			system("md Artikli");
 			system("md Obradjeni_racuni");
 			system("md Error");
+			system("md Racuni_sa_greskom");
 			std::ofstream regAdmins("RegistrovaniAdmini.txt");
 			std::ofstream regAnalysts("RegistrovaniAnaliticari.txt");
 			std::ofstream malAdmins("MaliciozniAdmini.txt");
@@ -41,8 +43,9 @@ void Pretprogram()
 			do
 			{
 				system("cls");
-				std::cout << "Dobrodosli u pretprogram koji se pokrece samo pri prvom pokretanju aplikacije na racunaru." << std::endl;
-				std::cout << "Ovdje se vrsi odabir valute koju ce aplikacija koristit tokom rada." << std::endl;
+				logoS();
+				std::cout<<std::endl << "Dobrodosli u pretprogram koji se pokrece samo pri prvom pokretanju aplikacije na racunaru." << std::endl;
+				std::cout << "Ovdje se vrsi odabir valute koju ce aplikacija koristit tokom rada i unosi se naziv kompanije koja koristi softver." << std::endl;
 				std::cout << "Odabir valute vrsi administrator koji je prvi dobio pristup sistemu." << std::endl;
 
 				std::cout << std::endl << "ODABERI VALUTU: " << std::endl;
@@ -66,7 +69,7 @@ void Pretprogram()
 			{
 				std::ofstream value;
 				value.open("Valuta.txt");
-				value << "€";
+				value << "E";
 				file.open("1.txt");
 				file << "0";
 				value.close();
@@ -75,7 +78,7 @@ void Pretprogram()
 			{
 				std::ofstream value;
 				value.open("Valuta.txt");
-				value << "BAM";
+				value << "KM";
 				file.open("1.txt");
 				file << "0";
 				value.close();
@@ -100,6 +103,11 @@ void Pretprogram()
 			}
 			getchar();
 			
+			std::cout << std::endl << "Unesite naziv kompanije: ";
+			std::string company_name = input();
+			std::ofstream company_file("NazivKompanije.txt");
+			company_file << company_name;
+			company_file.close();
 			int k = 1;
 			successfulSignIn(admin, k);
 		}
