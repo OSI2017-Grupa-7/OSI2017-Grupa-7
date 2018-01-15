@@ -74,14 +74,6 @@ void format5Processing(std::string name)
 	}
 	else
 	{
-		std::ifstream error_bill("Racuni/" + name);
-		std::ofstream new_error_file("Racuni_sa_greskom/" + name);
-		std::string line;
-		while (getline(error_bill, line))
-		{
-			new_error_file << line << std::endl;
-		}
-		new_error_file.close();
 		std::string error_file = "Error/" + name.erase(name.length() - 4, name.length());
 		error_file += "_error.txt";
 		std::ofstream processed_file(error_file);

@@ -1,7 +1,6 @@
 #include "BillsReader.h"
 #include <iomanip>
 #include <Windows.h>
-#include "Format1.h"
 #include "Format2.h"
 #include "Format3.h"
 #include "Format4.h"

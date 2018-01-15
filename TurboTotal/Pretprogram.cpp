@@ -3,7 +3,6 @@
 #include <string>
 #include "Pretprogram.h"
 #include "Functions.h"
-#include "Logo.h"
 
 void Pretprogram()
 {
@@ -43,9 +42,8 @@ void Pretprogram()
 			do
 			{
 				system("cls");
-				logoS();
-				std::cout<<std::endl << "Dobrodosli u pretprogram koji se pokrece samo pri prvom pokretanju aplikacije na racunaru." << std::endl;
-				std::cout << "Ovdje se vrsi odabir valute koju ce aplikacija koristit tokom rada i unosi se naziv kompanije koja koristi softver." << std::endl;
+				std::cout << "Dobrodosli u pretprogram koji se pokrece samo pri prvom pokretanju aplikacije na racunaru." << std::endl;
+				std::cout << "Ovdje se vrsi odabir valute koju ce aplikacija koristit tokom rada." << std::endl;
 				std::cout << "Odabir valute vrsi administrator koji je prvi dobio pristup sistemu." << std::endl;
 
 				std::cout << std::endl << "ODABERI VALUTU: " << std::endl;
@@ -103,11 +101,6 @@ void Pretprogram()
 			}
 			getchar();
 			
-			std::cout << std::endl << "Unesite naziv kompanije: ";
-			std::string company_name = input();
-			std::ofstream company_file("NazivKompanije.txt");
-			company_file << company_name;
-			company_file.close();
 			int k = 1;
 			successfulSignIn(admin, k);
 		}
