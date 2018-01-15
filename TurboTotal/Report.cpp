@@ -7,7 +7,6 @@ void buyerReport()
 	system("cls");
 	logoS();
 	std::cout <<std::endl<< "IZVJESTAJ PO KUPCU" << std::endl << std::endl;
-	std::cout << std::endl << "Unesite kupca: ";
 	std::string name = input();
 
 	system("cls");
@@ -131,6 +130,7 @@ std::string input() {
 	char temp[35];
 	int i = 0;
 	std::string str;
+	std::cout << "Unesite kupca:";
 	while (1) {
 		a = _getch();
 		if ((a >= 'a' && a <= 'z') || (a >= 'A' && a <= 'Z') || (a >= '0' && a <= '9') || a == ' ') {

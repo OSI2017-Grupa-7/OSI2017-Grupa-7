@@ -127,50 +127,25 @@ void readformat4(std::string& bill)
 	}
 	else   //greska pri validaciji racuna
 	{
-		std::ifstream old_file(bill);
-		std::string error = bill.erase(0, 7);
+		bill.erase(0, 7);
 		std::string error_dat = "Error/" + bill.erase(bill.length() - 4, bill.length());
 		error_dat += "_error.txt";
 		std::ofstream proccesed_file(error_dat);
 		if (counter != num)
 		{
-			proccesed_file << "Proizvod kolicine i cijene jednog od artikala nije dobro izracunat. " << std::endl;
-			std::ofstream processed_file("Racuni_sa_greskom/" + error);
-			std::string line;
-			while (getline(old_file, line))
-			{
-				processed_file << line << std::endl;
-			}
+			proccesed_file << "Racun sadrzi gresku-ukupna vrijednost (kolicina*cijena) za jedan od proizvoda nije ispravna." << std::endl;
 		}
 		else if (wPDV != sum)
 		{
-			proccesed_file << "Ukupna cijena bez PDV svih proizvoda nije dobro izracunata. " << std::endl;
-			std::ofstream processed_file("Racuni_sa_greskom/" + error);
-			std::string line;
-			while (getline(old_file, line))
-			{
-				processed_file << line << std::endl;
-			}
+			proccesed_file << "Racun sadrzi gresku-ukupna vrijednost(bez PDV-a) nije dobro izracunata." << std::endl;
 		}
 		else if (PDV != calcPDV)
 		{
-			proccesed_file << "PDV nije dobro izracunat. " << std::endl;
-			std::ofstream processed_file("Racuni_sa_greskom/" + error);
-			std::string line;
-			while (getline(old_file, line))
-			{
-				processed_file << line << std::endl;
-			}
+			proccesed_file << "Racun sadrzi gresku-PDV nije dobro izracunat." << std::endl;
 		}
 		else
 		{
-			proccesed_file << "Ukupna suma bez PDV plus PDV nije dobro izracunata. " << std::endl;
-			std::ofstream processed_file("Racuni_sa_greskom/" + error);
-			std::string line;
-			while (getline(old_file, line))
-			{
-				processed_file << line << std::endl;
-			}
+			proccesed_file << "Racun sadrzi gresku-ukupna vrijednost za placanje(pdv+ukupno) nije dobro izracunata." << std::endl;
 		}
 	}
 
