@@ -101,6 +101,11 @@ void Pretprogram()
 			}
 			getchar();
 			
+			std::cout << std::endl << "Unesite naziv kompanije: ";
+			std::string company_name = input();
+			std::ofstream company_file("NazivKompanije.txt");
+			company_file << company_name;
+			company_file.close();
 			int k = 1;
 			successfulSignIn(admin, k);
 		}
