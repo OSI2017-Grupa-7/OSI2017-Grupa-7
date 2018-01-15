@@ -1,5 +1,6 @@
 #include "BuyerReport.h"
 #include <sstream>
+#include <algorithm>
 
 void readForBuyerReport(std::string file_name) 
 {
@@ -46,6 +47,7 @@ void readForBuyerReport(std::string file_name)
 					getline(file, date);
 					getline(file, date);
 				}
+				Date d = findDate(date);
 				end_of_bill = date;
 				std::string articles,last_article;
 				do
@@ -136,7 +138,7 @@ void readForBuyerReport(std::string file_name)
 				buyer_report.setPdv(stod(pdv));
 				buyer_report.setPlus_pdv(stod(plus_pdv));//pronadjene, setovane velicine bez pdv, pdv, sa pdv
 
-				buyer_report.setDate(date);//setovan datum jednom buyer_reportu
+				buyer_report.setDate(d);//setovan datum jednom buyer_reportu
 				buyer_report.setVec(v);//setovan vektor artikala u jednom buyer_reportu
 				vec.push_back(buyer_report);//dodan jedan buyer_report u vektor
 				
@@ -144,6 +146,7 @@ void readForBuyerReport(std::string file_name)
 				end_of_bill = pom_line;
 			} while (end_of_bill[0] != '-');
 	    }
+		std::sort(vec.begin(), vec.end(), less_than_key());
 		printBuyerReport(vec);
 		art_total.erase(art_total.begin());
 		std::cout << std::endl << "UKUPNO ZA SVE ARTIKLE: " << std::endl;
@@ -213,9 +216,38 @@ void printAllArticlesForReport(std::vector<Article> vec)
 	printArticleFooter();
 }
 
+Date findDate(std::string date)
+{
+	Date d;
+	int i;
+	std::string day,month,year;
+	for (i = 0; i < date.length(); i++)
+		if (date[i] != '.')
+			day += date[i];
+		else break;
+		d.setDay(stoi(day));
+	i++;
+	for (i; i < date.length(); i++)
+		if (date[i] != '.')
+			month += date[i];
+		else break;
+		d.setMonth(stoi(month));
+	i++;
+	for (i; i < date.length(); i++)
+		if (date[i] != '.')
+			year += date[i];
+		else break;
+		d.setYear(stoi(year));
+	
+	return d;
+}
+
 BuyerReport::BuyerReport() {}
 
-void BuyerReport::setDate(std::string d) { date = d;}
+void BuyerReport::setDate(Date d)
+{
+	date = d;
+}
 
 BuyerReport::~BuyerReport() {}
 
@@ -229,7 +261,8 @@ void BuyerReport::setVec(std::vector<Article> v) { vec = v;}
 
 void BuyerReport::print()
 {
-	std::cout << std::endl << "Datum: " << date << std::endl;
+	std::cout << std::endl << "Datum: "; 
+	date.print(); std::cout << std::endl;
 	printArticleHeader();
 	for (unsigned int i = 0; i < vec.size(); i++)
 		vec[i].printForReport();
@@ -254,4 +287,9 @@ void BuyerReport::print()
 	std::cout << "PDV: " << pdv_value << std::endl;
 	std::cout << "Sa PDV: " << plus_pdv_value << std::endl;
 	printArticleFooter();
+}
+
+Date BuyerReport::getDate()const
+{
+	return date;
 }
