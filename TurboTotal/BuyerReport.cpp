@@ -111,8 +111,8 @@ void readForBuyerReport(std::string file_name)
 								for (unsigned int i = 0; i < art_total.size(); i++)
 									if (article.getCode() == art_total[i].getCode())
 									{
-										art_total[i].setAmount(article.getAmount() + stod(amount));
-										art_total[i].setTotal(article.getTotal() + stod(total));
+										art_total[i].setAmount(article.getAmount() + art_total[i].getAmount());
+										art_total[i].setTotal(article.getTotal() + art_total[i].getTotal());
 										p = 0;
 										break;
 									}
@@ -146,7 +146,7 @@ void readForBuyerReport(std::string file_name)
 				end_of_bill = pom_line;
 			} while (end_of_bill[0] != '-');
 		}
-		std::sort(vec.begin(), vec.end(), less_than_key());
+		sort(vec);
 		printBuyerReport(vec);
 		art_total.erase(art_total.begin());
 		std::cout << std::endl << "UKUPNO ZA SVE ARTIKLE: " << std::endl;
@@ -160,7 +160,7 @@ void readForBuyerReport(std::string file_name)
 		os << totalForTotalReport;
 		std::string totalForTotalReport_value = os.str() + ' ' + value;//stvaranje formata oblika 'cijena (valuta)'
 
-		double pdv = totalForTotalReport*0.17;
+		double pdv = totalForTotalReport * 0.17;
 
 		std::ostringstream oss;
 		oss << pdv;
@@ -242,6 +242,19 @@ Date findDate(std::string date)
 				return d;
 }
 
+void sort(std::vector<BuyerReport>& vec)
+{
+	unsigned int i, j;
+	for (i = 0; i < vec.size() - 1; i++)
+		for (j = 0; j < vec.size() - i - 1; j++)
+			if (!(vec[j].getDate() < vec[j + 1].getDate()))
+			{
+				BuyerReport a = vec[j];
+				vec[j] = vec[j + 1];
+				vec[j + 1] = a;
+			}
+}
+
 BuyerReport::BuyerReport() {}
 
 void BuyerReport::setDate(Date d)
@@ -292,4 +305,10 @@ void BuyerReport::print()
 Date BuyerReport::getDate()const
 {
 	return date;
+}
+
+bool BuyerReport::operator<(BuyerReport b)
+{
+	if (date < b.getDate())return true;
+	else return false;
 }
