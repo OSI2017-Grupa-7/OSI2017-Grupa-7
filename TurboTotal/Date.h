@@ -15,6 +15,7 @@ public:
 	void setMonth(int);
 	void setYear(int);
 	void print();
+	bool operator<(Date);
 	~Date();
 };
 

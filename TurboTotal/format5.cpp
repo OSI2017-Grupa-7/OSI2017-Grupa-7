@@ -74,6 +74,14 @@ void format5Processing(std::string name)
 	}
 	else
 	{
+		std::ifstream error_bill("Racuni/" + name);
+		std::ofstream new_error_file("Racuni_sa_greskom/" + name);
+		std::string line;
+		while (getline(error_bill, line))
+		{
+			new_error_file << line << std::endl;
+		}
+		new_error_file.close();
 		std::string error_file = "Error/" + name.erase(name.length() - 4, name.length());
 		error_file += "_error.txt";
 		std::ofstream processed_file(error_file);
@@ -127,22 +135,22 @@ void findArticles(std::string name, std::string buyer_txt)
 						buyer_file << price << " ";
 						i++;
 						for (i; i < line.length(); i++)
-								total += line[i];
+							total += line[i];
 						buyer_file << total << std::endl;
-							std::string::size_type sz;
-		
-							double double_total = stod(total, &sz);
-							total_total += double_total;
-								
-							code.erase();
-							amount.erase();
-							price.erase();
-							total.erase();
+						std::string::size_type sz;
+
+						double double_total = stod(total, &sz);
+						total_total += double_total;
+
+						code.erase();
+						amount.erase();
+						price.erase();
+						total.erase();
 		}
 	}
 	buyer_file << std::setw(2) << total_total << std::endl;
-	buyer_file << std::setw(2) <<total_total*0.17 << std::endl;
-	buyer_file << std::setw(2) << total_total+total_total*0.17 << std::endl;
+	buyer_file << std::setw(2) << total_total*0.17 << std::endl;
+	buyer_file << std::setw(2) << total_total + total_total*0.17 << std::endl;
 	buyer_file << "------------------------------" << std::endl;
 	buyer_file.close();
 }

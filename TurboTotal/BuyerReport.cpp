@@ -1,7 +1,8 @@
 #include "BuyerReport.h"
 #include <sstream>
+#include <algorithm>
 
-void readForBuyerReport(std::string file_name) 
+void readForBuyerReport(std::string file_name)
 {
 	std::string name_file = "Kupci/" + file_name + ".txt";
 	std::ifstream file(name_file);
@@ -13,8 +14,8 @@ void readForBuyerReport(std::string file_name)
 	Article pom_art("a", "cedomir", 1);
 	double totalForTotalReport = 0;
 	art_total.push_back(pom_art);
-	
-	int buyer_report_counter = 0,k=1;
+
+	int buyer_report_counter = 0, k = 1;
 	std::string counter;
 	while (getline(file, counter))
 	{
@@ -28,7 +29,7 @@ void readForBuyerReport(std::string file_name)
 		while (!file.eof() && buyer_report_counter)
 		{
 			buyer_report_counter--;
-			v.erase(v.begin(),v.end());
+			v.erase(v.begin(), v.end());
 			BuyerReport buyer_report;
 			std::string end_of_bill;
 			do
@@ -38,24 +39,25 @@ void readForBuyerReport(std::string file_name)
 				std::string date, code, name, amount, price, total;
 				if (k == 1)
 				{
-				    getline(file, date);//pronadjen datum jednog buyer_reporta	
+					getline(file, date);//pronadjen datum jednog buyer_reporta	
 					k = 0;
-			    }
+				}
 				else
 				{
 					getline(file, date);
 					getline(file, date);
 				}
+				Date d = findDate(date);
 				end_of_bill = date;
-				std::string articles,last_article;
+				std::string articles, last_article;
 				do
 				{
-					
+
 					code.erase(); name.erase(); amount.erase(); price.erase(); total.erase();
 					getline(file, articles);
-					
+
 					if (articles.length() < 10) { last_article = articles; break; };
-					int i = 0,spaces=0;
+					int i = 0, spaces = 0;
 					for (int k = 0; k < articles.length(); k++)
 						if (articles[k] == ' ')
 							spaces++;//razlikovanje sifre: abc 123 i a123
@@ -85,46 +87,46 @@ void readForBuyerReport(std::string file_name)
 						if (articles[i] != ' ')
 							amount += articles[i];
 						else break;//kolicina artikla
-					i++;
-					for (i; i < articles.length(); i++)
-						if (articles[i] != ' ')
-							price += articles[i];
-						else break;//cijena artikla
-						
-					i++;
-					for (i; i < articles.length(); i++)
-						if (articles[i] != ' ')
-							total += articles[i];
-						else break;//ukupna cijena artikla
-						
-			
-			article.setCode(code);
-			//article.setName(name);
-			article.setAmount(stod(amount));
-			article.setPrice(stod(price));
-			article.setTotal(stod(total));
-			totalForTotalReport += stod(total);//dodavanje za ukupnu cijenu
-			v.push_back(article);//dodan jedan artikal u vektor artikal
-			int p = 1;
-			for (unsigned int i = 0; i < art_total.size(); i++)
-				if (article.getCode() == art_total[i].getCode())
-				{
-					art_total[i].setAmount(article.getAmount() + stod(amount));
-					art_total[i].setTotal(article.getTotal() + stod(total));
-					p = 0;
-					break;
-				}
-			if (p == 1)
-			{
-				art_total.push_back(article);
-			}//dodavanje artikala u vektor za konacan izvjestaj svih artiklaa za jednog kupca, ako vec ima artikal, samo poveca total i kolicinu
-					
+						i++;
+						for (i; i < articles.length(); i++)
+							if (articles[i] != ' ')
+								price += articles[i];
+							else break;//cijena artikla
+
+							i++;
+							for (i; i < articles.length(); i++)
+								if (articles[i] != ' ')
+									total += articles[i];
+								else break;//ukupna cijena artikla
+
+
+								article.setCode(code);
+								//article.setName(name);
+								article.setAmount(stod(amount));
+								article.setPrice(stod(price));
+								article.setTotal(stod(total));
+								totalForTotalReport += stod(total);//dodavanje za ukupnu cijenu
+								v.push_back(article);//dodan jedan artikal u vektor artikal
+								int p = 1;
+								for (unsigned int i = 0; i < art_total.size(); i++)
+									if (article.getCode() == art_total[i].getCode())
+									{
+										art_total[i].setAmount(article.getAmount() + stod(amount));
+										art_total[i].setTotal(article.getTotal() + stod(total));
+										p = 0;
+										break;
+									}
+								if (p == 1)
+								{
+									art_total.push_back(article);
+								}//dodavanje artikala u vektor za konacan izvjestaj svih artiklaa za jednog kupca, ako vec ima artikal, samo poveca total i kolicinu
+
 				} while (articles.length() > 8);
 
 				std::string pdvs;
-				
+
 				////////////////////////////////
-				std::string no_pdv=last_article;
+				std::string no_pdv = last_article;
 				std::string pom_line;
 				std::string pdv;
 				std::string plus_pdv;
@@ -136,14 +138,15 @@ void readForBuyerReport(std::string file_name)
 				buyer_report.setPdv(stod(pdv));
 				buyer_report.setPlus_pdv(stod(plus_pdv));//pronadjene, setovane velicine bez pdv, pdv, sa pdv
 
-				buyer_report.setDate(date);//setovan datum jednom buyer_reportu
+				buyer_report.setDate(d);//setovan datum jednom buyer_reportu
 				buyer_report.setVec(v);//setovan vektor artikala u jednom buyer_reportu
 				vec.push_back(buyer_report);//dodan jedan buyer_report u vektor
-				
-				
+
+
 				end_of_bill = pom_line;
 			} while (end_of_bill[0] != '-');
-	    }
+		}
+		std::sort(vec.begin(), vec.end(), less_than_key());
 		printBuyerReport(vec);
 		art_total.erase(art_total.begin());
 		std::cout << std::endl << "UKUPNO ZA SVE ARTIKLE: " << std::endl;
@@ -172,13 +175,13 @@ void readForBuyerReport(std::string file_name)
 		std::cout << "PDV: " << pdv_value << std::endl;
 		std::cout << "Sa PDV: " << plus_pdv_value << std::endl;//ispis ukupnog pdva i sve sto ide uz njega
 	}
-	
+
 	else
 	{
 		std::cout << std::endl << "Ne postoji kupac sa tim imenom!!" << std::endl;
 	}
 
-	
+
 	getchar();
 	getchar();
 }
@@ -193,7 +196,7 @@ void printBuyerReport(std::vector<BuyerReport> vec)
 
 void printArticleHeader()
 {
-	std::cout<<std::endl<< "======================================" << std::endl;
+	std::cout << std::endl << "======================================" << std::endl;
 	std::cout << "SIFRA     KOLICINA  CIJENA    UKUPNO" << std::endl;
 	std::cout << "======================================" << std::endl;
 }
@@ -213,23 +216,53 @@ void printAllArticlesForReport(std::vector<Article> vec)
 	printArticleFooter();
 }
 
+Date findDate(std::string date)
+{
+	Date d;
+	int i;
+	std::string day, month, year;
+	for (i = 0; i < date.length(); i++)
+		if (date[i] != '.')
+			day += date[i];
+		else break;
+		d.setDay(stoi(day));
+		i++;
+		for (i; i < date.length(); i++)
+			if (date[i] != '.')
+				month += date[i];
+			else break;
+			d.setMonth(stoi(month));
+			i++;
+			for (i; i < date.length(); i++)
+				if (date[i] != '.')
+					year += date[i];
+				else break;
+				d.setYear(stoi(year));
+
+				return d;
+}
+
 BuyerReport::BuyerReport() {}
 
-void BuyerReport::setDate(std::string d) { date = d;}
+void BuyerReport::setDate(Date d)
+{
+	date = d;
+}
 
 BuyerReport::~BuyerReport() {}
 
-void BuyerReport::setNo_pdv(double d) { no_pdv = d;}
+void BuyerReport::setNo_pdv(double d) { no_pdv = d; }
 
-void BuyerReport::setPdv(double d) { pdv = d;}
+void BuyerReport::setPdv(double d) { pdv = d; }
 
-void BuyerReport::setPlus_pdv(double d) { plus_pdv = d;}
+void BuyerReport::setPlus_pdv(double d) { plus_pdv = d; }
 
-void BuyerReport::setVec(std::vector<Article> v) { vec = v;}
+void BuyerReport::setVec(std::vector<Article> v) { vec = v; }
 
 void BuyerReport::print()
 {
-	std::cout << std::endl << "Datum: " << date << std::endl;
+	std::cout << std::endl << "Datum: ";
+	date.print(); std::cout << std::endl;
 	printArticleHeader();
 	for (unsigned int i = 0; i < vec.size(); i++)
 		vec[i].printForReport();
@@ -254,4 +287,9 @@ void BuyerReport::print()
 	std::cout << "PDV: " << pdv_value << std::endl;
 	std::cout << "Sa PDV: " << plus_pdv_value << std::endl;
 	printArticleFooter();
+}
+
+Date BuyerReport::getDate()const
+{
+	return date;
 }

@@ -17,7 +17,6 @@ void buyerReport()
 	std::cout << std::endl << "Kupac: " << name << std::endl;
 
 	readForBuyerReport(name);
-	//uci u bazu kupaca i ispisati izvjestaj
 }
 
 void productReport()
@@ -32,7 +31,6 @@ void productReport()
 
 	std::cout << std::endl << "IZVJESTAJ ZA ARTIKAL: " << sifra << std::endl;
 
-	//uci u bazu artikala i ispisati izvjestaj
 }
 
 void monthSaldoReport()
@@ -67,9 +65,13 @@ void monthSaldoReport()
 	{
 		system("cls");
 		logoS();
+<<<<<<< HEAD
 
 		std::cout << std::endl << "JANUAR" << std::endl;
 
+=======
+		std::cout << std::endl << "JANUAR" << std::endl;
+>>>>>>> fc45bfb64945fdea88a114f59df28a8bc84f1774
 	}
 	if (mjesec == "2")
 	{
@@ -160,10 +162,13 @@ void monthSaldoReport()
 
 	}
 	//uci u bazu artikala i ispisati izvjestaj
+<<<<<<< HEAD
 
 
 	Monthly(mj, god);
 
+=======
+>>>>>>> fc45bfb64945fdea88a114f59df28a8bc84f1774
 }
 
 
