@@ -18,9 +18,9 @@ void readformat4(std::string& bill)
 	file.seekg(7);
 	getline(file, buyer);
 
+	int d, m, y;
 	file >> trash >> date;
-	date[2] = '.';
-	date[5] = '.';
+	std::sscanf(date.c_str(), "%d/%d/%d", &d, &m, &y);
 
 	FILE *f;
 	int num = 0;
@@ -91,7 +91,7 @@ void readformat4(std::string& bill)
 		std::string buyer_dat;
 		buyer_dat = "Kupci/" + buyer + ".txt";
 		std::ofstream buyer_file(buyer_dat, std::ios::app);
-		buyer_file << date << "." << std::endl;
+		buyer_file << d << "." << m << "." << y <<"." << std::endl;
 		for (int i = 0; i < num; i++)
 		{
 			buyer_file << array[i].name << " " << array[i].number << " " << array[i].amount << " " << array[i].price << " " << array[i].total << std::endl;
@@ -110,7 +110,7 @@ void readformat4(std::string& bill)
 			article_dat = "Artikli/" + name + " " + article + ".txt";
 			std::ofstream article_file(article_dat, std::ios::app);
 			article_file << buyer << std::endl;
-			article_file << date << "." << std::endl;
+			article_file << d << "." << m << "." << y << "." << std::endl;
 			article_file << array[i].amount << " " << array[i].price << " " << array[i].total << std::endl;
 			article_file << "------------------------------" << std::endl;
 		}
