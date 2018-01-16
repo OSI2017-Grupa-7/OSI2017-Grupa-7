@@ -51,7 +51,88 @@ void AnalystFunctionals()
 					}
 					if (option3 == '2')
 					{
-						productReport();
+						char option4;
+						do
+						{
+							system("cls");
+							logoS(); std::cout << std::endl << "ODABRALI STE OPCIJU PREGLED PODATAKA ZA ODREDJENI PROIZVOD" << std::endl;
+							std::cout << std::endl << "1. Ukupni pregled podataka za odredjeni proizvod" << std::endl;
+							std::cout << "2. Pregled podataka za odredjeni proizvod u vremenskom intervalu" << std::endl;
+							std::cout << std::endl << "Odaberi opciju: "; std::cin >> option4;
+						} while (option4 != '1' && option4 != '2');
+						if (option4 == '1')
+						{
+							std::cout << "IVANAAA" << std::endl;
+						}
+						else if (option4 == '2')
+						{
+							std::string date1, date2, article;
+							int p = 0;
+							do {
+								system("cls");
+								logoS();
+								std::cout << std::endl << "PREGLED ZA ODREDJEN VREMENSKI INTERVAL" << std::endl;
+								std::cout << std::endl;
+								std::cout << "Artikal: ";
+								article = input();
+								std::cout << std::endl;
+
+								std::string path = "Artikli/" + article + ".txt";
+								std::ifstream f(path.c_str());
+
+								std::cout << "Datum od: ";
+								std::cin >> date1;
+								std::cout << "Datum do: ";
+								std::cin >> date2;
+
+								int num1, num2;
+								num1 = parseDate(date1);
+								num2 = parseDate(date2);
+
+								if (checkDate(date1) && checkDate(date2) && num1 <= num2 && f)
+								{
+									articleReport(article, num1, num2);
+									p = 1;
+								}
+								else if (!f)
+								{
+									std::cout << "Uneseni artikal se ne nalazi u evidenciji" << std::endl;
+									std::cout << "Pritisnite enter za novi unos" << std::endl;
+									getchar();
+									getchar();
+									system("cls");
+								}
+								else if (!checkDate(date1))
+								{
+									std::cout << "Prvi datum nije validan" << std::endl;
+									std::cout << "Pritisnite enter za novi unos" << std::endl;
+									getchar();
+									getchar();
+									system("cls");
+								}
+								else if (!checkDate(date2))
+								{
+									std::cout << "Drugi datum nije validan" << std::endl;
+									std::cout << "Pritisnite enter za novi unos" << std::endl;
+									getchar();
+									getchar();
+									system("cls");
+								}
+								else
+								{
+									std::cout << "Drugi datum se nalazi ispred prvog" << std::endl;
+									std::cout << "Pritisnite enter za novi unos" << std::endl;
+									getchar();
+									getchar();
+									system("cls");
+								}
+							} while (p != 1);
+
+
+
+							getchar();
+							getchar();
+						}
 					}
 					if (option3 == '3')
 					{
