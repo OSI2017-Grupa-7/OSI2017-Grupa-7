@@ -52,6 +52,7 @@ void productReport()
 			std::string path = "Artikli/" + article + ".txt";
 			std::ifstream f(path.c_str());
 
+			std::cout << "Unesite datum u obliku: dan.mjesec.godina" << std::endl << std::endl;
 			std::cout << "Datum od: ";
 			std::cin >> date1;
 			std::cout << "Datum do: ";
