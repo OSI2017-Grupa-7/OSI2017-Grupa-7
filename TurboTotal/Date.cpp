@@ -1,8 +1,8 @@
 #include "Date.h"
 
-Date::Date(){}
+Date::Date() {}
 
-Date::Date(int day, int month, int year):day(day),month(month),year(year){}
+Date::Date(int day, int month, int year) :day(day), month(month), year(year) {}
 
 void Date::setDate(int d, int m, int g)
 {
@@ -41,6 +41,14 @@ void Date::setYear(int y)
 	year = y;
 }
 
-void Date::print() { std::cout << day << "." << month << "." << year<<"."<<std::endl;}
+void Date::print() { std::cout << day << "." << month << "." << year << "." << std::endl; }
+
+bool Date::operator<(Date d)
+{
+	if (year > d.year)return false;
+	if ((year == d.year) && month > d.month)return false;
+	if ((year == d.year) && (month == d.month) && day > d.day)return false;
+	return true;
+}
 
 Date::~Date() {}
