@@ -74,7 +74,7 @@ void processingArticleReports(std::string file_name) {
 	std::string line;
 	int counter = 0;
 	std::ifstream file("Artikli/" + file_name + ".txt");
-	if (!file.is_open()) std::cout << std::endl << "Ne postoji artikal sa tom sifrom.";
+	if (!file.is_open()) std::cout << std::endl << "Ne postoji artikal sa tom sifrom."<<std::endl;
 	else {
 		while (getline(file, line)) {
 			if(line[0]== '-')
@@ -101,8 +101,9 @@ void processingArticleReports(std::string file_name) {
 			getline(file, pom); //hvata footer
 			getline(file, pom);
 		}
+		printArticleReports(vec);
 	}
-	printArticleReports(vec);
+	
 }
 Date parsingDate(std::string date) {
 	Date d;
