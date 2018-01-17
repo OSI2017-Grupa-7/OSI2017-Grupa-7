@@ -9,20 +9,20 @@ bool checkDate(string date, int month, int year)
 	string monthS, yearS, dayS;
 	int monthI, yearI;
 	int i = 0;
-	std::replace(date.begin(), date.end(), '.', ' ');
-	while (date[i] != ' ')
+	std::replace(date.begin(), date.end(), '.', ' ');//funkcija koja zamjenjuje . u datumu sa praznim prostorom
+	while (date[i] != ' ')//hvatanje dana u datumu
 	{
 		dayS += date[i];
 		i++;
 	}
 	i++;
-	while (date[i] != ' ')
+	while (date[i] != ' ')//hvatanje mjeseca u datumu
 	{
 		monthS += date[i];
 		i++;
 	}
 	i++;
-	while (date[i])
+	while (date[i])//hvatanje godine u mjesecu
 	{
 		yearS += date[i];
 		i++;
@@ -30,7 +30,7 @@ bool checkDate(string date, int month, int year)
 
 
 
-	monthI = stoi(monthS);
+	monthI = stoi(monthS);//funkcija koja vrsi pretvaranje stringa u integer
 	yearI = stoi(yearS);
 
 	if (yearI == year && monthI == month) return true;
@@ -39,19 +39,18 @@ bool checkDate(string date, int month, int year)
 
 void ReportOutput(std::vector<MonthlyArticle> vec)
 {
-	//system("cls");
-	//logoS();
+	
 	std::cout << std::endl;
 	std::cout << std::endl;
 	double sum = 0;
 	string currency;
-	std::ifstream currency_file("Valuta.txt");
+	std::ifstream currency_file("Valuta.txt");//hvatanje valute iz datoteke "Valuta.txt"
 	currency_file >> currency;
 	currency_file.close();
 
 
 	std::cout << "======================================================================================\n";
-	std::cout << "SIFRA          KUPAC               DATUM             KOLICINA   CIJENA    UKUPNO\n";
+	std::cout << "SIFRA          KUPAC               DATUM             KOLICINA   CIJENA     UKUPNO\n";
 	std::cout << "======================================================================================\n";
 	for (int i = 0; i < vec.size(); i++)
 	{
@@ -77,17 +76,17 @@ void ReportOutput(std::vector<MonthlyArticle> vec)
 
 void Monthly(int month, int year)
 {
-	std::vector<std::string> articles = get_filenames("Artikli");
+	std::vector<std::string> articles = get_filenames("Artikli");//smijestanje imena fajlova iz foldera "Artikli" u neki niz stringova
 	for (int i = 0; i < articles.size(); i++)
 	{
-		articles[i].erase(0, 8);
+		articles[i].erase(0, 8);//brisanje prvih 8 karaktera u nazivu datoteke
 		
 
 	}
 	std::vector<string>articlenames = articles;
 	for (int i = 0; i < articles.size(); i++)
 	{
-		articlenames[i].erase(articlenames[i].length() - 4, articlenames[i].length());
+		articlenames[i].erase(articlenames[i].length() - 4, articlenames[i].length());//brisanje .txt iz imena datoteke
 		
 
 	}
@@ -99,7 +98,7 @@ void Monthly(int month, int year)
 	while (num<articles.size())
 	{
 		std::ifstream fp("Artikli/" + articles[num]);
-		while (!fp.eof())
+		while (!fp.eof())//"setanje" po datoteci i pribavljanje potrebnih podataka za ispis
 		{
 			pomart.code = articlenames[num];
 			
@@ -110,7 +109,7 @@ void Monthly(int month, int year)
 			fp >> pomart.total; 
 			std::getline(fp, pomstr);
 			std::getline(fp, pomstr);
-			if (fp.eof())break;
+			if (fp.eof())break;//break ukoliko dodje do kraja fajla,jer se eof() razlikuje od datoteke do datoteke
 			if (checkDate(pomart.date, month, year))
 				vectorArt.push_back(pomart);
 
@@ -121,8 +120,8 @@ void Monthly(int month, int year)
 
 
 
-	std::sort(vectorArt.begin(), vectorArt.end());
-
+	std::sort(vectorArt.begin(), vectorArt.end());//sortiranje artikala po datumima
+	
 
 	ReportOutput(vectorArt);
 

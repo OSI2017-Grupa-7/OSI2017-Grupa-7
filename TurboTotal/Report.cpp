@@ -109,10 +109,10 @@ void productReport()
 
 }
 
-void monthSaldoReport()
+void monthSaldoReport()//funkcija za unos mjeseca i godine
 {
 	std::string mjesec, godina;
-	do
+	do//meni za izbor mjeseca
 	{
 
 		system("cls");
@@ -134,7 +134,7 @@ void monthSaldoReport()
 
 	int mj, god;
 	mj = stoi(mjesec); god = stoi(godina);
-	std::cout << mj << god;
+	
 
 
 	if (mjesec == "1")
@@ -185,7 +185,7 @@ void monthSaldoReport()
 		system("cls");
 		logoS();
 
-		std::cout << std::endl << "JUNI" << std::endl;
+		std::cout << std::endl << "JUN" << std::endl;
 
 	}
 	if (mjesec == "7")
