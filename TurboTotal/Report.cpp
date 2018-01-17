@@ -8,18 +8,34 @@
 
 void buyerReport()
 {
-	system("cls");
-	logoS();
-	std::cout << std::endl << "IZVJESTAJ PO KUPCU" << std::endl << std::endl;
-	std::cout << std::endl << "Unesite kupca: ";
-	std::string name = input();
+	char option4;
+	do
+	{
+		system("cls");
+		logoS(); std::cout << std::endl << "ODABRALI STE OPCIJU PREGLED PODATAKA ZA ODREDJENOG KUPCA" << std::endl << std::endl;
+		std::cout << std::endl << "1. Ukupni pregled podataka za odredjenog kupca" << std::endl;
+		std::cout << "2. Pregled podataka za odredjenog kupca u trazenom vremenskom intervalu" << std::endl;
+		std::cout << std::endl << "Odaberi opciju: "; std::cin >> option4;
+	} while (option4 != '1' && option4 != '2');
+	if (option4 == '1')
+	{
+		system("cls");
+		logoS();
+		std::cout << std::endl << "IZVJESTAJ PO KUPCU" << std::endl << std::endl;
+		std::cout << std::endl << "Unesite kupca: ";
+		std::string name = input();
 
-	system("cls");
-	logoS();
-	std::cout << std::endl << "IZVJESTAJ ZA KUPCA" << std::endl;
-	std::cout << std::endl << "Kupac: " << name << std::endl;
+		system("cls");
+		logoS();
+		std::cout << std::endl << "IZVJESTAJ ZA KUPCA" << std::endl;
+		std::cout << std::endl << "Kupac: " << name << std::endl;
 
-	readForBuyerReport(name);
+		readForBuyerReport(name);
+	}
+	if (option4 == '2')
+	{
+		//keks
+	}
 }
 
 void productReport()
