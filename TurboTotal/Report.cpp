@@ -59,7 +59,7 @@ void productReport()
 			std::string path = "Artikli/" + article + ".txt";
 			std::ifstream f(path.c_str());
 
-			std::cout << "Unesite datum u obliku: dan.mjesec.godina" << std::endl << std::endl;
+			std::cout << std::endl << "Unesite datum u obliku: dan.mjesec.godina" << std::endl << std::endl;
 			std::cout << "Datum od: ";
 			std::cin >> date1;
 			std::cout << "Datum do: ";
@@ -76,7 +76,7 @@ void productReport()
 			}
 			else if (!f)
 			{
-				std::cout << "Uneseni artikal se ne nalazi u evidenciji" << std::endl;
+				std::cout << std::endl << "Uneseni artikal se ne nalazi u evidenciji" << std::endl;
 				std::cout << "Pritisnite enter za novi unos" << std::endl;
 				getchar();
 				getchar();
@@ -84,7 +84,7 @@ void productReport()
 			}
 			else if (!checkDate(date1))
 			{
-				std::cout << "Prvi datum nije validan" << std::endl;
+				std::cout << std::endl << "Prvi datum nije validan" << std::endl;
 				std::cout << "Pritisnite enter za novi unos" << std::endl;
 				getchar();
 				getchar();
@@ -92,7 +92,7 @@ void productReport()
 			}
 			else if (!checkDate(date2))
 			{
-				std::cout << "Drugi datum nije validan" << std::endl;
+				std::cout << std::endl << "Drugi datum nije validan" << std::endl;
 				std::cout << "Pritisnite enter za novi unos" << std::endl;
 				getchar();
 				getchar();
@@ -100,7 +100,7 @@ void productReport()
 			}
 			else
 			{
-				std::cout << "Drugi datum se nalazi ispred prvog" << std::endl;
+				std::cout << std::endl << "Drugi datum se nalazi ispred prvog" << std::endl;
 				std::cout << "Pritisnite enter za novi unos" << std::endl;
 				getchar();
 				getchar();
