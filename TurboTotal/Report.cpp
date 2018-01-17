@@ -3,6 +3,7 @@
 #include "BuyerReport.h"
 #include "MonthlyReport.h"
 #include "periodreport.h"
+#include "ArticleReport.h"
 
 
 void buyerReport()
@@ -34,7 +35,13 @@ void productReport()
 	} while (option4 != '1' && option4 != '2');
 	if (option4 == '1')
 	{
-		std::cout << "IVANAAA" << std::endl;
+		system("cls");
+		logoS();
+		std::cout << std::endl << "UKUPNI IZVJESTAJ PO ARTIKLU" << std::endl << std::endl;
+		std::string sifra;
+		std::cout << "Unesite sifru artikla: ";
+		std::string article_code = input();
+		processingArticleReports(article_code);
 	}
 	else if (option4 == '2')
 	{
