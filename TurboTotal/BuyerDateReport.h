@@ -5,34 +5,33 @@
 #include <fstream>
 #include <vector>
 
-namespace date {
-	void readForBuyerReport(std::string);
+
+	void readForBuyerDateReport(std::string);
 
 
-	class BuyerReport//klasa za izvjestaj po kupcu koja sadrzi sve potrebna polja za izvjestaj 
+	class BuyerDateReport//klasa za izvjestaj po kupcu koja sadrzi sve potrebna polja za izvjestaj 
 	{
 		Date date;
 		std::vector<Article> vec;
 		double no_pdv, pdv, plus_pdv;
 	public:
-		BuyerReport();
+		BuyerDateReport();
 		void setDate(Date);
-		~BuyerReport();
+		~BuyerDateReport();
 		void setNo_pdv(double);
 		void setPdv(double);
 		void setPlus_pdv(double);
 		void setVec(std::vector<Article>);
 		void print();
 		Date getDate()const;
-		bool operator<(BuyerReport);
+		bool operator<(BuyerDateReport);
 	};
 
-	void printArticleHeader();
-	void printArticleFooter();
-	void printAllArticlesForReport(std::vector<Article>);//ispisuje sve artikle koje je kupio jedan kupac
-	Date findDate(std::string);//od stringa datuma vraca objekat klase Datum
-	void sort(std::vector<BuyerReport>&);
+	void printArticleHHeader();
+	void printArticleFFooter();
+	void printAllArticlesForDateReport(std::vector<Article>);//ispisuje sve artikle koje je kupio jedan kupac
+	Date findDDate(std::string);//od stringa datuma vraca objekat klase Datum
+	void sort(std::vector<BuyerDateReport>&);
 	void parseDateDot(const std::string&, int&, int&, int&); //izdvaja iz stringa posebne varijable za dan, mjesec i godinu
 	int dateCheck(std::string, std::string, Date&); // provjerava da li je odredjeni datum u zadatom opsegu
-	void printBuyerReport(std::string, std::string, std::vector<BuyerReport>);
-}
+	void printBuyerReport(std::string, std::string, std::vector<BuyerDateReport>);

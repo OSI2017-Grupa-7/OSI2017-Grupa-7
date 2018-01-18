@@ -2,7 +2,6 @@
 #include <sstream>
 #include <algorithm>
 
-namespace date {
 	void parseDateDot(const std::string& string, int& day, int& month, int& year) {
 		std::sscanf(string.c_str(), "%d.%d.%d", &day, &month, &year);
 	}
@@ -15,7 +14,7 @@ namespace date {
 		/////// uslovi za opsege datuma
 		if (obj.getYear() <= yearT && obj.getYear() >= yearF) {
 			if (obj.getMonth() <= monthT && obj.getMonth() >= monthF) {
-				if (obj.getDay <= dayT && obj.getDay() >= dayF)
+				if (obj.getDay() <= dayT && obj.getDay() >= dayF)
 					return 1;
 				else
 					return 0;
@@ -27,12 +26,7 @@ namespace date {
 			return 0;
 	}
 
-
-#include "BuyerReport.h"
-#include <sstream>
-#include <algorithm>
-
-	void readForBuyerReport(std::string file_name)
+	void readForBuyerDateReport(std::string file_name)
 	{
 
 		std::string from, to;
@@ -46,7 +40,7 @@ namespace date {
 		std::string line("0");
 		std::string pom;
 		std::vector<Article> v;
-		std::vector<BuyerReport> vec;
+		std::vector<BuyerDateReport> vec;
 		std::vector<Article> art_total;
 		Article pom_art("a", "cedomir", 1);
 		double totalForTotalReport = 0;
@@ -67,7 +61,7 @@ namespace date {
 			{
 				buyer_report_counter--;
 				v.erase(v.begin(), v.end());
-				BuyerReport buyer_report;
+				BuyerDateReport buyer_report;
 				std::string end_of_bill;
 				do
 				{
@@ -84,7 +78,7 @@ namespace date {
 						getline(file, date);
 						getline(file, date);
 					}
-					Date d = findDate(date);
+					Date d = findDDate(date);
 					end_of_bill = date;
 					std::string articles, last_article;
 					do
@@ -187,7 +181,7 @@ namespace date {
 			printBuyerReport(from, to, vec);
 			art_total.erase(art_total.begin());
 			std::cout << std::endl << "UKUPNO ZA SVE ARTIKLE: " << std::endl;
-			date::printAllArticlesForReport(art_total);
+			printAllArticlesForDateReport(art_total);
 
 			std::ifstream fileee("Valuta.txt");
 			std::string value;
@@ -223,7 +217,7 @@ namespace date {
 		getchar();
 	}
 
-	void printBuyerReport(std::string from, std::string to, std::vector<BuyerReport> vec)
+	void printBuyerReport(std::string from, std::string to, std::vector<BuyerDateReport> vec)
 	{
 		for (unsigned int i = 0; i < vec.size(); i++)
 		{
@@ -232,29 +226,29 @@ namespace date {
 		}
 	}
 
-	void printArticleHeader()
+	void printArticleHHeader()
 	{
 		std::cout << std::endl << "======================================" << std::endl;
 		std::cout << "SIFRA     KOLICINA  CIJENA    UKUPNO" << std::endl;
 		std::cout << "======================================" << std::endl;
 	}
 
-	void printArticleFooter()
+	void printArticleFFooter()
 	{
 		std::cout << "======================================" << std::endl;
 	}
 
-	void printAllArticlesForReport(std::vector<Article> vec)
+	void printAllArticlesForDateReport(std::vector<Article> vec)
 	{
-		printArticleHeader();
+		printArticleHHeader();
 		for (unsigned int i = 0; i < vec.size(); i++)
 		{
 			vec[i].printForReport();
 		}
-		printArticleFooter();
+		printArticleFFooter();
 	}
 
-	Date findDate(std::string date)
+	Date findDDate(std::string date)
 	{
 		Date d;
 		int i;
@@ -280,41 +274,41 @@ namespace date {
 					return d;
 	}
 
-	void sort(std::vector<BuyerReport>& vec)
+	void sort(std::vector<BuyerDateReport>& vec)
 	{
 		unsigned int i, j;
 		for (i = 0; i < vec.size() - 1; i++)
 			for (j = 0; j < vec.size() - i - 1; j++)
 				if (!(vec[j].getDate() < vec[j + 1].getDate()))
 				{
-					BuyerReport a = vec[j];
+					BuyerDateReport a = vec[j];
 					vec[j] = vec[j + 1];
 					vec[j + 1] = a;
 				}
 	}
 
-	BuyerReport::BuyerReport() {}
+	BuyerDateReport::BuyerDateReport() {}
 
-	void BuyerReport::setDate(Date d)
+	void BuyerDateReport::setDate(Date d)
 	{
 		date = d;
 	}
 
-	BuyerReport::~BuyerReport() {}
+	BuyerDateReport::~BuyerDateReport() {}
 
-	void BuyerReport::setNo_pdv(double d) { no_pdv = d; }
+	void BuyerDateReport::setNo_pdv(double d) { no_pdv = d; }
 
-	void BuyerReport::setPdv(double d) { pdv = d; }
+	void BuyerDateReport::setPdv(double d) { pdv = d; }
 
-	void BuyerReport::setPlus_pdv(double d) { plus_pdv = d; }
+	void BuyerDateReport::setPlus_pdv(double d) { plus_pdv = d; }
 
-	void BuyerReport::setVec(std::vector<Article> v) { vec = v; }
+	void BuyerDateReport::setVec(std::vector<Article> v) { vec = v; }
 
-	void BuyerReport::print()
+	void BuyerDateReport::print()
 	{
 		std::cout << std::endl << "Datum: ";
 		date.print(); std::cout << std::endl;
-		printArticleHeader();
+		printArticleHHeader();
 		for (unsigned int i = 0; i < vec.size(); i++)
 			vec[i].printForReport();
 
@@ -337,19 +331,19 @@ namespace date {
 		std::cout << std::endl << "Bez PDV: " << no_pdv_value << std::endl;
 		std::cout << "PDV: " << pdv_value << std::endl;
 		std::cout << "Sa PDV: " << plus_pdv_value << std::endl;
-		printArticleFooter();
+		printArticleFFooter();
 	}
 
-	Date BuyerReport::getDate()const
+	Date BuyerDateReport::getDate()const
 	{
 		return date;
 	}
 
-	bool BuyerReport::operator<(BuyerReport b)
+	bool BuyerDateReport::operator<(BuyerDateReport b)
 	{
 		if (date < b.getDate())return true;
 		else return false;
 	}
 
 
-}
+
