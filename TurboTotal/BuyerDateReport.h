@@ -9,7 +9,7 @@
 	void readForBuyerDateReport(std::string);
 
 
-	class BuyerDateReport//klasa za izvjestaj po kupcu koja sadrzi sve potrebna polja za izvjestaj 
+	class BuyerDateReport//klasa za izvjestaj po kupcu za odredjeni vremenski interval koja sadrzi sve potrebna polja za izvjestaj 
 	{
 		Date date;
 		std::vector<Article> vec;

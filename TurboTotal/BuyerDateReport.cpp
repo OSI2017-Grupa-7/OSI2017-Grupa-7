@@ -184,7 +184,8 @@
 			art_total.erase(art_total.begin());
 			std::cout << std::endl << "UKUPNO ZA SVE ARTIKLE: " << std::endl;
 			printAllArticlesForDateReport(art_total);
-
+			if (art_total.size() != 0)
+			{
 			std::ifstream fileee("Valuta.txt");
 			std::string value;
 			fileee >> value;//citanje valute
@@ -204,9 +205,11 @@
 			osss << plus_pdv;
 			std::string plus_pdv_value = osss.str() + ' ' + value;
 
-			std::cout << std::endl << "Bez PDV: " << totalForTotalReport_value << std::endl;
-			std::cout << "PDV: " << pdv_value << std::endl;
-			std::cout << "Sa PDV: " << plus_pdv_value << std::endl;//ispis ukupnog pdva i sve sto ide uz njega
+			
+				std::cout << std::endl << "Bez PDV: " << totalForTotalReport_value << std::endl;
+				std::cout << "PDV: " << pdv_value << std::endl;
+				std::cout << "Sa PDV: " << plus_pdv_value << std::endl;//ispis ukupnog pdva i sve sto ide uz njega
+			}
 		}
 
 		else
