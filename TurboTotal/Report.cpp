@@ -4,7 +4,7 @@
 #include "MonthlyReport.h"
 #include "periodreport.h"
 #include "ArticleReport.h"
-
+#include "BuyerDateReport.h"
 
 void buyerReport()
 {
@@ -34,7 +34,18 @@ void buyerReport()
 	}
 	if (option4 == '2')
 	{
-		//keks
+		system("cls");
+		logoS();
+		std::cout << std::endl << "IZVJESTAJ PO KUPCU" << std::endl << std::endl;
+		std::cout << std::endl << "Unesite kupca: ";
+		std::string name = input();
+
+		system("cls");
+		logoS();
+		std::cout << std::endl << "IZVJESTAJ ZA KUPCA" << std::endl;
+		std::cout << std::endl << "Kupac: " << name << std::endl;
+
+		readForBuyerDateReport(name);
 	}
 }
 

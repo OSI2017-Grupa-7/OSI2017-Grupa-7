@@ -139,19 +139,21 @@
 									totalForTotalReport += stod(total);//dodavanje za ukupnu cijenu
 									v.push_back(article);//dodan jedan artikal u vektor artikal
 									int p = 1;
-									for (unsigned int i = 0; i < art_total.size(); i++)
-										if (article.getCode() == art_total[i].getCode() && dateCheck(from, to, d))
-										{
-											art_total[i].setAmount(article.getAmount() + art_total[i].getAmount());
-											art_total[i].setTotal(article.getTotal() + art_total[i].getTotal());
-											p = 0;
-											break;
-										}
-									if (p == 1)
-									{
-										art_total.push_back(article);
-									}//dodavanje artikala u vektor za konacan izvjestaj svih artiklaa za jednog kupca, ako vec ima artikal, samo poveca total i kolicinu
+									if (dateCheck(from, to, d)) {
+										for (unsigned int i = 0; i < art_total.size(); i++)
+											if (article.getCode() == art_total[i].getCode())
+											{
+												art_total[i].setAmount(article.getAmount() + art_total[i].getAmount());
+												art_total[i].setTotal(article.getTotal() + art_total[i].getTotal());
+												p = 0;
+												break;
+											}
 
+										if (p == 1)
+										{
+											art_total.push_back(article);
+										}//dodavanje artikala u vektor za konacan izvjestaj svih artiklaa za jednog kupca, ako vec ima artikal, samo poveca total i kolicinu
+									}
 					} while (articles.length() > 8);
 
 					std::string pdvs;
