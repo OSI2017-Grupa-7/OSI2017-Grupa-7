@@ -15,7 +15,8 @@ bool checkError(string& file) // funkcija za provjeru greski
 	int flag = 1,errflag=0; Artikal art;
 	double kol, cjn, ukp,sum=0,sumR,sumPDV,sumUkup;
 	std::ifstream fp("Racuni/" + file); //otvaranje fajla koji sadrzi racune
-	string pom2 = file;
+	string pomerr = file;
+	string errorfilestring = "Error/" + pomerr.erase(pomerr.length() - 4, pomerr.length()) + "_error" + ".txt";
 	std::getline(fp, pom);
     std::getline(fp, pom);
 	std::getline(fp, pom);
