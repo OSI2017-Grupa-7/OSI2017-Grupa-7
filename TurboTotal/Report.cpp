@@ -185,12 +185,6 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 		std::cout << std::endl << "JANUAR" << std::endl;
 
 
-
-		std::cout << std::endl << "JANUAR" << std::endl;
-
-		std::cout << std::endl << "JANUAR" << std::endl;
-
-
 	}
 	
 	if (mjesec == "2")
