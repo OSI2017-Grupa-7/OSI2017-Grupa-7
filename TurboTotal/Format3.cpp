@@ -98,6 +98,11 @@ void format3(std::string& bill) {
 		///////////ako je tacan uslov, ucitana datoteka se premjesta u Error folder
 		if (tot != price * ammount) {
 			file.close();
+			std::ofstream processed_file("Racuni_sa_greskom/" + bill);
+			std::ifstream old_file("Racuni/" + bill);
+			std::string line;
+			while (getline(old_file, line))
+				processed_file << line << std::endl;
 			std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
 			error_file += "_error.txt";
 			std::ofstream processed_file(error_file);
@@ -115,6 +120,11 @@ void format3(std::string& bill) {
 	///////////ako je tacan uslov, ucitana datoteka se premjesta u Error folder
 	if (sum != total) {
 		file.close();
+		std::ofstream processed_file("Racuni_sa_greskom/" + bill);
+		std::ifstream old_file("Racuni/" + bill);
+		std::string line;
+		while (getline(old_file, line))
+			processed_file << line << std::endl;
 		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
 		error_file += "_error.txt";
 		std::ofstream processed_file(error_file);
@@ -126,6 +136,11 @@ void format3(std::string& bill) {
 	///////////ako je tacan uslov, ucitana datoteka se premjesta u Error folder
 	else if ((total * 0.17) != pdv) {
 		file.close();
+		std::ofstream processed_file("Racuni_sa_greskom/" + bill);
+		std::ifstream old_file("Racuni/" + bill);
+		std::string line;
+		while (getline(old_file, line))
+			processed_file << line << std::endl;
 		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
 		error_file += "_error.txt";
 		std::ofstream processed_file(error_file);
@@ -136,6 +151,11 @@ void format3(std::string& bill) {
 	///////////ako je tacan uslov, ucitana datoteka se premjesta u Error folder
 	else if (totalp != total + pdv) {
 		file.close();
+		std::ofstream processed_file("Racuni_sa_greskom/" + bill);
+		std::ifstream old_file("Racuni/" + bill);
+		std::string line;
+		while (getline(old_file, line))
+			processed_file << line << std::endl;
 		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
 		error_file += "_error.txt";
 		std::ofstream processed_file(error_file);
