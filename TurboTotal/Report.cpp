@@ -65,14 +65,11 @@ void monthSaldoReport()
 	{
 		system("cls");
 		logoS();
-<<<<<<< HEAD
 
 		std::cout << std::endl << "JANUAR" << std::endl;
 
-=======
-		std::cout << std::endl << "JANUAR" << std::endl;
->>>>>>> fc45bfb64945fdea88a114f59df28a8bc84f1774
 	}
+	
 	if (mjesec == "2")
 	{
 		system("cls");
@@ -161,14 +158,11 @@ void monthSaldoReport()
 		std::cout << std::endl << "DECEMBAR" << std::endl;
 
 	}
-	//uci u bazu artikala i ispisati izvjestaj
-<<<<<<< HEAD
-
+	
 
 	Monthly(mj, god);
 
-=======
->>>>>>> fc45bfb64945fdea88a114f59df28a8bc84f1774
+
 }
 
 
