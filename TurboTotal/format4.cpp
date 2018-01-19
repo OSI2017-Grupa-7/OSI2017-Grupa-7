@@ -69,11 +69,11 @@ void readformat4(std::string& bill)
 	getline(file, help);
 	file >> trash >> trash >> trash >> total;
 
-	double sum = 0;
+	double sum = 0;  //sumiranje ukupne cijene svih artikala
 	for (int i = 0; i < num; i++)
 		sum = sum + array[i].total;
 
-	int counter = 0;
+	int counter = 0;  //prebrojavanje artikala koji zadovoljavaju uslov cijena*kolicina=ukupno
 	for (int i = 0; i < num; i++)
 	{
 		if ((array[i].price) * array[i].amount == array[i].total)

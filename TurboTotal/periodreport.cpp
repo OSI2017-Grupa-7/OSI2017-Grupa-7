@@ -59,7 +59,7 @@ int checkDate(std::string &date)  //provjera validnosti datuma
 
 	return true;
 }
-std::string to_string_with_precision(const double a_value, const int n = 2)
+std::string to_string_with_precision(const double a_value, const int n = 2) //konverzija iz double u string sa odredjenom preciznoscu
 {
 	std::ostringstream out;
 	out << std::setprecision(n) << a_value;
@@ -176,6 +176,7 @@ void articleReport(std::string& bill, int date1, int date2)
 	double PDV = total * 17 / 100;
 	double wPDV = total - PDV;
 
+	//konverzije u string
 	std::string PDVS = to_string_with_precision(PDV, 10) + " " + value;
 	std::string wPDVS = to_string_with_precision(wPDV, 10) + " " + value;
 	std::string totalS = to_string_with_precision(total, 10) + " " + value;
