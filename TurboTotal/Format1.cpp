@@ -15,7 +15,7 @@ bool checkError(string& file) // funkcija za provjeru greski
 	int flag = 1,errflag=0; Artikal art;
 	double kol, cjn, ukp,sum=0,sumR,sumPDV,sumUkup;
 	std::ifstream fp("Racuni/" + file); //otvaranje fajla koji sadrzi racune
-	std::ofstream errortxt("Error/" + file); // otvaranje fajla u koji se smjestaju informacije o greskama
+	string pom2 = file;
 	std::getline(fp, pom);
     std::getline(fp, pom);
 	std::getline(fp, pom);
@@ -39,6 +39,7 @@ bool checkError(string& file) // funkcija za provjeru greski
 		sum = sum + std::stod(art.ukupno);
 		if (kol*cjn != ukp) //provjera prve greske
 		{
+			std::ofstream errortxt(errorfilestring, std::ios::app); // otvaranje fajla u koji se smjestaju informacije o greskama
 			errortxt << "Racun sadrzi gresku-kolicina*cijena artikla nije dobro izracunata." << std::endl;
 			errflag = 1;
 		}
@@ -49,6 +50,7 @@ bool checkError(string& file) // funkcija za provjeru greski
 	sumR = std::stod(racUkupno);
 	if (sum != sumR) // provjera druge greske
 	{
+		std::ofstream errortxt(errorfilestring, std::ios::app); // otvaranje fajla u koji se smjestaju informacije o greskama
 		errortxt << "Racun sadrzi gresku-ukupna vrijednost(bez PDV-a) nije dobro izracunata." << std::endl;
 		errflag=1;
 	}
@@ -58,6 +60,7 @@ bool checkError(string& file) // funkcija za provjeru greski
 	sumPDV = std::stod(PDV);
 	if (sumPDV != sumR*0.17) // provjera trece greske
 	{
+		std::ofstream errortxt(errorfilestring, std::ios::app); // otvaranje fajla u koji se smjestaju informacije o greskama
 		errortxt << "Racun sadrzi gresku-PDV nije dobro izracunat." << std::endl;
 		errflag=1;
 	}
@@ -69,6 +72,7 @@ bool checkError(string& file) // funkcija za provjeru greski
 	sumUkup = std::stod(ukupPDV);
 	if (sumUkup != sumR + sumPDV) // provjera cetvrte greske
 	{
+		std::ofstream errortxt(errorfilestring, std::ios::app); // otvaranje fajla u koji se smjestaju informacije o greskama
 		errortxt << "Racun sadrzi gresku-ukupna vrijednost za placanje(pdv+ukupno) nije dobro izracunata." << std::endl;
 		errflag=1;
 	}
