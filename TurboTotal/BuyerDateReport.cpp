@@ -2,39 +2,56 @@
 #include <sstream>
 #include <algorithm>
 
-	void parseDateDot(const std::string& string, int& day, int& month, int& year) {
-		std::sscanf(string.c_str(), "%d.%d.%d", &day, &month, &year);
-	}
+void parseDateDot(const std::string& string, int& day, int& month, int& year) {
+	std::sscanf(string.c_str(), "%d.%d.%d", &day, &month, &year);
+}
 
-	int dateCheck(std::string from, std::string to, Date &obj) {
-		int dayF, dayT, monthF, monthT, yearF, yearT;
-		//////// izdvajanje posebnih varijabli iz stringova
-		parseDateDot(from, dayF, monthF, yearF);
-		parseDateDot(to, dayT, monthT, yearT);
-		/////// uslovi za opsege datuma
-		if (obj.getYear() <= yearT && obj.getYear() >= yearF) {
-			if (obj.getMonth() <= monthT && obj.getMonth() >= monthF) {
-				if (obj.getDay() <= dayT && obj.getDay() >= dayF)
-					return 1;
-				else
-					return 0;
-			}
-			else
+int dateCheck(std::string from, std::string to, Date &obj) {
+	int dayF, dayT, monthF, monthT, yearF, yearT;
+	//////// izdvajanje posebnih varijabli iz stringova
+	parseDateDot(from, dayF, monthF, yearF);
+	parseDateDot(to, dayT, monthT, yearT);
+	/////// uslovi za opsege datuma
+	if (obj.getYear() <= yearT && obj.getYear() >= yearF) {
+		if (obj.getMonth() <= monthT && obj.getMonth() >= monthF) {
+			if (obj.getDay() <= dayT && obj.getDay() >= dayF)
+				return 1;
+			else {
 				return 0;
+			}
 		}
-		else
+		else {
 			return 0;
+		}
 	}
+	else {
+		return 0;
+	}
+}
 
-	void readForBuyerDateReport(std::string file_name)
-	{
+int checkForDateError(std::string from, std::string to) {
+	int yearF, yearT, monthF, monthT, dayF, dayT;
+	parseDateDot(from, dayF, monthF, yearF);
+	parseDateDot(to, dayT, monthT, yearT);
+	if (yearF > yearT)
+		return 0;
+	else if ((dayF > 0 && dayF <= 31) && (dayT > 0 && dayT <= 31) && (monthF > 0 && monthF <= 12) && (monthT > 0 && monthT <= 12) && yearF > 0 && yearT > 0)
+		return 1;
+	else
+		return 0;
+}
 
-		std::string from, to;
-		std::cout << "Od: ";
-		std::cin >> from;
-		std::cout << "Do: ";
-		std::cin >> to;
+void readForBuyerDateReport(std::string file_name)
+{
 
+	std::string from, to;
+	std::cout << "Od: ";
+	std::cin >> from;
+	std::cout << "Do: ";
+	std::cin >> to;
+
+	if (checkForDateError(from, to)) {
+		std::string last_article;
 		std::string name_file = "Kupci/" + file_name + ".txt";
 		std::ifstream file(name_file);
 		std::string line("0");
@@ -72,6 +89,7 @@
 					{
 						getline(file, date);//pronadjen datum jednog buyer_reporta	
 						k = 0;
+						//std::cout << date << std::endl;
 					}
 					else
 					{
@@ -80,7 +98,7 @@
 					}
 					Date d = findDDate(date);
 					end_of_bill = date;
-					std::string articles, last_article;
+					std::string articles;
 					do
 					{
 
@@ -156,6 +174,8 @@
 									}
 					} while (articles.length() > 8);
 
+
+
 					std::string pdvs;
 
 					////////////////////////////////
@@ -186,26 +206,26 @@
 			printAllArticlesForDateReport(art_total);
 			if (art_total.size() != 0)
 			{
-			std::ifstream fileee("Valuta.txt");
-			std::string value;
-			fileee >> value;//citanje valute
+				std::ifstream fileee("Valuta.txt");
+				std::string value;
+				fileee >> value;//citanje valute
 
-			std::ostringstream os;
-			os << totalForTotalReport;
-			std::string totalForTotalReport_value = os.str() + ' ' + value;//stvaranje formata oblika 'cijena (valuta)'
+				std::ostringstream os;
+				os << totalForTotalReport;
+				std::string totalForTotalReport_value = os.str() + ' ' + value;//stvaranje formata oblika 'cijena (valuta)'
 
-			double pdv = totalForTotalReport * 0.17;
+				double pdv = totalForTotalReport * 0.17;
 
-			std::ostringstream oss;
-			oss << pdv;
-			std::string pdv_value = oss.str() + ' ' + value;
+				std::ostringstream oss;
+				oss << pdv;
+				std::string pdv_value = oss.str() + ' ' + value;
 
-			double plus_pdv = pdv + totalForTotalReport;
-			std::ostringstream osss;
-			osss << plus_pdv;
-			std::string plus_pdv_value = osss.str() + ' ' + value;
+				double plus_pdv = pdv + totalForTotalReport;
+				std::ostringstream osss;
+				osss << plus_pdv;
+				std::string plus_pdv_value = osss.str() + ' ' + value;
 
-			
+
 				std::cout << std::endl << "Bez PDV: " << totalForTotalReport_value << std::endl;
 				std::cout << "PDV: " << pdv_value << std::endl;
 				std::cout << "Sa PDV: " << plus_pdv_value << std::endl;//ispis ukupnog pdva i sve sto ide uz njega
@@ -216,139 +236,143 @@
 		{
 			std::cout << std::endl << "Ne postoji kupac sa tim imenom!!" << std::endl;
 		}
-
-
-		getchar();
-		getchar();
 	}
 
-	void printBuyerReport(std::string from, std::string to, std::vector<BuyerDateReport> vec)
+	else
+		std::cout << "Neispravno unesen/i datum/i!!!";
+
+
+	getchar();
+	getchar();
+}
+
+void printBuyerReport(std::string from, std::string to, std::vector<BuyerDateReport> vec)
+{
+	for (unsigned int i = 0; i < vec.size(); i++)
 	{
-		for (unsigned int i = 0; i < vec.size(); i++)
-		{
-			if(dateCheck(from, to, vec[i].getDate()))
+		if (dateCheck(from, to, vec[i].getDate()))
 			vec[i].print();
-		}
 	}
+}
 
-	void printArticleHHeader()
+void printArticleHHeader()
+{
+	std::cout << std::endl << "======================================" << std::endl;
+	std::cout << "SIFRA     KOLICINA  CIJENA    UKUPNO" << std::endl;
+	std::cout << "======================================" << std::endl;
+}
+
+void printArticleFFooter()
+{
+	std::cout << "======================================" << std::endl;
+}
+
+void printAllArticlesForDateReport(std::vector<Article> vec)
+{
+	printArticleHHeader();
+	for (unsigned int i = 0; i < vec.size(); i++)
 	{
-		std::cout << std::endl << "======================================" << std::endl;
-		std::cout << "SIFRA     KOLICINA  CIJENA    UKUPNO" << std::endl;
-		std::cout << "======================================" << std::endl;
+		vec[i].printForReport();
 	}
+	printArticleFFooter();
+}
 
-	void printArticleFFooter()
-	{
-		std::cout << "======================================" << std::endl;
-	}
-
-	void printAllArticlesForDateReport(std::vector<Article> vec)
-	{
-		printArticleHHeader();
-		for (unsigned int i = 0; i < vec.size(); i++)
-		{
-			vec[i].printForReport();
-		}
-		printArticleFFooter();
-	}
-
-	Date findDDate(std::string date)
-	{
-		Date d;
-		int i;
-		std::string day, month, year;
-		for (i = 0; i < date.length(); i++)
+Date findDDate(std::string date)
+{
+	Date d;
+	int i;
+	std::string day, month, year;
+	for (i = 0; i < date.length(); i++)
+		if (date[i] != '.')
+			day += date[i];
+		else break;
+		d.setDay(stoi(day));
+		i++;
+		for (i; i < date.length(); i++)
 			if (date[i] != '.')
-				day += date[i];
+				month += date[i];
 			else break;
-			d.setDay(stoi(day));
+			d.setMonth(stoi(month));
 			i++;
 			for (i; i < date.length(); i++)
 				if (date[i] != '.')
-					month += date[i];
+					year += date[i];
 				else break;
-				d.setMonth(stoi(month));
-				i++;
-				for (i; i < date.length(); i++)
-					if (date[i] != '.')
-						year += date[i];
-					else break;
-					d.setYear(stoi(year));
+				d.setYear(stoi(year));
 
-					return d;
-	}
+				return d;
+}
 
-	void sort(std::vector<BuyerDateReport>& vec)
-	{
-		unsigned int i, j;
-		for (i = 0; i < vec.size() - 1; i++)
-			for (j = 0; j < vec.size() - i - 1; j++)
-				if (!(vec[j].getDate() < vec[j + 1].getDate()))
-				{
-					BuyerDateReport a = vec[j];
-					vec[j] = vec[j + 1];
-					vec[j + 1] = a;
-				}
-	}
+void sort(std::vector<BuyerDateReport>& vec)
+{
+	unsigned int i, j;
+	for (i = 0; i < vec.size() - 1; i++)
+		for (j = 0; j < vec.size() - i - 1; j++)
+			if (!(vec[j].getDate() < vec[j + 1].getDate()))
+			{
+				BuyerDateReport a = vec[j];
+				vec[j] = vec[j + 1];
+				vec[j + 1] = a;
+			}
+}
 
-	BuyerDateReport::BuyerDateReport() {}
+BuyerDateReport::BuyerDateReport() {}
 
-	void BuyerDateReport::setDate(Date d)
-	{
-		date = d;
-	}
+void BuyerDateReport::setDate(Date d)
+{
+	date = d;
+}
 
-	BuyerDateReport::~BuyerDateReport() {}
+BuyerDateReport::~BuyerDateReport() {}
 
-	void BuyerDateReport::setNo_pdv(double d) { no_pdv = d; }
+void BuyerDateReport::setNo_pdv(double d) { no_pdv = d; }
 
-	void BuyerDateReport::setPdv(double d) { pdv = d; }
+void BuyerDateReport::setPdv(double d) { pdv = d; }
 
-	void BuyerDateReport::setPlus_pdv(double d) { plus_pdv = d; }
+void BuyerDateReport::setPlus_pdv(double d) { plus_pdv = d; }
 
-	void BuyerDateReport::setVec(std::vector<Article> v) { vec = v; }
+void BuyerDateReport::setVec(std::vector<Article> v) { vec = v; }
 
-	void BuyerDateReport::print()
-	{
-		std::cout << std::endl << "Datum: ";
-		date.print(); std::cout << std::endl;
-		printArticleHHeader();
-		for (unsigned int i = 0; i < vec.size(); i++)
-			vec[i].printForReport();
+void BuyerDateReport::print()
+{
+	std::cout << std::endl << "Datum: ";
+	date.print(); std::cout << std::endl;
+	printArticleHHeader();
+	for (unsigned int i = 0; i < vec.size(); i++)
+		vec[i].printForReport();
 
-		std::ifstream file("Valuta.txt");
-		std::string value;
-		file >> value;
+	std::ifstream file("Valuta.txt");
+	std::string value;
+	file >> value;
 
-		std::ostringstream os;
-		os << no_pdv;
-		std::string no_pdv_value = os.str() + ' ' + value;
+	std::ostringstream os;
+	os << no_pdv;
+	std::string no_pdv_value = os.str() + ' ' + value;
 
-		std::ostringstream oss;
-		oss << pdv;
-		std::string pdv_value = oss.str() + ' ' + value;
+	std::ostringstream oss;
+	oss << pdv;
+	std::string pdv_value = oss.str() + ' ' + value;
 
-		std::ostringstream osss;
-		osss << plus_pdv;
-		std::string plus_pdv_value = osss.str() + ' ' + value;
+	std::ostringstream osss;
+	osss << plus_pdv;
+	std::string plus_pdv_value = osss.str() + ' ' + value;
 
-		std::cout << std::endl << "Bez PDV: " << no_pdv_value << std::endl;
-		std::cout << "PDV: " << pdv_value << std::endl;
-		std::cout << "Sa PDV: " << plus_pdv_value << std::endl;
-		printArticleFFooter();
-	}
+	std::cout << std::endl << "Bez PDV: " << no_pdv_value << std::endl;
+	std::cout << "PDV: " << pdv_value << std::endl;
+	std::cout << "Sa PDV: " << plus_pdv_value << std::endl;
+	printArticleFFooter();
+}
 
-	Date BuyerDateReport::getDate()const
-	{
-		return date;
-	}
+Date BuyerDateReport::getDate()const
+{
+	return date;
+}
 
-	bool BuyerDateReport::operator<(BuyerDateReport b)
-	{
-		if (date < b.getDate())return true;
-		else return false;
-	}
+bool BuyerDateReport::operator<(BuyerDateReport b)
+{
+	if (date < b.getDate())return true;
+	else return false;
+}
 
 
 
