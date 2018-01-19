@@ -170,7 +170,16 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 	{
 		std::cout << "Unesite godinu: "; std::cin >> godina;
 		god = stoi(godina);
-		if (god < 0) std::cout << "Godina  ne moze biti negativna!Pokusajte ponovo." << std::endl;
+		if (god < 0)
+		{
+			std::cout <<std::endl<< "Unijeli ste negativnu godinu.Pritisnite 'Enter' da pokusate ponovo." << std::endl;
+			getchar();
+			getchar();
+			system("cls");
+			logoS();
+			std::cout << std::endl;
+
+		}
 	} while (god < 0);
 	
 	

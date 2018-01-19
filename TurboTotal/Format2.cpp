@@ -10,12 +10,12 @@
 
 void trim(std::string &s)
 {
-	size_t p = s.find_first_not_of(" \t");//vraca poziciju prvog karaktera koji nije prazan prostor
+   size_t p = s.find_first_not_of(" \t");//vraca poziciju prvog karaktera koji nije prazan prostor
    s.erase(0, p);//brisanje razmaka sve do pojave prvog karaktera koji nije bjelina
 	
-		    p = s.find_last_not_of(" \t");//vraca poziciju posljednjeg karaktera koji nije space
-			if (std::string::npos != p)
-				s.erase(p + 1);
+	 p = s.find_last_not_of(" \t");//vraca poziciju posljednjeg karaktera koji nije space
+	if (std::string::npos != p)
+			s.erase(p + 1);
 }
 void buyer_file_output(std::string buyer_name, std::string date, std::vector<Article>& vec, double total, double pdv, double turbo_total)
 {
@@ -107,6 +107,12 @@ void format2Processing(std::string file_name)
 			if ((amount*price) != total1)//validacija racuna-provjerava da li je dobro izracunata ukupna vrijednost artikle pojedinacno
 			{
 				fp.close();
+				fp.open("Racuni/" + file_name, std::ios::in);
+				
+				
+				std::ofstream file_error("Racuni_sa_greskom/" + file_name);
+				while (getline(fp, line))//prebacivanje racuna sa greskom u poseban folder Racuni_sa_greskom
+					file_error << line << std::endl;
 				std::string error_name = "Error/" + file_name.erase(file_name.length() - 4, file_name.length());//pravljenje txt fajla u folderu Error
 				error_name += "_error.txt";
 				std::ofstream error; error.open(error_name);
@@ -178,6 +184,10 @@ void format2Processing(std::string file_name)
 		if (sum != total)//dio koda koji provjerava da li je dobro izracunata ukupna vrijednost(bez pdv-a)
 		{
 			fp.close();
+			fp.open("Racuni/" + file_name, std::ios::in);
+			std::ofstream file_error("Racuni_sa_greskom/" + file_name);
+			while (getline(fp, line))
+				file_error << line << std::endl;
 			std::string error_name = "Error/" + file_name.erase(file_name.length() - 4, file_name.length());
 			error_name += "_error.txt";
 			std::ofstream error; error.open(error_name);
@@ -198,6 +208,10 @@ void format2Processing(std::string file_name)
 
 		{
 			fp.close();
+			fp.open("Racuni/" + file_name, std::ios::in);
+			std::ofstream file_error("Racuni_sa_greskom/" + file_name);
+			while (getline(fp, line))
+				file_error << line << std::endl;
 			std::string error_name = "Error/" + file_name.erase(file_name.length() - 4, file_name.length());
 			error_name += "_error.txt";
 			std::ofstream error; error.open(error_name);
@@ -213,6 +227,10 @@ void format2Processing(std::string file_name)
 		if (total_pdv != total_plus_pdv)//dio koda koji provjerava da li je dobro izracunata ukupna vrijednost za placanje(ukupno+pdv)
 		{
 			fp.close();
+			fp.open("Racuni/" + file_name, std::ios::in);
+			std::ofstream file_error("Racuni_sa_greskom/" + file_name);
+			while (getline(fp, line))
+				file_error << line << std::endl;
 			std::string error_name = "Error/" + file_name.erase(file_name.length() - 4, file_name.length());
 			error_name += "_error.txt";
 			std::ofstream error; error.open(error_name);
