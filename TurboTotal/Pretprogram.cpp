@@ -7,6 +7,13 @@
 
 void Pretprogram()
 {
+	std::ifstream aa("1.txt");
+	if (!aa.is_open())
+	{
+		std::ofstream myfile("1.txt");
+		myfile << 1;
+		myfile.close();
+	}
 	std::string line;
 	std::string one = "1";
 	std::ifstream myfile("1.txt");
