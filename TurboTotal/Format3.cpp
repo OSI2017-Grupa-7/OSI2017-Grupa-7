@@ -105,8 +105,8 @@ void format3(std::string& bill) {
 				processed_file << line << std::endl;
 			std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
 			error_file += "_error.txt";
-			std::ofstream processed_file(error_file);
-			processed_file << "Racun sadrzi gresku-ukupna vrijednost (kolicina*cijena) za jedan od artikala nije ispravna." << std::endl;
+			std::ofstream processed_file_err(error_file);
+			processed_file_err << "Racun sadrzi gresku-ukupna vrijednost (kolicina*cijena) za jedan od artikala nije ispravna." << std::endl;
 			return;
 		}
 
@@ -127,8 +127,8 @@ void format3(std::string& bill) {
 			processed_file << line << std::endl;
 		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
 		error_file += "_error.txt";
-		std::ofstream processed_file(error_file);
-		processed_file << "Racun sadrzi gresku-ukupna vrijednost(bez PDV-a) nije dobro izracunata." << std::endl;
+		std::ofstream processed_file_err(error_file);
+		processed_file_err << "Racun sadrzi gresku-ukupna vrijednost(bez PDV-a) nije dobro izracunata." << std::endl;
 		//rename(rac_path, err_path);
 		return;
 	}
@@ -143,8 +143,8 @@ void format3(std::string& bill) {
 			processed_file << line << std::endl;
 		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
 		error_file += "_error.txt";
-		std::ofstream processed_file(error_file);
-		processed_file << "Racun sadrzi gresku-PDV nije dobro izracunat." << std::endl;
+		std::ofstream processed_file_err(error_file);
+		processed_file_err << "Racun sadrzi gresku-PDV nije dobro izracunat." << std::endl;
 		return;
 	}
 
@@ -158,8 +158,8 @@ void format3(std::string& bill) {
 			processed_file << line << std::endl;
 		std::string error_file = "Error/" + bill.erase(bill.length() - 4, bill.length());
 		error_file += "_error.txt";
-		std::ofstream processed_file(error_file);
-		processed_file << "Racun sadrzi gresku-ukupna vrijednost za placanje(pdv+ukupno) nije dobro izracunata." << std::endl;
+		std::ofstream processed_file_err(error_file);
+		processed_file_err << "Racun sadrzi gresku-ukupna vrijednost za placanje(pdv+ukupno) nije dobro izracunata." << std::endl;
 		//rename(rac_path, err_path);
 		return;
 	}
