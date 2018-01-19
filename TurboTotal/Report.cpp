@@ -164,10 +164,15 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 	logoS();
 	std::cout << std::endl;
 	std::cout << std::endl;
-	std::cout << "Unesite godinu: "; std::cin >> godina;
-
 	int mj, god;
-	mj = stoi(mjesec); god = stoi(godina);
+	mj = stoi(mjesec);
+	do 
+	{
+		std::cout << "Unesite godinu: "; std::cin >> godina;
+		god = stoi(godina);
+		if (god < 0) std::cout << "Godina  ne moze biti negativna!Pokusajte ponovo." << std::endl;
+	} while (god < 0);
+	
 	
 
 
@@ -175,18 +180,17 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 	{
 		system("cls");
 		logoS();
-<<<<<<< HEAD
-
-		std::cout << std::endl << "JANUAR" << std::endl;
-
-=======
 
 
 		std::cout << std::endl << "JANUAR" << std::endl;
 
+
+
 		std::cout << std::endl << "JANUAR" << std::endl;
 
->>>>>>> 27db44b11cfb791000396e49df89db6a87052011
+		std::cout << std::endl << "JANUAR" << std::endl;
+
+
 	}
 	
 	if (mjesec == "2")
@@ -277,19 +281,11 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 		std::cout << std::endl << "DECEMBAR" << std::endl;
 
 	}
-<<<<<<< HEAD
+
 	
 
 	Monthly(mj, god);
 
-
-=======
-	//uci u bazu artikala i ispisati izvjestaj
-
-
-	Monthly(mj, god);
-
->>>>>>> 27db44b11cfb791000396e49df89db6a87052011
 }
 
 
