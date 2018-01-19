@@ -161,7 +161,8 @@ void AnalystFunctionals()
 			file.close();
 		}
 		system("cls");
-		std::cout << "Pogresno ste unijeli podatke za prijavu 3x uzastopno." << std::endl;
+		logoS();
+		std::cout<<std::endl << "Pogresno ste unijeli podatke za prijavu 3x uzastopno." << std::endl;
 		std::cout << std::endl << "Da biste opet imali pristup sistemu, kontaktirajte administratora." << std::endl;
 	}
 	getchar();
