@@ -6,12 +6,12 @@
 #include <fstream>
 using std::string;
 
-struct MonthlyDate
+struct MonthlyDate//struktura za datum
 {
 	string day, month, name;
 };
 
-struct MonthlyArticle
+struct MonthlyArticle//posebna struktura koja oznacava artikal koji sluzi za mjesecni izvjestaj
 {
 	string code, price, quant, total, buyer;
 	string date;
@@ -38,7 +38,7 @@ struct MonthlyArticle
 	}
 };
 
-void Monthly(int, int);
-void ReportOutput(std::vector<MonthlyArticle>);
-bool checkDate(string, int, int);
+void Monthly(int, int);//funkcija koja vrsi dohvatanje podataka iz datoteka za artikle
+void ReportOutput(std::vector<MonthlyArticle>);//funkcija za ispis artikala na standardni izlaz
+bool checkDate(string, int, int);//funkcija koja provjerava da li je datum koji se nalazi u datoteci u opsegu koji nama treba(tj. da li se datum nalazi u unesenom mjesecu)
 

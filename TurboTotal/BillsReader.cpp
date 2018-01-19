@@ -44,6 +44,12 @@ void billsReading()
 
 int billFormat(std::vector<std::string> bills)
 {
+	//bills[i] je jedan fajl iz foldera Racuni
+	std::ifstream company("NazivKompanije.txt");
+	std::string company_name;
+	getline(company, company_name);
+	company.close();
+	//procitan naziv kompanije radi uporedjivanjem za obradu racuna formata4
 	for (unsigned int i = 0; i < bills.size(); i++)
 	{
 		std::string line;
@@ -52,10 +58,18 @@ int billFormat(std::vector<std::string> bills)
 			std::getline(file, line);
 		file >> line;
 		if (line == "Racun") { bills[i].erase(0, 7); format1(bills[i]); }
-		else if (line == "Maloprodajni") { bills[i].erase(0, 7); format2Processing(bills[i]); }
-		else if (line == "Datum:") { format3(bills[i]); }
-		else if (line == "OSI") { readformat4(bills[i]); }
-		else { bills[i].erase(0, 7); format5Processing(bills[i]); }
+	    if (line == "Maloprodajni") { bills[i].erase(0, 7); format2Processing(bills[i]); }
+		if (line == "Datum:") { format3(bills[i]); }
+		//
+		file.clear();
+		file.seekg(file.beg);
+		for (int j = 0; j < 3; j++)
+			std::getline(file, line);
+		getline(file, line);
+		line.erase(0, 7);
+		//citanje i obrada naziva kompanije iz bills[i] radi uporedjivanja sa nazivom kompanije koji je unio admin nakon instalacije
+		if (line == company_name) { readformat4(bills[i]); }
+		if (bills[i][bills[i].length()-3]=='c'){ bills[i].erase(0, 7); format5Processing(bills[i]); }
 	}
 	return 1;
 }
