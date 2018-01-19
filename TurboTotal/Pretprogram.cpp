@@ -128,7 +128,7 @@ void Pretprogram()
 			}
 			getchar();
 			int k = 1;
-			successfulSignIn(admin, k);
+			successfulSignIn(admin, k);//prijavljen administrator nakon prvog pokretanja
 		}
 	}
 }
