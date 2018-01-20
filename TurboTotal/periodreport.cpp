@@ -71,12 +71,12 @@ void articleReport(std::string& bill, int date1, int date2)
 {
 	std::string path = "Artikli/" + bill + ".txt";
 	std::ifstream file(path.c_str());
-	
+
 	std::string buyer, datestr, line, pom;
 
 	std::fstream f(bill);
 	int pomo = 0, counter = 0, count = 0;
-	while (getline(file,pom))
+	while (getline(file, pom))
 	{
 		pomo = file.tellg();
 	}
@@ -103,15 +103,15 @@ void articleReport(std::string& bill, int date1, int date2)
 	file.clear();
 	file.seekg(0);
 	int i = 0;
-	
-	while(counter != pomo)  // citanje artikala u niz
+
+	while (counter != pomo)  // citanje artikala u niz
 	{
 		getline(file, buyer);
 		getline(file, datestr);
 		file.clear();
 		file.seekg(counter);
 		int date = parseDate(datestr);
-		
+
 		if (date1 <= date && date <= date2)
 		{
 			getline(file, buyer);
@@ -150,10 +150,10 @@ void articleReport(std::string& bill, int date1, int date2)
 	std::ifstream currency("Valuta.txt"); //dohvatanje valute iz txt fajla
 	std::string value;
 	currency >> value;
-	
+
 	double total = 0;
 	int amount = 0;
-	
+
 	// ispis na standardni izlaz
 	std::cout << std::endl;
 	std::cout << std::endl;
@@ -168,7 +168,7 @@ void articleReport(std::string& bill, int date1, int date2)
 		std::cout << "==================================" << std::endl;
 		std::cout << "  " << "KOLICINA" << "     " << "CIJENA" << "     " << "UKUPNO" << std::endl;
 		std::cout << "==================================" << std::endl;
-		std::cout << "  " << std::setw(13) << std::left  << a[i].amount << std::setw(11) << std::left << price  << total << std::endl;
+		std::cout << "  " << std::setw(13) << std::left << a[i].amount << std::setw(11) << std::left << price << total << std::endl;
 		std::cout << "==================================" << std::endl;
 		std::cout << std::endl;
 	}

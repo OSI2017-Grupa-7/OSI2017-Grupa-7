@@ -32,7 +32,7 @@ void AnalystFunctionals()
 			{
 				billsReading();//FUNKCIJA ZA CITANJE, OBRADU, SKLADISTENJE RACUNA
 				char t = '1';//t omogucava vracanje na pocetak profila
-				while (t=='1')
+				while (t == '1')
 				{
 					k = 0;
 					char option3;
@@ -162,7 +162,7 @@ void AnalystFunctionals()
 		}
 		system("cls");
 		logoS();
-		std::cout<<std::endl << "Pogresno ste unijeli podatke za prijavu 3x uzastopno." << std::endl;
+		std::cout << std::endl << "Pogresno ste unijeli podatke za prijavu 3x uzastopno." << std::endl;
 		std::cout << std::endl << "Da biste opet imali pristup sistemu, kontaktirajte administratora." << std::endl;
 	}
 	getchar();

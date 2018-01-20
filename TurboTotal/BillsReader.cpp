@@ -58,7 +58,7 @@ int billFormat(std::vector<std::string> bills)
 			std::getline(file, line);
 		file >> line;
 		if (line == "Racun") { bills[i].erase(0, 7); format1(bills[i]); }
-	    if (line == "Maloprodajni") { bills[i].erase(0, 7); format2Processing(bills[i]); }
+		if (line == "Maloprodajni") { bills[i].erase(0, 7); format2Processing(bills[i]); }
 		if (line == "Datum:") { format3(bills[i]); }
 		//
 		file.clear();
@@ -69,7 +69,7 @@ int billFormat(std::vector<std::string> bills)
 		line.erase(0, 7);
 		//citanje i obrada naziva kompanije iz bills[i] radi uporedjivanja sa nazivom kompanije koji je unio admin nakon instalacije
 		if (line == company_name) { readformat4(bills[i]); }
-		if (bills[i][bills[i].length()-3]=='c'){ bills[i].erase(0, 7); format5Processing(bills[i]); }
+		if (bills[i][bills[i].length() - 3] == 'c') { bills[i].erase(0, 7); format5Processing(bills[i]); }
 	}
 	return 1;
 }

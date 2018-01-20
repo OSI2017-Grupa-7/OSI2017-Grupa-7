@@ -57,7 +57,7 @@ void format3(std::string& bill) {
 	GotoLine(file, 4);
 	file >> trash >> date;
 	file.seekg(0, file.beg);
-	while (r != 2) 
+	while (r != 2)
 	{
 		std::getline(file, trash);
 		n++;
@@ -71,7 +71,7 @@ void format3(std::string& bill) {
 	GotoLine(file, n + 4);
 	file >> trash >> trash >> trash >> totalp;
 	file.seekg(0, file.beg);
-	
+
 	for (int i = 0; i < 9; i++)
 		std::getline(file, trash);
 
@@ -88,7 +88,7 @@ void format3(std::string& bill) {
 			i++;
 		}
 
-		st.push_back(st1 + ' ' +  st2);
+		st.push_back(st1 + ' ' + st2);
 		count++;
 
 		parse(trash, st2, ammount, i);

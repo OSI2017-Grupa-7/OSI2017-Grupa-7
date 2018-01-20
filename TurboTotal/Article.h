@@ -5,11 +5,11 @@
 class Article
 {
 	std::string name, code;
-	double price, amount,total;
-	
+	double price, amount, total;
+
 public:
 	Article();
-	Article(std::string,std::string, double);
+	Article(std::string, std::string, double);
 	~Article();
 	void setName(std::string);
 	void setCode(std::string);
@@ -21,7 +21,7 @@ public:
 	double getPrice();
 	double getAmount() { return amount; }
 	double getTotal() { return total; }
-    void print();
+	void print();
 	void printForReport();
 };
 

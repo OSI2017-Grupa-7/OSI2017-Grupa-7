@@ -39,7 +39,7 @@ bool checkDate(string date, int month, int year)
 
 void ReportOutput(std::vector<MonthlyArticle> vec)
 {
-	
+
 	std::cout << std::endl;
 	std::cout << std::endl;
 	double sum = 0;
@@ -58,7 +58,7 @@ void ReportOutput(std::vector<MonthlyArticle> vec)
 		quant = stod(vec[i].quant); price = stod(vec[i].price);
 		total = quant*price;
 		sum += total;
-		
+
 
 
 		std::cout << std::left << std::setw(15) << vec[i].code << std::left << std::setw(20) << vec[i].buyer << std::left << std::setw(18) << vec[i].date << std::left << std::setw(11) << vec[i].quant << std::left << std::setw(5) << vec[i].price + ' ' + currency << "     " << total << " " << currency << std::endl;
@@ -80,14 +80,14 @@ void Monthly(int month, int year)
 	for (int i = 0; i < articles.size(); i++)
 	{
 		articles[i].erase(0, 8);//brisanje prvih 8 karaktera u nazivu datoteke
-		
+
 
 	}
 	std::vector<string>articlenames = articles;
 	for (int i = 0; i < articles.size(); i++)
 	{
 		articlenames[i].erase(articlenames[i].length() - 4, articlenames[i].length());//brisanje .txt iz imena datoteke
-		
+
 
 	}
 	std::vector<MonthlyArticle> vectorArt;
@@ -95,18 +95,18 @@ void Monthly(int month, int year)
 	string pomstr;
 	int num = 0;
 
-	while (num<articles.size())
+	while (num < articles.size())
 	{
 		std::ifstream fp("Artikli/" + articles[num]);
 		while (!fp.eof())//"setanje" po datoteci i pribavljanje potrebnih podataka za ispis
 		{
 			pomart.code = articlenames[num];
-			
+
 			std::getline(fp, pomart.buyer);
 			std::getline(fp, pomart.date);
-			fp >> pomart.price; 
-			fp >> pomart.quant; 
-			fp >> pomart.total; 
+			fp >> pomart.price;
+			fp >> pomart.quant;
+			fp >> pomart.total;
 			std::getline(fp, pomstr);
 			std::getline(fp, pomstr);
 			if (fp.eof())break;//break ukoliko dodje do kraja fajla,jer se eof() razlikuje od datoteke do datoteke
@@ -121,7 +121,7 @@ void Monthly(int month, int year)
 
 
 	std::sort(vectorArt.begin(), vectorArt.end());//sortiranje artikala po datumima
-	
+
 
 	ReportOutput(vectorArt);
 

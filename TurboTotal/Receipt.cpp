@@ -5,7 +5,7 @@
 
 Receipt::Receipt() {}
 
-Receipt::Receipt(std::vector<Article> artikal, Buyer kupac,Date datum): artikal(artikal),kupac(kupac),datum(datum){}
+Receipt::Receipt(std::vector<Article> artikal, Buyer kupac, Date datum) : artikal(artikal), kupac(kupac), datum(datum) {}
 
 Receipt::~Receipt() {}
 

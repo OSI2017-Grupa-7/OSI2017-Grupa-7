@@ -9,7 +9,7 @@ void AdminAnalystChoose(char &option)
 		system("cls");
 		logoL();
 		std::cout << std::endl << "Pristupam sistemu kao:" << std::endl;
-		std::cout <<std::endl<< "1. Administrator" << std::endl;
+		std::cout << std::endl << "1. Administrator" << std::endl;
 		std::cout << "2. Analiticar" << std::endl;
 		std::cout << std::endl << "Odaberi opciju: "; std::cin >> option;
 	} while (option != '1' && option != '2');
@@ -80,13 +80,13 @@ int checkForAnalyst(std::string a, std::string b)
 	}
 
 	myfile = fopen("RegistrovaniAnaliticari.txt", "r");
-	while (fscanf(myfile, "%s %s %s %s %s\n", name, surname, ID, PIN,maliciozan) == 5)
+	while (fscanf(myfile, "%s %s %s %s %s\n", name, surname, ID, PIN, maliciozan) == 5)
 	{
 		std::string IID(ID);
 		std::string PPIN(PIN);
 		if (IID == a && PPIN == b)
 			return 1;
-		else if (IID == a && PPIN !=b)
+		else if (IID == a && PPIN != b)
 			return 2;
 		else if (IID != a && PPIN == b)
 			return 3;
@@ -96,7 +96,7 @@ int checkForAnalyst(std::string a, std::string b)
 
 int deleteAnalyst(std::string a)
 {
-	short isString=0;
+	short isString = 0;
 	char name[15], surname[15], ID[15], PIN[15], maliciozan[15];
 	FILE* myfile;
 	myfile = fopen("RegistrovaniAnaliticari.txt", "r");
@@ -125,7 +125,7 @@ int deleteAnalyst(std::string a)
 			v.erase(v.begin() + i);
 
 	for (unsigned int i = 0; i < v.size(); i++)
-	   file << std::setw(15) << std::left << v[i].getName() << std::setw(15) << std::left << v[i].getSurname() << std::setw(10) << std::left << v[i].getID() << std::setw(10) << std::left << v[i].getPIN() << std::setw(10) << std::left << v[i].getMalicious() << std::endl;
+		file << std::setw(15) << std::left << v[i].getName() << std::setw(15) << std::left << v[i].getSurname() << std::setw(10) << std::left << v[i].getID() << std::setw(10) << std::left << v[i].getPIN() << std::setw(10) << std::left << v[i].getMalicious() << std::endl;
 	file.close();
 	return 1;
 }
@@ -183,11 +183,11 @@ int maliciousAdmin(Person a)
 		v.push_back(b);
 	}
 	fclose(myfile);
-	
+
 	for (unsigned int i = 0; i < v.size(); i++)
 	{
 		if (a.getID() == v[i].getID())
-			return 0 ;
+			return 0;
 	}
 	return 1;
 
@@ -236,12 +236,12 @@ int isThereAdmin(Person a)
 		v.push_back(b);
 	}
 	fclose(myfile);
-	
+
 	for (unsigned int i = 0; i < v.size(); i++)
 	{
-		if ((a.getName() == v[i].getName() && a.getSurname() == v[i].getSurname() && a.getPIN() == v[i].getPIN() && a.getID() == v[i].getID()) 
-			|| (a.getID()==v[i].getID())
-			|| (a.getPIN()==v[i].getPIN()))
+		if ((a.getName() == v[i].getName() && a.getSurname() == v[i].getSurname() && a.getPIN() == v[i].getPIN() && a.getID() == v[i].getID())
+			|| (a.getID() == v[i].getID())
+			|| (a.getPIN() == v[i].getPIN()))
 			return 1;
 	}
 	return 0;
@@ -267,7 +267,7 @@ int isThereMaliciousAdmin(std::string a)
 
 	for (unsigned int i = 0; i < v.size(); i++)
 	{
-		if (v[i].getID()==a)
+		if (v[i].getID() == a)
 			return 1;
 	}
 	return 0;
@@ -293,7 +293,7 @@ int isThereAnalyst(Person a)
 
 	for (unsigned int i = 0; i < v.size(); i++)
 	{
-		if((a.getName() == v[i].getName() && a.getSurname() == v[i].getSurname() && a.getPIN() == v[i].getPIN() && a.getID() == v[i].getID())
+		if ((a.getName() == v[i].getName() && a.getSurname() == v[i].getSurname() && a.getPIN() == v[i].getPIN() && a.getID() == v[i].getID())
 			|| (a.getID() == v[i].getID())
 			|| (a.getPIN() == v[i].getPIN()))
 			return 1;

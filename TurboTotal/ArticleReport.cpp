@@ -32,10 +32,10 @@ void ArticleReport::print()
 	std::string tot_value = oss.str() + ' ' + value;
 
 
-	std::cout <<std::endl<<std::endl << "Datum: "; date.print();
+	std::cout << std::endl << std::endl << "Datum: "; date.print();
 	std::cout << "Kupac: " << buyer_name;
 	printHeaderArticle();
-	std::cout << " " << std::left << std::setw(10) <<article.getAmount() << std::left << std::setw(8) << pr_value << std::left << std::setw(10) << tot_value;
+	std::cout << " " << std::left << std::setw(10) << article.getAmount() << std::left << std::setw(8) << pr_value << std::left << std::setw(10) << tot_value;
 	printFooterArticle();
 }
 Date ArticleReport::getDate() const
@@ -67,25 +67,25 @@ void printHeaderArticle()
 
 void printFooterArticle()
 {
-	std::cout <<std::endl<< "=================================" << std::endl;
+	std::cout << std::endl << "=================================" << std::endl;
 }
 void processingArticleReports(std::string file_name) {
 	std::vector<ArticleReport> vec;
 	std::string line;
 	int counter = 0;
 	std::ifstream file("Artikli/" + file_name + ".txt");
-	if (!file.is_open()) std::cout << std::endl << "Ne postoji artikal sa tom sifrom."<<std::endl;
+	if (!file.is_open()) std::cout << std::endl << "Ne postoji artikal sa tom sifrom." << std::endl;
 	else {
 		while (getline(file, line)) {
-			if(line[0]== '-')
-			counter++;
+			if (line[0] == '-')
+				counter++;
 		}
 		file.clear();
 		file.seekg(file.beg);
 		while (counter--) {
 			ArticleReport artRep;
 			Article art;
-			std::string am, pr, tot,pom;
+			std::string am, pr, tot, pom;
 			getline(file, line);
 			artRep.setBuyerName(line);
 			getline(file, line);
@@ -103,7 +103,7 @@ void processingArticleReports(std::string file_name) {
 		}
 		printArticleReports(vec);
 	}
-	
+
 }
 Date parsingDate(std::string date) {
 	Date d;

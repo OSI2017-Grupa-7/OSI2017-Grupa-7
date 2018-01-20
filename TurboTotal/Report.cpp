@@ -166,13 +166,13 @@ void monthSaldoReport()//funkcija za unos montha i godine
 	std::cout << std::endl;
 	int m, y;
 	m = stoi(month);
-	do 
+	do
 	{
 		std::cout << "Unesite godinu: "; std::cin >> year;
 		y = stoi(year);
 		if (y < 0)
 		{
-			std::cout <<std::endl<< "Unesena godina nije validna. Pritisnite 'Enter' da pokusate ponovo." << std::endl;
+			std::cout << std::endl << "Unesena godina nije validna. Pritisnite 'Enter' da pokusate ponovo." << std::endl;
 			getchar();
 			getchar();
 			system("cls");
@@ -181,8 +181,8 @@ void monthSaldoReport()//funkcija za unos montha i godine
 
 		}
 	} while (y < 0);
-	
-	
+
+
 
 
 	if (month == "1")
@@ -195,7 +195,7 @@ void monthSaldoReport()//funkcija za unos montha i godine
 
 
 	}
-	
+
 	if (month == "2")
 	{
 		system("cls");
@@ -285,7 +285,7 @@ void monthSaldoReport()//funkcija za unos montha i godine
 
 	}
 
-	
+
 
 	Monthly(m, y);
 
@@ -299,7 +299,7 @@ std::string input() {
 	std::string str;
 	while (1) {
 		a = _getch();
-		if ((a >= 'a' && a <= 'z') || (a >= 'A' && a <= 'Z') || (a >= '0' && a <= '9') || a == ' ' || a=='_' || a=='.' || a=='#' || a=='$' || a=='@'|| a=='!' || a=='%' || a=='^' || a=='&' || a=='*' || a=='(' || a==')' || a=='-' || a=='=' || a=='+') {
+		if ((a >= 'a' && a <= 'z') || (a >= 'A' && a <= 'Z') || (a >= '0' && a <= '9') || a == ' ' || a == '_' || a == '.' || a == '#' || a == '$' || a == '@' || a == '!' || a == '%' || a == '^' || a == '&' || a == '*' || a == '(' || a == ')' || a == '-' || a == '=' || a == '+') {
 			temp[i++] = a;
 			std::cout << a;
 		}

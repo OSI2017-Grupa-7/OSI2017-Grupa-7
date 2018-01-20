@@ -10,9 +10,9 @@ class Receipt
 	Date datum;
 public:
 	Receipt();
-	Receipt(std::vector<Article> , Buyer,Date);
+	Receipt(std::vector<Article>, Buyer, Date);
 	~Receipt();
-	void setRacun(std::vector<Article>, Buyer,Date);
+	void setRacun(std::vector<Article>, Buyer, Date);
 	void print();
 };
 

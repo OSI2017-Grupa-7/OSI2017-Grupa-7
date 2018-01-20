@@ -91,7 +91,7 @@ void readformat4(std::string& bill)
 		std::string buyer_dat;
 		buyer_dat = "Kupci/" + buyer + ".txt";
 		std::ofstream buyer_file(buyer_dat, std::ios::app);
-		buyer_file << d << "." << m << "." << y <<"." << std::endl;
+		buyer_file << d << "." << m << "." << y << "." << std::endl;
 		for (int i = 0; i < num; i++)
 		{
 			buyer_file << array[i].name << " " << array[i].number << " " << array[i].amount << " " << array[i].price << " " << array[i].total << std::endl;

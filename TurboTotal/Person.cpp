@@ -7,7 +7,7 @@ int Person::readPerson()
 	std::cout << "Prezime: "; std::cin >> surname;
 	std::cout << "ID: "; std::cin >> ID;
 	std::cout << "PIN: "; std::cin >> PIN;
-	if (ID.length() != 4 || PIN.length()!=4)
+	if (ID.length() != 4 || PIN.length() != 4)
 	{
 		std::cout << std::endl << "ID i PIN moraju imati 4 broja, pokusajte ponovo." << std::endl;
 		getchar(); getchar();
