@@ -81,7 +81,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>D_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -113,23 +114,54 @@
   <ItemGroup>
     <ClCompile Include="AdminFunctionals.cpp" />
     <ClCompile Include="AnalystFunctionals.cpp" />
+    <ClCompile Include="Article.cpp" />
+    <ClCompile Include="ArticleReport.cpp" />
     <ClCompile Include="BillsReader.cpp" />
+    <ClCompile Include="Buyer.cpp" />
+    <ClCompile Include="BuyerDateReport.cpp" />
+    <ClCompile Include="BuyerReport.cpp" />
+    <ClCompile Include="Date.cpp" />
+    <ClCompile Include="Format1.cpp" />
+    <ClCompile Include="Format2.cpp" />
+    <ClCompile Include="Format3.cpp" />
+    <ClCompile Include="format4.cpp" />
+    <ClCompile Include="format5.cpp" />
     <ClCompile Include="Functions.cpp" />
     <ClCompile Include="Logo.cpp" />
+    <ClCompile Include="MonthlyReport.cpp" />
+    <ClCompile Include="periodreport.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="Pretprogram.cpp" />
+    <ClCompile Include="Receipt.cpp" />
     <ClCompile Include="Report.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdminFunctionals.h" />
     <ClInclude Include="AnalystFunctionals.h" />
+    <ClInclude Include="Article.h" />
+    <ClInclude Include="ArticleReport.h" />
     <ClInclude Include="BillsReader.h" />
+    <ClInclude Include="Buyer.h" />
+    <ClInclude Include="BuyerDateReport.h" />
+    <ClInclude Include="BuyerReport.h" />
+    <ClInclude Include="Date.h" />
+    <ClInclude Include="Format1.h" />
+    <ClInclude Include="Format2.h" />
+    <ClInclude Include="Format3.h" />
+    <ClInclude Include="Format4.h" />
+    <ClInclude Include="format5.h" />
     <ClInclude Include="Functions.h" />
     <ClInclude Include="Logo.h" />
+    <ClInclude Include="MonthlyReport.h" />
+    <ClInclude Include="periodreport.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="Pretprogram.h" />
+    <ClInclude Include="Receipt.h" />
     <ClInclude Include="Report.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
