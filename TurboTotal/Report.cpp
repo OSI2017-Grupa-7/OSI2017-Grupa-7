@@ -86,7 +86,7 @@ void productReport()
 			std::string path = "Artikli/" + article + ".txt";
 			std::ifstream f(path.c_str());
 
-			std::cout << std::endl << "Unesite datum u obliku: dan.month.godina" << std::endl << std::endl;
+			std::cout << std::endl << "Unesite datum u obliku: dan.mjesec.godina" << std::endl << std::endl;
 			std::cout << "Datum od: ";
 			std::cin >> date1;
 			std::cout << "Datum do: ";
@@ -172,7 +172,7 @@ void monthSaldoReport()//funkcija za unos montha i godine
 		y = stoi(year);
 		if (y < 0)
 		{
-			std::cout <<std::endl<< "Unijeli ste negativnu godinu.Pritisnite 'Enter' da pokusate ponovo." << std::endl;
+			std::cout <<std::endl<< "Unesena godina nije validna. Pritisnite 'Enter' da pokusate ponovo." << std::endl;
 			getchar();
 			getchar();
 			system("cls");
@@ -241,7 +241,7 @@ void monthSaldoReport()//funkcija za unos montha i godine
 		system("cls");
 		logoS();
 
-		std::cout << std::endl << "JULI" << std::endl;
+		std::cout << std::endl << "JUL" << std::endl;
 
 	}
 	if (month == "8")
