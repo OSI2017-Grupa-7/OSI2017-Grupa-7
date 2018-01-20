@@ -86,7 +86,7 @@ void productReport()
 			std::string path = "Artikli/" + article + ".txt";
 			std::ifstream f(path.c_str());
 
-			std::cout << std::endl << "Unesite datum u obliku: dan.mjesec.godina" << std::endl << std::endl;
+			std::cout << std::endl << "Unesite datum u obliku: dan.month.godina" << std::endl << std::endl;
 			std::cout << "Datum od: ";
 			std::cin >> date1;
 			std::cout << "Datum do: ";
@@ -143,10 +143,10 @@ void productReport()
 
 }
 
-void monthSaldoReport()//funkcija za unos mjeseca i godine
+void monthSaldoReport()//funkcija za unos montha i godine
 {
-	std::string mjesec, godina;
-	do//meni za izbor mjeseca
+	std::string month, year;
+	do//meni za izbor montha
 	{
 
 		system("cls");
@@ -156,21 +156,21 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 		std::cout << " 4. April           5. Maj             6. Jun" << std::endl;
 		std::cout << " 7. Jul             8. Avgust          9. Septembar" << std::endl;
 		std::cout << "10. Oktobar        11. Novembar       12. Decembar" << std::endl;
-		std::cout << std::endl << "Unesi opciju: "; std::cin >> mjesec;
-	} while (mjesec != "1" && mjesec != "2" && mjesec != "3" && mjesec != "4" && mjesec != "5" && mjesec != "6" &&
-		mjesec != "7" && mjesec != "8" && mjesec != "9" && mjesec != "10" && mjesec != "11" && mjesec != "12");
+		std::cout << std::endl << "Unesi opciju: "; std::cin >> month;
+	} while (month != "1" && month != "2" && month != "3" && month != "4" && month != "5" && month != "6" &&
+		month != "7" && month != "8" && month != "9" && month != "10" && month != "11" && month != "12");
 
 	system("cls");
 	logoS();
 	std::cout << std::endl;
 	std::cout << std::endl;
-	int mj, god;
-	mj = stoi(mjesec);
+	int m, y;
+	m = stoi(month);
 	do 
 	{
-		std::cout << "Unesite godinu: "; std::cin >> godina;
-		god = stoi(godina);
-		if (god < 0)
+		std::cout << "Unesite godinu: "; std::cin >> year;
+		y = stoi(year);
+		if (y < 0)
 		{
 			std::cout <<std::endl<< "Unijeli ste negativnu godinu.Pritisnite 'Enter' da pokusate ponovo." << std::endl;
 			getchar();
@@ -180,12 +180,12 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 			std::cout << std::endl;
 
 		}
-	} while (god < 0);
+	} while (y < 0);
 	
 	
 
 
-	if (mjesec == "1")
+	if (month == "1")
 	{
 		system("cls");
 		logoS();
@@ -196,7 +196,7 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 
 	}
 	
-	if (mjesec == "2")
+	if (month == "2")
 	{
 		system("cls");
 		logoS();
@@ -204,7 +204,7 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 		std::cout << std::endl << "FEBRUAR" << std::endl;
 
 	}
-	if (mjesec == "3")
+	if (month == "3")
 	{
 		system("cls");
 		logoS();
@@ -212,7 +212,7 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 		std::cout << std::endl << "MART" << std::endl;
 
 	}
-	if (mjesec == "4")
+	if (month == "4")
 	{
 		system("cls");
 		logoS();
@@ -220,7 +220,7 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 		std::cout << std::endl << "APRIL" << std::endl;
 
 	}
-	if (mjesec == "5")
+	if (month == "5")
 	{
 		system("cls");
 		logoS();
@@ -228,7 +228,7 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 		std::cout << std::endl << "MAJ" << std::endl;
 
 	}
-	if (mjesec == "6")
+	if (month == "6")
 	{
 		system("cls");
 		logoS();
@@ -236,7 +236,7 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 		std::cout << std::endl << "JUN" << std::endl;
 
 	}
-	if (mjesec == "7")
+	if (month == "7")
 	{
 		system("cls");
 		logoS();
@@ -244,7 +244,7 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 		std::cout << std::endl << "JULI" << std::endl;
 
 	}
-	if (mjesec == "8")
+	if (month == "8")
 	{
 		system("cls");
 		logoS();
@@ -252,7 +252,7 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 		std::cout << std::endl << "AVGUST" << std::endl;
 
 	}
-	if (mjesec == "9")
+	if (month == "9")
 	{
 		system("cls");
 		logoS();
@@ -260,7 +260,7 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 		std::cout << std::endl << "SEPTEMBAR" << std::endl;
 
 	}
-	if (mjesec == "10")
+	if (month == "10")
 	{
 		system("cls");
 		logoS();
@@ -268,7 +268,7 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 		std::cout << std::endl << "OKTOBAR" << std::endl;
 
 	}
-	if (mjesec == "11")
+	if (month == "11")
 	{
 		system("cls");
 		logoS();
@@ -276,7 +276,7 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 		std::cout << std::endl << "NOVEMBAR" << std::endl;
 
 	}
-	if (mjesec == "12")
+	if (month == "12")
 	{
 		system("cls");
 		logoS();
@@ -287,7 +287,7 @@ void monthSaldoReport()//funkcija za unos mjeseca i godine
 
 	
 
-	Monthly(mj, god);
+	Monthly(m, y);
 
 }
 
