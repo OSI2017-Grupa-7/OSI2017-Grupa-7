@@ -69,7 +69,8 @@ int billFormat(std::vector<std::string> bills)
 		line.erase(0, 7);
 		//citanje i obrada naziva kompanije iz bills[i] radi uporedjivanja sa nazivom kompanije koji je unio admin nakon instalacije
 		if (line == company_name) { readformat4(bills[i]); }
-		if (bills[i][bills[i].length() - 3] == 'c') { bills[i].erase(0, 7); format5Processing(bills[i]); }
+		std::string temp = "aaa"+bills[i];
+		if (temp[temp.length() - 3] == 'c') { bills[i].erase(0, 7); format5Processing(bills[i]); }
 	}
 	return 1;
 }
